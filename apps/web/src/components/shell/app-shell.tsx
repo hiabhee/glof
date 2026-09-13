@@ -44,10 +44,6 @@ export function AppShell() {
   const selectedDataset = selected ? getDatasetForCatalogRecord(selected) : undefined;
 
   const filtered = useMemo(() => searchCatalog(query, region), [query, region]);
-  const filteredSystems = useMemo(() => {
-    const lakes = filtered.filter((record) => record.type === "lake");
-    return lakes.length > 0 ? lakes : filtered;
-  }, [filtered]);
   const availableCatalog = useMemo(() => glacierCatalog.filter(hasImageryData), []);
   const featured = useMemo(() => availableCatalog.filter((g) => g.featured), [availableCatalog]);
   const lakeCount = availableCatalog.filter((g) => g.type === "lake").length;
@@ -209,14 +205,14 @@ export function AppShell() {
             </div>
 
             <div className="results-meta">
-              <span>{filteredSystems.length} place{filteredSystems.length !== 1 ? "s" : ""}</span>
+              <span>{filtered.length} place{filtered.length !== 1 ? "s" : ""}</span>
               {selected && (
                 <button type="button" className="text-btn" onClick={handleClearSelection}>Clear selection</button>
               )}
             </div>
 
             <div className="result-list" role="listbox" aria-label="Search results">
-              {filteredSystems.map((rec) => (
+              {filtered.map((rec) => (
                 <button
                   key={rec.id}
                   type="button"
@@ -242,7 +238,7 @@ export function AppShell() {
                   <span className="result-arrow" aria-hidden="true">↗</span>
                 </button>
               ))}
-              {filteredSystems.length === 0 && <p className="empty-note">No matches. Try “South Lhonak” or “Imja”.</p>}
+              {filtered.length === 0 && <p className="empty-note">No matches. Try “South Lhonak” or “Imja”.</p>}
             </div>
 
             <details className="featured-drawer">

@@ -226,6 +226,24 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
         viewer.scene.backgroundColor = Cesium.Color.fromCssColorString("#061e2c");
         viewer.scene.screenSpaceCameraController.minimumZoomDistance = 600;
         viewer.scene.screenSpaceCameraController.maximumZoomDistance = 24_000_000;
+        // Ensure pinch/zoom gestures are handled by Cesium, not the browser's page zoom.
+        viewer.scene.screenSpaceCameraController.enableZoom = true;
+        viewer.scene.screenSpaceCameraController.enableTranslate = true;
+        viewer.scene.screenSpaceCameraController.enableRotate = true;
+        viewer.scene.screenSpaceCameraController.enableTilt = true;
+        viewer.scene.screenSpaceCameraController.enableLook = true;
+        // Prevent the browser from hijacking pinch-zoom on the globe canvas.
+        // `touch-action: none` lets Cesium receive multi-touch gestures directly.
+        const canvas: HTMLCanvasElement | undefined = viewer.canvas ?? viewer.scene?.canvas ?? hostRef.current?.querySelector("canvas") ?? undefined;
+        if (canvas) {
+          (canvas.style as any).touchAction = "none";
+          (canvas.style as any).msTouchAction = "none";
+          canvas.setAttribute("touch-action", "none");
+        }
+        if (hostRef.current) {
+          (hostRef.current.style as any).touchAction = "none";
+          (hostRef.current.style as any).msTouchAction = "none";
+        }
         viewer.cesiumWidget.creditContainer.style.display = "none";
 
         markerSourceRef.current = new Cesium.CustomDataSource("glacier-markers");
@@ -279,8 +297,8 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
   }, [flyTo, renderMarkers, satelliteOpacity, selected, showBoundaries, showEvents, showLakes, terrainEnabled, updateBoundaryStyle]);
 
   return (
-    <div className="globe-root">
-      <div ref={hostRef} className="cesium-container" aria-label="Interactive three-dimensional Cesium globe" />
+    <div className="globe-root" style={{ touchAction: "none" } as React.CSSProperties}>
+      <div ref={hostRef} className="cesium-container" aria-label="Interactive three-dimensional Cesium globe" style={{ touchAction: "none" } as React.CSSProperties} />
       {!ready && <div className="globe-loading" role="status">{error ? "Cesium globe could not start." : "Opening the live 3D globe…"}</div>}
       <div className="globe-vignette" aria-hidden="true" />
     </div>
