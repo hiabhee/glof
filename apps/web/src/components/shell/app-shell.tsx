@@ -44,6 +44,10 @@ export function AppShell() {
   const selectedDataset = selected ? getDatasetForCatalogRecord(selected) : undefined;
 
   const filtered = useMemo(() => searchCatalog(query, region), [query, region]);
+  const filteredSystems = useMemo(() => {
+    const lakes = filtered.filter((record) => record.type === "lake");
+    return lakes.length > 0 ? lakes : filtered;
+  }, [filtered]);
   const availableCatalog = useMemo(() => glacierCatalog.filter(hasImageryData), []);
   const featured = useMemo(() => availableCatalog.filter((g) => g.featured), [availableCatalog]);
   const lakeCount = availableCatalog.filter((g) => g.type === "lake").length;
@@ -205,14 +209,14 @@ export function AppShell() {
             </div>
 
             <div className="results-meta">
-              <span>{filtered.length} result{filtered.length !== 1 ? "s" : ""}</span>
+              <span>{filteredSystems.length} place{filteredSystems.length !== 1 ? "s" : ""}</span>
               {selected && (
                 <button type="button" className="text-btn" onClick={handleClearSelection}>Clear selection</button>
               )}
             </div>
 
             <div className="result-list" role="listbox" aria-label="Search results">
-              {filtered.map((rec) => (
+              {filteredSystems.map((rec) => (
                 <button
                   key={rec.id}
                   type="button"
@@ -238,7 +242,7 @@ export function AppShell() {
                   <span className="result-arrow" aria-hidden="true">↗</span>
                 </button>
               ))}
-              {filtered.length === 0 && <p className="empty-note">No matches. Try “RGI2000”, “South Lhonak”, or a region.</p>}
+              {filteredSystems.length === 0 && <p className="empty-note">No matches. Try “South Lhonak” or “Imja”.</p>}
             </div>
 
             <details className="featured-drawer">
@@ -472,7 +476,6 @@ export function AppShell() {
             <small>RGI v7 baseline overlay · 2016–2025 candidates · SAR vs optical · source-cited evidence</small>
           </div>
           <div className="detail-actions">
-            <button type="button" onClick={() => setDetailOpen(false)}>Back to globe</button>
             <button type="button" className="primary" onClick={() => setDetailOpen(false)}>Close ×</button>
           </div>
         </div>
