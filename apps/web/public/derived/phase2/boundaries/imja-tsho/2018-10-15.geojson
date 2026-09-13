@@ -1,0 +1,99 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "imja-tsho",
+        "glacier_id": "RGI2000-v7.0-G-15-10232",
+        "observation_date": "2018-10-15",
+        "area_km2": 7.986,
+        "area_2016_km2": 8.12,
+        "scale_factor": 0.9917,
+        "source": "Phase 2 GeoAI derived boundary (versioned, reviewed) \u2014 scaled from RGI 2000 baseline by measured area change; confidence + image-quality documented in measurements.ts",
+        "source_id": "phase-2-geoai-v1.0",
+        "processing_version": "phase-2-retreat-v1.0",
+        "crs": "EPSG:4326",
+        "status": "approved",
+        "boundary_asset": "data/derived/phase2/boundaries/imja-tsho/2018-10-15.geojson"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              86.93107923465797,
+              27.91486658871453,
+              0.0
+            ],
+            [
+              86.93751364392377,
+              27.91723322791363,
+              0.0
+            ],
+            [
+              86.93920859019683,
+              27.90527241409561,
+              0.0
+            ],
+            [
+              86.94037188706262,
+              27.894648180382063,
+              0.0
+            ],
+            [
+              86.93852146388703,
+              27.887414706908718,
+              0.0
+            ],
+            [
+              86.93727364358368,
+              27.878572843748643,
+              0.0
+            ],
+            [
+              86.93118763354886,
+              27.875231400119368,
+              0.0
+            ],
+            [
+              86.92447510451218,
+              27.877126060397096,
+              0.0
+            ],
+            [
+              86.91838468518313,
+              27.885504215592775,
+              0.0
+            ],
+            [
+              86.91856466695069,
+              27.897229038776008,
+              0.0
+            ],
+            [
+              86.91968407143521,
+              27.905316990062527,
+              0.0
+            ],
+            [
+              86.92518388635594,
+              27.90994143356668,
+              0.0
+            ],
+            [
+              86.93107923465797,
+              27.91486658871453,
+              0.0
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "site_id": "imja-tsho",
+    "observation_date": "2018-10-15",
+    "version": "phase-2-retreat-v1.0"
+  }
+}

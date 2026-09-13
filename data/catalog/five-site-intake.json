@@ -1,0 +1,165 @@
+{
+  "schema_version": "1.0",
+  "scope": "final-five",
+  "sites": [
+    {
+      "site_id": "south-lhonak",
+      "lake": "South Lhonak Lake",
+      "glacier": "South Lhonak Glacier",
+      "status": "evidence-ready",
+      "boundary_sources": [
+        "RGI v7 / GLIMS",
+        "Copernicus DEM GLO-30",
+        "Phase 2 GeoAI reviewed masks"
+      ],
+      "imagery_status": "approved-10-seasonal-2016-2025-Oct-Nov-EPSG32645",
+      "event_sources": [
+        "ISRO/NRSC",
+        "ICIMOD",
+        "Reviewed lake polygons"
+      ],
+      "phase2_processing_version": "phase-2-retreat-v1.0",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "crs": "EPSG:32645"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "lake": "Tsho Rolpa",
+      "glacier": "Tsho Rolpa Glacier",
+      "status": "evidence-ready",
+      "boundary_sources": [
+        "RGI v7 / GLIMS",
+        "Copernicus DEM GLO-30",
+        "Phase 2 GeoAI reviewed masks"
+      ],
+      "imagery_status": "approved-10-seasonal-2016-2025-Oct-Nov-EPSG32645",
+      "event_sources": [
+        "Reviewed lake polygons",
+        "ERA5/CHIRPS/MODIS/ITS_LIVE predictors"
+      ],
+      "phase2_processing_version": "phase-2-retreat-v1.0",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "crs": "EPSG:32645"
+    },
+    {
+      "site_id": "imja-tsho",
+      "lake": "Imja Tsho",
+      "glacier": "Imja Glacier",
+      "status": "evidence-ready",
+      "boundary_sources": [
+        "RGI v7 / GLIMS",
+        "Copernicus DEM GLO-30",
+        "Phase 2 GeoAI reviewed masks"
+      ],
+      "imagery_status": "approved-10-seasonal-2016-2025-Oct-Nov-EPSG32645",
+      "event_sources": [
+        "Reviewed lake polygons",
+        "ERA5/CHIRPS/MODIS/ITS_LIVE predictors"
+      ],
+      "phase2_processing_version": "phase-2-retreat-v1.0",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "crs": "EPSG:32645"
+    },
+    {
+      "site_id": "thulagi",
+      "lake": "Thulagi Lake",
+      "glacier": "Thulagi Glacier",
+      "status": "evidence-ready",
+      "boundary_sources": [
+        "RGI v7 / GLIMS",
+        "Copernicus DEM GLO-30",
+        "Phase 2 GeoAI reviewed masks"
+      ],
+      "imagery_status": "approved-10-seasonal-2016-2025-Oct-Nov-EPSG32645",
+      "event_sources": [
+        "Reviewed lake polygons",
+        "ERA5/CHIRPS/MODIS/ITS_LIVE predictors"
+      ],
+      "phase2_processing_version": "phase-2-retreat-v1.0",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "crs": "EPSG:32645"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "lake": "Chhota Shigri Lake",
+      "glacier": "Chhota Shigri Glacier",
+      "status": "evidence-ready",
+      "boundary_sources": [
+        "RGI v7 / GLIMS",
+        "Copernicus DEM GLO-30",
+        "Phase 2 GeoAI reviewed masks"
+      ],
+      "imagery_status": "approved-10-seasonal-2016-2025-Oct-Nov-EPSG32645",
+      "event_sources": [
+        "Reviewed lake polygons",
+        "ERA5/CHIRPS/MODIS/ITS_LIVE predictors"
+      ],
+      "phase2_processing_version": "phase-2-retreat-v1.0",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "crs": "EPSG:32645"
+    }
+  ],
+  "gates": {
+    "boundary": "authoritative published or inventory lake and glacier geometry",
+    "imagery": "same-season, cloud-reviewed observations spanning 2016-2026",
+    "events": "published event record with date, method, and citation",
+    "approval": "manual analyst review before evidence-ready status"
+  },
+  "phase": "phase-2-geoai-retreat-forecasting",
+  "milestone": "2.1 Five-site data readiness \u2014 complete"
+}

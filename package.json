@@ -1,0 +1,14 @@
+{
+  "name": "glacierlens",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@glacierlens/web",
+    "build": "npm run build --workspace=@glacierlens/web",
+    "lint": "npm run lint --workspace=@glacierlens/web",
+    "typecheck": "npm run typecheck --workspace=@glacierlens/web"
+  }
+}

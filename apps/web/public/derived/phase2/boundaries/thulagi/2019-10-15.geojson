@@ -1,0 +1,99 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "thulagi",
+        "glacier_id": "RGI2000-v7.0-G-15-09021",
+        "observation_date": "2019-10-15",
+        "area_km2": 6.745,
+        "area_2016_km2": 6.92,
+        "scale_factor": 0.9873,
+        "source": "Phase 2 GeoAI derived boundary (versioned, reviewed) \u2014 scaled from RGI 2000 baseline by measured area change; confidence + image-quality documented in measurements.ts",
+        "source_id": "phase-2-geoai-v1.0",
+        "processing_version": "phase-2-retreat-v1.0",
+        "crs": "EPSG:4326",
+        "status": "approved",
+        "boundary_asset": "data/derived/phase2/boundaries/thulagi/2019-10-15.geojson"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              84.48101947854136,
+              28.697890235102903,
+              0.0
+            ],
+            [
+              84.48705369523367,
+              28.699814669198933,
+              0.0
+            ],
+            [
+              84.48980199591222,
+              28.689802248751555,
+              0.0
+            ],
+            [
+              84.48886559537594,
+              28.678858003193785,
+              0.0
+            ],
+            [
+              84.48939542407875,
+              28.670609061030234,
+              0.0
+            ],
+            [
+              84.48552504893686,
+              28.66684735666157,
+              0.0
+            ],
+            [
+              84.4809085140284,
+              28.664056584890872,
+              0.0
+            ],
+            [
+              84.47439015749111,
+              28.661008514637764,
+              0.0
+            ],
+            [
+              84.46820391670197,
+              28.66942339085482,
+              0.0
+            ],
+            [
+              84.46758828062661,
+              28.681329807623996,
+              0.0
+            ],
+            [
+              84.46927462336517,
+              28.689621090297923,
+              0.0
+            ],
+            [
+              84.47544658844798,
+              28.69306870305408,
+              0.0
+            ],
+            [
+              84.48101947854136,
+              28.697890235102903,
+              0.0
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "site_id": "thulagi",
+    "observation_date": "2019-10-15",
+    "version": "phase-2-retreat-v1.0"
+  }
+}

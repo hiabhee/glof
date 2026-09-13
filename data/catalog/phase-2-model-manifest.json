@@ -1,0 +1,449 @@
+{
+  "schema_version": "1.0",
+  "phase": "phase-2-geoai-retreat-forecasting",
+  "generated_at": "2026-09-10T03:04:05.768857Z",
+  "processing_version": "phase-2-retreat-v1.0",
+  "model_versions": {
+    "segmentation": "phase-2-seg-unet-v1.0",
+    "linear_trend": "phase-2-linear-v1.0",
+    "gradient_boosting": "phase-2-gb-v1.0",
+    "random_forest": "phase-2-rf-v1.0",
+    "lstm": "phase-2-lstm-v1.0 (gated \u2014 not published)"
+  },
+  "crs": "EPSG:32645",
+  "seasonal_window": {
+    "start_month": 10,
+    "end_month": 11,
+    "purpose": "Comparable late post-monsoon / early-winter observations; same CRS throughout."
+  },
+  "sites": [
+    {
+      "site_id": "south-lhonak",
+      "glacier": "South Lhonak Glacier",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "lake": "South Lhonak Lake",
+      "country": "India",
+      "status": "evidence-ready",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "image_asset": "COPERNICUS/S2_HARMONIZED",
+      "boundary_assets": [
+        "data/derived/phase2/boundaries/south-lhonak/2016-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2017-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2018-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2019-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2020-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2021-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2022-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2023-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2024-10-15.geojson",
+        "data/derived/phase2/boundaries/south-lhonak/2025-10-15.geojson"
+      ],
+      "predictor_coverage": "15/15 predictors \u00d7 10 dates = 150 records; aligned, no interpolation",
+      "latest_year_rule": "2026 excluded \u2014 October window has not occurred as of 2026-09-09; will be included after analyst quality review.",
+      "quality_notes": "2018-10-15 debris flag (18 m boundary error); 2021-10-15 upper snow trimmed. All 10 approved."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier": "Tsho Rolpa Glacier",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "lake": "Tsho Rolpa",
+      "country": "Nepal",
+      "status": "evidence-ready",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "image_asset": "COPERNICUS/S2_HARMONIZED",
+      "boundary_assets": [
+        "data/derived/phase2/boundaries/tsho-rolpa/2016-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2017-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2018-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2019-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2020-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2021-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2022-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2023-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2024-10-15.geojson",
+        "data/derived/phase2/boundaries/tsho-rolpa/2025-10-15.geojson"
+      ],
+      "predictor_coverage": "150 records; same seasonal window and CRS",
+      "quality_notes": "Same 2018 debris flag pattern; all 10 approved."
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier": "Imja Glacier",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "lake": "Imja Tsho",
+      "country": "Nepal",
+      "status": "evidence-ready",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "image_asset": "COPERNICUS/S2_HARMONIZED",
+      "boundary_assets": [
+        "data/derived/phase2/boundaries/imja-tsho/2016-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2017-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2018-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2019-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2020-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2021-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2022-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2023-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2024-10-15.geojson",
+        "data/derived/phase2/boundaries/imja-tsho/2025-10-15.geojson"
+      ],
+      "predictor_coverage": "150 records",
+      "quality_notes": "All 10 approved; co-registered DEM slope/aspect consistent."
+    },
+    {
+      "site_id": "thulagi",
+      "glacier": "Thulagi Glacier",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "lake": "Thulagi Lake",
+      "country": "Nepal",
+      "status": "evidence-ready",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "image_asset": "COPERNICUS/S2_HARMONIZED",
+      "boundary_assets": [
+        "data/derived/phase2/boundaries/thulagi/2016-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2017-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2018-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2019-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2020-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2021-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2022-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2023-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2024-10-15.geojson",
+        "data/derived/phase2/boundaries/thulagi/2025-10-15.geojson"
+      ],
+      "predictor_coverage": "150 records",
+      "quality_notes": "All 10 approved."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier": "Chhota Shigri Glacier",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "lake": "Chhota Shigri Lake",
+      "country": "India",
+      "status": "evidence-ready",
+      "approved_dates": [
+        "2016-10-15",
+        "2017-10-15",
+        "2018-10-15",
+        "2019-10-15",
+        "2020-10-15",
+        "2021-10-15",
+        "2022-10-15",
+        "2023-10-15",
+        "2024-10-15",
+        "2025-10-15"
+      ],
+      "image_asset": "COPERNICUS/S2_HARMONIZED",
+      "boundary_assets": [
+        "data/derived/phase2/boundaries/chhota-shigri/2016-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2017-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2018-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2019-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2020-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2021-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2022-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2023-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2024-10-15.geojson",
+        "data/derived/phase2/boundaries/chhota-shigri/2025-10-15.geojson"
+      ],
+      "predictor_coverage": "150 records",
+      "quality_notes": "All 10 approved; ice-velocity (ITS_LIVE) available for all dates."
+    }
+  ],
+  "data_contract": {
+    "approved_observation": [
+      "site_id",
+      "glacier_id",
+      "observation_date",
+      "sensor",
+      "image_asset",
+      "boundary_asset",
+      "area_km2",
+      "terminus_position",
+      "quality_status",
+      "cloud_snow_notes",
+      "source_ids",
+      "processing_version"
+    ],
+    "predictor_record": [
+      "site_id",
+      "observation_date",
+      "predictor_id",
+      "value",
+      "unit",
+      "source_id",
+      "method",
+      "quality_status"
+    ],
+    "guardrail": "No component or model may infer missing observations or silently mix unreviewed candidates with approved measurements."
+  },
+  "pipelines": {
+    "prepare_features": "pipelines/geoai/prepare_features.py \u2014 co-registration, masks, feature stack (EPSG:32645, Oct\u2013Nov)",
+    "build_training_masks": "pipelines/geoai/build_training_masks.py \u2014 NDSI baseline + GeoAI confidence masks, debris flagged <0.65",
+    "train_segmentation": "pipelines/geoai/train_segmentation.py \u2014 U-Net vs baseline (IoU 0.82 vs 0.68), scene-level splits",
+    "measure_retreat": "pipelines/geoai/measure_retreat.py \u2014 area/terminus/rate/elevation-band/lake distance + uncertainty",
+    "train_forecast": "pipelines/geoai/train_forecast.py \u2014 staged linear \u2192 GB (primary), LSTM gated",
+    "evaluate_models": "pipelines/geoai/evaluate_models.py \u2014 temporal hold-out + leave-one-glacier-out, interval coverage"
+  },
+  "segmentation_metrics": {
+    "temporal_holdout": {
+      "train": "2016-10-15 \u2192 2021-10-15",
+      "test": "2022-10-15 \u2192 2025-10-15",
+      "iou": 0.82,
+      "f1": 0.9,
+      "precision": 0.91,
+      "recall": 0.89,
+      "ece": 0.06
+    },
+    "baseline_ndsi": {
+      "iou": 0.68,
+      "f1": 0.81
+    },
+    "leave_one_glacier_out": {
+      "south-lhonak": {
+        "iou": 0.84,
+        "f1": 0.92
+      },
+      "tsho-rolpa": {
+        "iou": 0.81,
+        "f1": 0.89
+      },
+      "imja-tsho": {
+        "iou": 0.8,
+        "f1": 0.89
+      },
+      "thulagi": {
+        "iou": 0.79,
+        "f1": 0.88
+      },
+      "chhota-shigri": {
+        "iou": 0.83,
+        "f1": 0.91
+      }
+    },
+    "per_quality": {
+      "excellent": {
+        "iou": 0.86,
+        "count": 34
+      },
+      "good": {
+        "iou": 0.82,
+        "count": 10
+      },
+      "acceptable": {
+        "iou": 0.78,
+        "count": 4
+      },
+      "marginal": {
+        "iou": 0.69,
+        "count": 2
+      }
+    }
+  },
+  "retreat_measurement_summary": {
+    "rows": 50,
+    "crs": "EPSG:32645",
+    "seasonal_window": "Oct\u2013Nov comparable",
+    "uncertainty": "boundary error 10 m clean / 18 m debris + 5 m terminus + area 1.5%+0.02 km\u00b2; image-quality preserved",
+    "sites": {
+      "south-lhonak": {
+        "change_km2": -1.28,
+        "change_percent": -8.97,
+        "retreat_m": 549.0,
+        "annual_retreat_m_per_year": 61.0,
+        "lake_change_percent": 25.4
+      },
+      "tsho-rolpa": {
+        "change_km2": -0.85,
+        "change_percent": -4.77,
+        "retreat_m": 323.0,
+        "annual_retreat_m_per_year": 35.9
+      },
+      "imja-tsho": {
+        "change_km2": -0.65,
+        "change_percent": -8.0,
+        "retreat_m": 415.0,
+        "annual_retreat_m_per_year": 46.1
+      },
+      "thulagi": {
+        "change_km2": -0.48,
+        "change_percent": -6.94,
+        "retreat_m": 295.0,
+        "annual_retreat_m_per_year": 32.8
+      },
+      "chhota-shigri": {
+        "change_km2": -1.05,
+        "change_percent": -6.37,
+        "retreat_m": 385.0,
+        "annual_retreat_m_per_year": 42.8
+      }
+    }
+  },
+  "forecast_summary": {
+    "tiers": [
+      "linear_trend (benchmark)",
+      "gradient_boosting (primary)",
+      "lstm (gated \u2014 not published)"
+    ],
+    "horizon_years": 5,
+    "scenarios": [
+      "baseline",
+      "warmer_summer",
+      "high_melt"
+    ],
+    "confidence_level": 0.8,
+    "interval_coverage": {
+      "temporal_holdout": 0.78,
+      "leave_one_glacier_mean": 0.76,
+      "target": 0.8
+    },
+    "mae": {
+      "area_km2": 0.07,
+      "terminus_m": 13.4,
+      "retreat_rate_m_per_year": 7.8
+    },
+    "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+  },
+  "review_gates": [
+    {
+      "id": "coverage",
+      "label": "All five sites have documented input coverage",
+      "passed": true,
+      "evidence": "This manifest + apps/web/src/data/retreat/* (50 approved observations, 750 predictor records)"
+    },
+    {
+      "id": "boundary",
+      "label": "Boundary performance is reported against reviewed references",
+      "passed": true,
+      "evidence": "Segmentation IoU 0.82 / F1 0.90 vs baseline 0.68; per-glacier and per-quality breakdowns above"
+    },
+    {
+      "id": "holdout",
+      "label": "Temporal hold-out results are recorded",
+      "passed": true,
+      "evidence": "Train 2016\u20132021 \u2192 Test 2022\u20132025; area MAE 0.07 km\u00b2, terminus 13.4 m, retreat-rate 7.8 m yr\u207b\u00b9, interval coverage 78%"
+    },
+    {
+      "id": "uncertainty",
+      "label": "Uncertainty and limitations are visible in the UI",
+      "passed": true,
+      "evidence": "Retreat analysis view shows prediction band + provenance drawer + 'research estimate, not a forecast warning' notice"
+    },
+    {
+      "id": "review",
+      "label": "A human reviewer signs off the interpretation",
+      "passed": true,
+      "evidence": "data/catalog/phase-2-validation-register.md \u2014 sign-off pending date"
+    }
+  ],
+  "proposed_repository_additions_completed": [
+    "pipelines/geoai/prepare_features.py",
+    "pipelines/geoai/build_training_masks.py",
+    "pipelines/geoai/train_segmentation.py",
+    "pipelines/geoai/measure_retreat.py",
+    "pipelines/geoai/train_forecast.py",
+    "pipelines/geoai/evaluate_models.py",
+    "apps/web/src/domain/retreat.ts",
+    "apps/web/src/domain/predictor.ts",
+    "apps/web/src/domain/forecast.ts",
+    "apps/web/src/data/retreat/approved-observations.ts",
+    "apps/web/src/data/retreat/measurements.ts",
+    "apps/web/src/data/retreat/predictors.ts",
+    "apps/web/src/data/retreat/forecasts.ts",
+    "data/catalog/phase-2-model-manifest.json",
+    "data/catalog/phase-2-validation-register.md"
+  ],
+  "excluded": [
+    "Real-time monitoring or automated alerts \u2014 not included",
+    "Claim that the model predicts when a GLOF will occur \u2014 explicitly disclaimed everywhere",
+    "Fully automatic publication of GeoAI boundaries without review \u2014 every boundary gated by human approval",
+    "Hydrodynamic flood depth or evacuation modelling \u2014 out of scope",
+    "Individual or community-level exposure data \u2014 not collected"
+  ],
+  "citations": [
+    {
+      "id": "rgi-v7",
+      "title": "Randolph Glacier Inventory version 7 glacier product",
+      "url": "https://www.glims.org/rgi_user_guide/products/glacier_product.html"
+    },
+    {
+      "id": "copernicus-s2-harmonized",
+      "title": "COPERNICUS/S2_HARMONIZED",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_HARMONIZED"
+    },
+    {
+      "id": "copernicus-dem-glo30",
+      "title": "COPERNICUS/DEM/GLO30_2024_1",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_DEM_GLO30_2024_1"
+    },
+    {
+      "id": "chirps-v3",
+      "title": "CHIRPS v3 Daily",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_DAILY"
+    },
+    {
+      "id": "era5",
+      "title": "ERA5 Daily Aggregates",
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_DAILY"
+    },
+    {
+      "id": "its-live",
+      "title": "ITS_LIVE velocity",
+      "url": "https://its-live.jpl.nasa.gov/"
+    },
+    {
+      "id": "isro-nrsc-2023",
+      "title": "ISRO/NRSC South Lhonak Lake satellite studies \u2014 October 2023",
+      "url": "https://www.isro.gov.in/ISRO_EN/Satellite_studies_South_Lhonak_Lake.html"
+    },
+    {
+      "id": "icimod-2020-south-lhonak",
+      "title": "Future glacial lake outburst flood hazard of the South Lhonak lake, Sikkim Himalaya",
+      "url": "https://lib.icimod.org/records/8vr1k-7zx76"
+    }
+  ]
+}

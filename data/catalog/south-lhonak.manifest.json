@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "site_id": "south-lhonak",
+  "status": "planning",
+  "study_area": {
+    "type": "bbox",
+    "coordinates_wgs84": [88.13, 27.86, 88.27, 27.98],
+    "purpose": "Initial imagery-search envelope only. Replace with a reviewed site polygon before final asset exports."
+  },
+  "temporal_strategy": {
+    "annual_window": {
+      "start_month": 10,
+      "end_month": 11,
+      "purpose": "Select comparable late-post-monsoon / early-winter observations, subject to manual quality review."
+    },
+    "event_windows": [
+      { "id": "2023-pre", "start": "2023-09-01", "end": "2023-10-03", "label": "Pre-event" },
+      { "id": "2023-post", "start": "2023-10-05", "end": "2023-11-15", "label": "Post-event" }
+    ],
+    "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+    "latest_year_rule": "Include 2026 only after a scene or composite has passed analyst quality review."
+  },
+  "reference_geometries": [
+    {
+      "id": "south-lhonak-glacier-rgi-v7-baseline",
+      "type": "glacier_outline",
+      "rgi_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2000-12-26",
+      "status": "approved_baseline_reference",
+      "local_derived_asset": "data/derived/reference/south-lhonak-rgi-v7-reference.geojson",
+      "selection_note": "The outline terminates at the western edge of the South Lhonak lake area within the study envelope. It is a historical RGI baseline, not a current glacier boundary.",
+      "source_url": "https://github.com/GLIMS-RGI/lake_terminating"
+    },
+    {
+      "id": "south-lhonak-lake-event-extent",
+      "type": "lake_outline",
+      "status": "awaiting_authorised_vector_geometry",
+      "selection_note": "Official ISRO/NRSC event maps confirm the lake change but are not treated as a reusable vector boundary without an accompanying authorised vector dataset.",
+      "source_url": "https://www.isro.gov.in/ISRO_EN/Satellite_studies_South_Lhonak_Lake.html"
+    }
+  ],
+  "assets": [
+    {
+      "id": "sentinel-2-l1c-harmonized",
+      "kind": "imagery",
+      "role": "primary optical timeline",
+      "provider": "Google Earth Engine / Copernicus",
+      "collection_id": "COPERNICUS/S2_HARMONIZED",
+      "coverage": "2015-06-27 to present",
+      "resolution_metres": 10,
+      "review_required": true,
+      "citation_url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_HARMONIZED"
+    },
+    {
+      "id": "cloud-score-plus",
+      "kind": "quality-mask",
+      "role": "cloud and shadow quality assessment",
+      "provider": "Google Earth Engine",
+      "collection_id": "GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED",
+      "review_required": true,
+      "citation_url": "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_CLOUD_SCORE_PLUS_V1_S2_HARMONIZED"
+    },
+    {
+      "id": "copernicus-dem-glo30",
+      "kind": "terrain",
+      "role": "elevation, slope, and hillshade context",
+      "provider": "Copernicus / Google Earth Engine",
+      "collection_id": "COPERNICUS/DEM/GLO30_2024_1",
+      "resolution_metres": 30,
+      "review_required": true,
+      "citation_url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_DEM_GLO30_2024_1"
+    },
+    {
+      "id": "rgi-v7-glacier-reference",
+      "kind": "trusted-boundary",
+      "role": "glacier baseline and identity cross-check",
+      "provider": "RGI / GLIMS",
+      "collection_id": "RGI 7",
+      "review_required": true,
+      "citation_url": "https://www.glims.org/rgi_user_guide/products/glacier_product.html"
+    },
+    {
+      "id": "published-lake-boundaries",
+      "kind": "trusted-boundary",
+      "role": "reviewed South Lhonak lake geometries by date",
+      "provider": "Published studies and authorised inventories",
+      "collection_id": null,
+      "review_required": true,
+      "citation_url": "https://lib.icimod.org/records/8vr1k-7zx76"
+    }
+  ],
+  "acceptance_criteria": [
+    "Every approved observation has an acquisition/composite date, sensor, method, and quality note.",
+    "All public boundaries are published or inventory geometries; no model-generated geometry enters the MVP reference layer.",
+    "Each visual asset has a source citation and export provenance record.",
+    "No 2026 state is published until it has passed manual cloud, shadow, snow, and alignment review."
+  ]
+}
