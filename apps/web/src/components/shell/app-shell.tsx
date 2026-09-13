@@ -37,6 +37,7 @@ export function AppShell() {
   const [satOpacity, setSatOpacity] = useState(1);
   const [leftCollapsed, setLeftCollapsed] = useState(false);
   const globeApiRef = useRef<{ flyTo: (c: { latitude: number; longitude: number }, h?: number) => void; resetView: () => void; zoomIn: () => void; zoomOut: () => void } | null>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>("map");
   const selectedSite = selected ? getSiteForCatalogRecord(selected) : undefined;
@@ -115,8 +116,12 @@ export function AppShell() {
     return () => window.removeEventListener("keydown", onKey);
   }, [detailOpen, selected]);
 
+  useEffect(() => {
+    shellRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [mobileView]);
+
   return (
-    <div className={`portal-shell mobile-view-${mobileView} ${detailOpen ? "detail-is-open" : ""}`}>
+    <div ref={shellRef} className={`portal-shell mobile-view-${mobileView} ${detailOpen ? "detail-is-open" : ""}`}>
       <GlobeView
         selected={selected}
         showBoundaries={layers.glacierBoundaries}
@@ -164,8 +169,8 @@ export function AppShell() {
       <aside className={`glass-panel left-panel ${leftCollapsed ? "collapsed" : ""}`} aria-label="Glacier search and filters">
         <div className="panel-header">
           <div>
-            <p className="eyebrow">Research portal</p>
-            <h2>Explore the ice world</h2>
+            <p className="eyebrow"><span className="desktop-copy">Research portal</span><span className="mobile-copy">Step 1 of 3</span></p>
+            <h2><span className="desktop-copy">Explore the ice world</span><span className="mobile-copy">Find a glacier or lake</span></h2>
           </div>
           <button type="button" className="icon-btn desktop-panel-toggle" onClick={() => setLeftCollapsed((v) => !v)} aria-label={leftCollapsed ? "Expand search panel" : "Collapse search panel"}>
             {leftCollapsed ? "→" : "←"}
@@ -348,6 +353,7 @@ export function AppShell() {
         {/* Glacier profile when selected */}
         {selected && (
           <div className="profile-card">
+            <p className="mobile-copy mobile-step-label">Step 2 of 3 · Review this place</p>
             <div className="profile-kicker">
               <span className={`pill ${selected.type}`}>{selected.type === "glacier" ? "Glacier" : "Lake"}</span>
               <span className={`pill status ${selected.status}`}>{labelForStatus(selected.status)}</span>
@@ -398,7 +404,7 @@ export function AppShell() {
 
             <div className="profile-actions">
               <button type="button" className="primary-action" disabled={selectedSite?.readiness !== "evidence-ready"} onClick={() => setDetailOpen(true)}>{selectedSite?.readiness === "evidence-ready" ? "Open imagery →" : "Imagery not ready yet"}</button>
-              <button type="button" className="ghost-action" onClick={() => globeApiRef.current?.flyTo(selected.centre, 9000)}>Close-up fly-to</button>
+              <button type="button" className="ghost-action" onClick={() => { globeApiRef.current?.flyTo(selected.centre, 9000); setMobileView("map"); }}>Show on map</button>
             </div>
 
             <details className="profile-drawer">
@@ -451,17 +457,17 @@ export function AppShell() {
       </div>
 
       <nav className="mobile-nav" aria-label="Main navigation">
-        <button type="button" className={mobileView === "map" ? "active" : ""} onClick={() => openMobileView("map")}><span aria-hidden="true">◎</span>Map</button>
-        <button type="button" className={mobileView === "explore" ? "active" : ""} onClick={() => openMobileView("explore")}><span aria-hidden="true">⌕</span>Find</button>
-        <button type="button" className={mobileView === "site" ? "active" : ""} onClick={() => openMobileView("site")} disabled={!selected}><span aria-hidden="true">▣</span>Details</button>
-        <button type="button" className={mobileView === "layers" ? "active" : ""} onClick={() => openMobileView("layers")}><span aria-hidden="true">◫</span>Layers</button>
+        <button type="button" aria-current={mobileView === "map" ? "page" : undefined} className={mobileView === "map" ? "active" : ""} onClick={() => openMobileView("map")}><span aria-hidden="true">◎</span>Map</button>
+        <button type="button" aria-current={mobileView === "explore" ? "page" : undefined} className={mobileView === "explore" ? "active" : ""} onClick={() => openMobileView("explore")}><span aria-hidden="true">⌕</span>Find</button>
+        <button type="button" aria-current={mobileView === "site" ? "page" : undefined} className={mobileView === "site" ? "active" : ""} onClick={() => openMobileView("site")} disabled={!selected}><span aria-hidden="true">▣</span>Details</button>
+        <button type="button" aria-current={mobileView === "layers" ? "page" : undefined} className={mobileView === "layers" ? "active" : ""} onClick={() => openMobileView("layers")}><span aria-hidden="true">◫</span>Layers</button>
       </nav>
 
       {/* Detail mode – bottom sheet / focused mode */}
       <div className={`detail-sheet ${detailOpen ? "open" : ""}`} role="dialog" aria-modal={detailOpen ? "true" : undefined} aria-label="Imagery detail mode">
         <div className="detail-sheet-head glass">
           <div>
-            <p className="eyebrow">{selected?.name ?? "Selected site"} · detail mode</p>
+            <p className="eyebrow"><span className="desktop-copy">{selected?.name ?? "Selected site"} · detail mode</span><span className="mobile-copy">Step 3 of 3 · Explore over time</span></p>
             <h2>Imagery & timeline explorer</h2>
             <small>RGI v7 baseline overlay · 2016–2025 candidates · SAR vs optical · source-cited evidence</small>
           </div>

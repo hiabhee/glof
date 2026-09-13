@@ -531,6 +531,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 .globe-tooltip, .image-label { background: rgba(28,28,27,0.86); border-color: rgba(245,245,244,0.18); }
 .detail-sheet { background: linear-gradient(to bottom, rgba(21,21,21,0.2), var(--deep) 18%); }
 .mobile-nav, .mobile-map-cta { display: none; }
+.mobile-copy { display: none; }
 
 /* Editorial dashboard skin: solid surfaces replace translucent glass for legibility. */
 .glass, .glass-panel, .globe-chrome, .portal-topbar, .bottom-strip,
@@ -700,6 +701,9 @@ li.event { background: rgba(154, 215, 255, 0.1); }
   .left-panel.collapsed { width: auto; padding: 18px 16px; }
   .left-panel.collapsed .left-panel-content { display: block; }
   .desktop-panel-toggle { display: none; }
+  .desktop-copy { display: none; }
+  .mobile-copy { display: inline; }
+  .mobile-step-label { display: block; margin: 0 0 12px; color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
   .portal-shell { display: flex; flex-direction: column; gap: 12px; padding: 0 12px calc(82px + env(safe-area-inset-bottom)); }
   .portal-topbar { order: 0; }
   .globe-root { order: 1; }
