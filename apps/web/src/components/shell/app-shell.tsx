@@ -19,6 +19,7 @@ type LayerState = {
 };
 
 type RightShortcut = "glaciers" | "lakes" | "events" | "imagery" | "layers";
+type MobileView = "map" | "explore" | "site" | "layers";
 
 export function AppShell() {
   const [query, setQuery] = useState("");
@@ -37,6 +38,7 @@ export function AppShell() {
   const [leftCollapsed, setLeftCollapsed] = useState(false);
   const globeApiRef = useRef<{ flyTo: (c: { latitude: number; longitude: number }, h?: number) => void; resetView: () => void; zoomIn: () => void; zoomOut: () => void } | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [mobileView, setMobileView] = useState<MobileView>("map");
   const selectedSite = selected ? getSiteForCatalogRecord(selected) : undefined;
   const selectedDataset = selected ? getDatasetForCatalogRecord(selected) : undefined;
 
@@ -59,12 +61,27 @@ export function AppShell() {
     }
     // switch right panel to imagery preview
     setActiveShortcut("imagery");
+    setMobileView("site");
   };
 
   const handleReset = () => {
     setSelected(null);
     setDetailOpen(false);
     globeApiRef.current?.resetView();
+    setMobileView("map");
+  };
+
+  const handleClearSelection = () => {
+    setSelected(null);
+    setDetailOpen(false);
+    setMobileView("explore");
+  };
+
+  const openMobileView = (view: MobileView) => {
+    if (view === "layers") setActiveShortcut("layers");
+    if (view === "site") setActiveShortcut("imagery");
+    if (view === "explore") setActiveShortcut("glaciers");
+    setMobileView(view === "site" && !selected ? "explore" : view);
   };
 
   const toggleFullscreen = async () => {
@@ -99,7 +116,7 @@ export function AppShell() {
   }, [detailOpen, selected]);
 
   return (
-    <div className="portal-shell">
+    <div className={`portal-shell mobile-view-${mobileView} ${detailOpen ? "detail-is-open" : ""}`}>
       <GlobeView
         selected={selected}
         showBoundaries={layers.glacierBoundaries}
@@ -141,6 +158,7 @@ export function AppShell() {
         <button type="button" title="Reset view to Himalaya" aria-label="Reset view" onClick={handleReset}>⟲</button>
         <button type="button" title="Fullscreen" aria-label="Toggle fullscreen" onClick={toggleFullscreen}>⛶</button>
       </div>
+      <button type="button" className="mobile-map-cta" onClick={() => openMobileView("explore")}>Find a glacier or lake</button>
 
       {/* Left glass panel */}
       <aside className={`glass-panel left-panel ${leftCollapsed ? "collapsed" : ""}`} aria-label="Glacier search and filters">
@@ -149,13 +167,12 @@ export function AppShell() {
             <p className="eyebrow">Research portal</p>
             <h2>Explore the ice world</h2>
           </div>
-          <button type="button" className="icon-btn" onClick={() => setLeftCollapsed((v) => !v)} aria-label={leftCollapsed ? "Expand search panel" : "Collapse search panel"}>
+          <button type="button" className="icon-btn desktop-panel-toggle" onClick={() => setLeftCollapsed((v) => !v)} aria-label={leftCollapsed ? "Expand search panel" : "Collapse search panel"}>
             {leftCollapsed ? "→" : "←"}
           </button>
         </div>
 
-        {!leftCollapsed && (
-          <>
+        <div className="left-panel-content">
             <div className="search-wrap">
               <span className="search-icon" aria-hidden="true">⌕</span>
               <input
@@ -185,7 +202,7 @@ export function AppShell() {
             <div className="results-meta">
               <span>{filtered.length} result{filtered.length !== 1 ? "s" : ""}</span>
               {selected && (
-                <button type="button" className="text-btn" onClick={() => setSelected(null)}>Clear selection</button>
+                <button type="button" className="text-btn" onClick={handleClearSelection}>Clear selection</button>
               )}
             </div>
 
@@ -234,8 +251,7 @@ export function AppShell() {
             </details>
 
             <p className="provenance-note">Every boundary keeps its source, date, and status. Historical RGI baselines are not displayed as current extents.</p>
-          </>
-        )}
+        </div>
       </aside>
 
       {/* Right glass panel */}
@@ -433,6 +449,13 @@ export function AppShell() {
           </div>
         )}
       </div>
+
+      <nav className="mobile-nav" aria-label="Main navigation">
+        <button type="button" className={mobileView === "map" ? "active" : ""} onClick={() => openMobileView("map")}><span aria-hidden="true">◎</span>Map</button>
+        <button type="button" className={mobileView === "explore" ? "active" : ""} onClick={() => openMobileView("explore")}><span aria-hidden="true">⌕</span>Find</button>
+        <button type="button" className={mobileView === "site" ? "active" : ""} onClick={() => openMobileView("site")} disabled={!selected}><span aria-hidden="true">▣</span>Details</button>
+        <button type="button" className={mobileView === "layers" ? "active" : ""} onClick={() => openMobileView("layers")}><span aria-hidden="true">◫</span>Layers</button>
+      </nav>
 
       {/* Detail mode – bottom sheet / focused mode */}
       <div className={`detail-sheet ${detailOpen ? "open" : ""}`} role="dialog" aria-modal={detailOpen ? "true" : undefined} aria-label="Imagery detail mode">
