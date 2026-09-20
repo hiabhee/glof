@@ -554,6 +554,56 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 .detail-sheet { background: linear-gradient(to bottom, rgba(21,21,21,0.2), var(--deep) 18%); }
 .mobile-nav, .mobile-map-cta { display: none; }
 .mobile-copy { display: none; }
+.desktop-map-cta { display: none; }
+.desktop-nav { display: flex; align-items: center; gap: 4px; padding: 4px; background: #292928; border: 1px solid #454542; border-radius: 12px; }
+.desktop-nav button { appearance: none; border: 0; background: transparent; color: var(--muted); min-height: 34px; padding: 0 13px; border-radius: 8px; font: inherit; font-size: .72rem; font-weight: 700; cursor: pointer; }
+.desktop-nav button:hover { color: var(--ink); background: #343432; }
+.desktop-nav button.active { color: #1c1c1b; background: #f5f5f4; }
+.desktop-nav button:disabled { opacity: .35; cursor: not-allowed; }
+
+@media (min-width: 981px) {
+  .desktop-page-map .left-panel,
+  .desktop-page-map .right-panel,
+  .desktop-page-map .bottom-strip { display: none; }
+  .desktop-page-sites .right-panel,
+  .desktop-page-sites .bottom-strip,
+  .desktop-page-sites .globe-chrome { display: none; }
+  .desktop-page-analysis .left-panel,
+  .desktop-page-analysis .shortcuts-row,
+  .desktop-page-analysis .globe-chrome { display: none; }
+  .desktop-page-layers .left-panel,
+  .desktop-page-layers .bottom-strip,
+  .desktop-page-layers .globe-chrome,
+  .desktop-page-layers .shortcuts-row,
+  .desktop-page-layers .profile-card { display: none; }
+  .desktop-page-sites .left-panel { width: min(390px, calc(100vw - 40px)); }
+  .desktop-page-map .desktop-map-cta {
+    display: block;
+    position: absolute;
+    z-index: 15;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid #d6d3d1;
+    border-radius: 999px;
+    background: #f5f5f4;
+    color: #1c1c1b;
+    font: inherit;
+    font-size: .8rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 14px 34px rgba(0,0,0,.4);
+  }
+  .desktop-page-analysis .right-panel,
+  .desktop-page-layers .right-panel { width: 360px; }
+}
+
+@media (max-width: 1270px) and (min-width: 981px) {
+  .topbar-stat { display: none; }
+  .desktop-nav button { padding: 0 10px; }
+}
 
 /* Editorial dashboard skin: solid surfaces replace translucent glass for legibility. */
 .glass, .glass-panel, .globe-chrome, .portal-topbar, .bottom-strip,
@@ -717,6 +767,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
   .fallback-earth-wrap { padding: 78px 300px 104px; }
 }
 @media (max-width: 980px) {
+  .desktop-nav, .desktop-map-cta { display: none; }
   html, body { min-height: 100%; overflow: hidden; }
   .portal-shell { overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
   .portal-topbar { position: sticky; top: 0; left: 0; right: 0; margin: 0; border-radius: 0; }

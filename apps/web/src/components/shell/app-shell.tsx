@@ -20,6 +20,7 @@ type LayerState = {
 
 type RightShortcut = "glaciers" | "lakes" | "events" | "imagery" | "layers";
 type MobileView = "map" | "explore" | "site" | "layers";
+type DesktopPage = "map" | "sites" | "analysis" | "layers";
 
 export function AppShell() {
   const [query, setQuery] = useState("");
@@ -40,6 +41,7 @@ export function AppShell() {
   const shellRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>("map");
+  const [desktopPage, setDesktopPage] = useState<DesktopPage>("map");
   const selectedSite = selected ? getSiteForCatalogRecord(selected) : undefined;
   const selectedDataset = selected ? getDatasetForCatalogRecord(selected) : undefined;
 
@@ -63,6 +65,7 @@ export function AppShell() {
     // switch right panel to imagery preview
     setActiveShortcut("imagery");
     setMobileView("site");
+    setDesktopPage("analysis");
   };
 
   const handleReset = () => {
@@ -70,12 +73,14 @@ export function AppShell() {
     setDetailOpen(false);
     globeApiRef.current?.resetView();
     setMobileView("map");
+    setDesktopPage("map");
   };
 
   const handleClearSelection = () => {
     setSelected(null);
     setDetailOpen(false);
     setMobileView("explore");
+    setDesktopPage("sites");
   };
 
   const openMobileView = (view: MobileView) => {
@@ -83,6 +88,12 @@ export function AppShell() {
     if (view === "site") setActiveShortcut("imagery");
     if (view === "explore") setActiveShortcut("glaciers");
     setMobileView(view === "site" && !selected ? "explore" : view);
+  };
+
+  const openDesktopPage = (page: DesktopPage) => {
+    if (page === "layers") setActiveShortcut("layers");
+    if (page === "analysis") setActiveShortcut("imagery");
+    setDesktopPage(page === "analysis" && !selected ? "sites" : page);
   };
 
   const toggleFullscreen = async () => {
@@ -121,7 +132,7 @@ export function AppShell() {
   }, [mobileView]);
 
   return (
-    <div ref={shellRef} className={`portal-shell mobile-view-${mobileView} ${detailOpen ? "detail-is-open" : ""}`}>
+    <div ref={shellRef} className={`portal-shell desktop-page-${desktopPage} mobile-view-${mobileView} ${detailOpen ? "detail-is-open" : ""}`}>
       <GlobeView
         selected={selected}
         showBoundaries={layers.glacierBoundaries}
@@ -146,6 +157,12 @@ export function AppShell() {
           <span className="topbar-context">Himalaya · 28.2° N 86.5° E</span>
         </div>
         <div className="topbar-right">
+          <nav className="desktop-nav" aria-label="Primary navigation">
+            <button type="button" className={desktopPage === "map" ? "active" : ""} onClick={() => openDesktopPage("map")}>Map</button>
+            <button type="button" className={desktopPage === "sites" ? "active" : ""} onClick={() => openDesktopPage("sites")}>Study sites</button>
+            <button type="button" className={desktopPage === "analysis" ? "active" : ""} disabled={!selected} onClick={() => openDesktopPage("analysis")}>Analysis</button>
+            <button type="button" className={desktopPage === "layers" ? "active" : ""} onClick={() => openDesktopPage("layers")}>Layers</button>
+          </nav>
           <span className="topbar-stat"><b>{studySiteCount}</b> imagery-ready sites</span>
           <span className="topbar-stat"><b>{glacierCount + lakeCount}</b> mapped features</span>
           <span className="topbar-stat subtle">RGI v7</span>
@@ -154,6 +171,7 @@ export function AppShell() {
           </button>
         </div>
       </header>
+      <button type="button" className="desktop-map-cta" onClick={() => openDesktopPage("sites")}>Browse the five study sites →</button>
 
       {/* Globe chrome controls */}
       <div className="globe-chrome" aria-label="Globe controls">
@@ -169,8 +187,8 @@ export function AppShell() {
       <aside className={`glass-panel left-panel ${leftCollapsed ? "collapsed" : ""}`} aria-label="Glacier search and filters">
         <div className="panel-header">
           <div>
-            <p className="eyebrow"><span className="desktop-copy">Research portal</span><span className="mobile-copy">Step 1 of 3</span></p>
-            <h2><span className="desktop-copy">Explore the ice world</span><span className="mobile-copy">Find a glacier or lake</span></h2>
+            <p className="eyebrow"><span className="desktop-copy">Study sites</span><span className="mobile-copy">Step 1 of 3</span></p>
+            <h2><span className="desktop-copy">Choose a glacier–lake system</span><span className="mobile-copy">Find a glacier or lake</span></h2>
           </div>
           <button type="button" className="icon-btn desktop-panel-toggle" onClick={() => setLeftCollapsed((v) => !v)} aria-label={leftCollapsed ? "Expand search panel" : "Collapse search panel"}>
             {leftCollapsed ? "→" : "←"}
