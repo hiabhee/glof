@@ -159,6 +159,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
   overflow: hidden;
   --side-panel-width: clamp(250px, 21vw, 320px);
   --portal-gap: 14px;
+  --desktop-panel-top: 88px;
   background: radial-gradient(1200px 800px at 70% 18%, #12465c 0%, transparent 55%), radial-gradient(900px 600px at 20% 85%, #0e3a4a 0%, transparent 60%), var(--deep);
   font-family: Inter, Arial, Helvetica, sans-serif;
 }
@@ -286,7 +287,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 
 /* Globe chrome */
 .globe-chrome {
-  position: absolute; right: clamp(264px, 23vw, 334px); top: 72px; z-index: 9;
+  position: absolute; right: 24px; top: var(--desktop-panel-top); z-index: 9;
   display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 14px;
   background: rgba(10,28,38,0.56); border: 1px solid rgba(199,251,236,0.12); backdrop-filter: blur(18px);
   box-shadow: var(--shadow);
@@ -297,7 +298,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 
 /* Left panel */
 .left-panel {
-  left: var(--portal-gap); top: 72px; bottom: var(--portal-gap); width: var(--side-panel-width);
+  left: var(--portal-gap); top: var(--desktop-panel-top); bottom: var(--portal-gap); width: var(--side-panel-width);
   display: flex; flex-direction: column; padding: 18px 16px;
   overflow: hidden;
 }
@@ -336,7 +337,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 .text-btn { appearance: none; background: transparent; border: 0; color: var(--blue); cursor: pointer; font: inherit; font-size: 0.70rem; }
 .result-list { display: flex; flex-direction: column; gap: 10px; overflow-y: visible; overflow-x: hidden; max-height: none; padding: 4px 2px 12px 2px; margin: 0; width: 100%; max-width: 100%; box-sizing: border-box; }
 .result-card {
-  display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; overflow: hidden;
+  display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; max-width: 100%; min-width: 0; min-height: 68px; flex: 0 0 auto; box-sizing: border-box; overflow: hidden;
   background: rgba(255,255,255,0.04); border: 1px solid rgba(199,251,236,0.10); border-radius: 12px; padding: 10px 11px; cursor: pointer;
   transition: background 0.18s, border-color 0.18s, transform 0.18s;
 }
@@ -373,7 +374,7 @@ li.event { background: rgba(154, 215, 255, 0.1); }
 .provenance-note { color: rgba(171,193,189,0.72); font-size: 0.66rem; line-height: 1.5; margin: 14px 0 0; border-top: 1px solid var(--line); padding-top: 12px; }
 
 /* Right panel */
-.right-panel { right: var(--portal-gap); top: 72px; bottom: var(--portal-gap); width: var(--side-panel-width); display: flex; flex-direction: column; padding: 12px; overflow: hidden; }
+.right-panel { right: var(--portal-gap); top: var(--desktop-panel-top); bottom: var(--portal-gap); width: var(--side-panel-width); display: flex; flex-direction: column; padding: 12px; overflow: hidden; }
 .shortcuts-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; background: rgba(3,18,27,0.52); border: 1px solid rgba(199,251,236,0.10); border-radius: 12px; margin-bottom: 14px; }
 .shortcuts-row button {
   flex: 1 1 auto;
@@ -577,6 +578,8 @@ li.event { background: rgba(154, 215, 255, 0.1); }
   .desktop-page-layers .shortcuts-row,
   .desktop-page-layers .profile-card { display: none; }
   .desktop-page-sites .left-panel { width: min(390px, calc(100vw - 40px)); }
+  .desktop-page-sites .desktop-panel-toggle,
+  .desktop-page-sites .featured-drawer { display: none; }
   .desktop-page-map .desktop-map-cta {
     display: block;
     position: absolute;
@@ -872,9 +875,11 @@ li.event { background: rgba(154, 215, 255, 0.1); }
     display: flex;
     position: fixed;
     z-index: 75;
-    top: 72px;
-    right: 18px;
-    width: auto;
+    top: calc(70px + env(safe-area-inset-top));
+    right: 12px;
+    left: auto;
+    width: 56px;
+    box-sizing: border-box;
     flex-direction: column;
   }
   .mobile-view-explore .result-list { max-height: none; overflow-y: visible; overflow-x: hidden; padding: 2px 0 8px; margin: 0; max-width: 100%; box-sizing: border-box; }

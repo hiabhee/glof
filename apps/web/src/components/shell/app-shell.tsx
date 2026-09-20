@@ -46,11 +46,14 @@ export function AppShell() {
   const selectedDataset = selected ? getDatasetForCatalogRecord(selected) : undefined;
 
   const filtered = useMemo(() => searchCatalog(query, region), [query, region]);
+  const filteredSystems = useMemo(() => {
+    const lakeRecords = filtered.filter((record) => record.type === "lake");
+    return lakeRecords.length > 0 ? lakeRecords : filtered;
+  }, [filtered]);
   const availableCatalog = useMemo(() => glacierCatalog.filter(hasImageryData), []);
-  const featured = useMemo(() => availableCatalog.filter((g) => g.featured), [availableCatalog]);
   const lakeCount = availableCatalog.filter((g) => g.type === "lake").length;
   const glacierCount = availableCatalog.filter((g) => g.type === "glacier").length;
-  const studySiteCount = new Set(availableCatalog.map((record) => record.associatedName ?? record.name)).size;
+  const studySiteCount = lakeCount;
 
   // Auto-select South Lhonak on mount? No, show Himalaya overview first per spec: initially framed on Himalaya.
   // Keep selected null until user interacts, but highlight South Lhonak as featured.
@@ -163,7 +166,7 @@ export function AppShell() {
             <button type="button" className={desktopPage === "analysis" ? "active" : ""} disabled={!selected} onClick={() => openDesktopPage("analysis")}>Analysis</button>
             <button type="button" className={desktopPage === "layers" ? "active" : ""} onClick={() => openDesktopPage("layers")}>Layers</button>
           </nav>
-          <span className="topbar-stat"><b>{studySiteCount}</b> imagery-ready sites</span>
+          <span className="topbar-stat"><b>{studySiteCount}</b> study sites</span>
           <span className="topbar-stat"><b>{glacierCount + lakeCount}</b> mapped features</span>
           <span className="topbar-stat subtle">RGI v7</span>
           <button type="button" className="topbar-fullscreen" onClick={toggleFullscreen} aria-label="Toggle fullscreen">
@@ -223,14 +226,14 @@ export function AppShell() {
             </div>
 
             <div className="results-meta">
-              <span>{filtered.length} place{filtered.length !== 1 ? "s" : ""}</span>
+              <span>{filteredSystems.length} system{filteredSystems.length !== 1 ? "s" : ""}</span>
               {selected && (
                 <button type="button" className="text-btn" onClick={handleClearSelection}>Clear selection</button>
               )}
             </div>
 
             <div className="result-list" role="listbox" aria-label="Search results">
-              {filtered.map((rec) => (
+              {filteredSystems.map((rec) => (
                 <button
                   key={rec.id}
                   type="button"
@@ -243,9 +246,9 @@ export function AppShell() {
                     <span className={`thumb-dot ${rec.type}`} />
                   </span>
                   <span className="result-main">
-                    <strong>{rec.name}</strong>
+                    <strong>{rec.type === "lake" && rec.associatedName ? `${rec.associatedName.replace(/ Glacier$/, "")} system` : rec.name}</strong>
                     <small>
-                      {rec.type === "glacier" ? "Glacier" : "Lake"} · {rec.region} · {rec.country}
+                      {rec.type === "lake" && rec.associatedName ? `${rec.associatedName} + ${rec.name}` : `${rec.type === "glacier" ? "Glacier" : "Lake"} · ${rec.region}`} · {rec.country}
                       {rec.rgiId ? ` · ${rec.rgiId}` : ""}
                     </small>
                     <span className="result-status">
@@ -256,22 +259,8 @@ export function AppShell() {
                   <span className="result-arrow" aria-hidden="true">↗</span>
                 </button>
               ))}
-              {filtered.length === 0 && <p className="empty-note">No matches. Try “South Lhonak” or “Imja”.</p>}
+              {filteredSystems.length === 0 && <p className="empty-note">No matches. Try “South Lhonak” or “Imja”.</p>}
             </div>
-
-            <details className="featured-drawer">
-              <summary>Featured starting points <span>{featured.length}</span></summary>
-              <div className="featured-grid">
-                {featured.map((rec) => (
-                  <button key={rec.id} type="button" className={`featured-card ${selected?.id === rec.id ? "active" : ""}`} onClick={() => handleSelect(rec)}>
-                    <span className="featured-tag">{rec.type === "lake" ? "Lake · Featured" : "Glacier · Featured"}</span>
-                    <strong>{rec.name}</strong>
-                    <small>{rec.region} · {rec.elevationMetres ? `${rec.elevationMetres} m` : ""}</small>
-                    <span className="featured-go">View →</span>
-                  </button>
-                ))}
-              </div>
-            </details>
 
             <p className="provenance-note">Every boundary keeps its source, date, and status. Historical RGI baselines are not displayed as current extents.</p>
         </div>
