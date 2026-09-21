@@ -1,64 +1,29 @@
-import type { SiteConfig, SiteId } from "@/domain/site";
-import { southLhonak } from "./south-lhonak";
-import { finalStudySites } from "./final-study-sites";
-import type { GlacierCatalogRecord } from "@/data/glacier-catalog";
-import type { SiteDataset } from "@/domain/site-dataset";
-import { southLhonakDataset } from "./south-lhonak-dataset";
-import { southLhonakObservations } from "./south-lhonak-observations";
-
-const sites: SiteConfig[] = [southLhonak, ...finalStudySites.filter((site) => site.id !== southLhonak.id)];
-
-function makePhase2Dataset(site: SiteConfig): SiteDataset {
-  const rgi = site.referenceGlacierId ?? `${site.id}-reference`;
-  return {
-    site,
-    observations: southLhonakObservations,
-    boundaries: [
-      {
-        id: `${site.id}-glacier-rgi-v7-baseline`,
-        kind: "glacier",
-        path: "/reference/phase2-five-glaciers.geojson",
-        observationDate: "2000-12-26",
-        sourceId: "rgi-v7",
-        status: "historical_baseline",
-      },
-      {
-        id: `${site.id}-glacier-phase2-approved`,
-        kind: "glacier",
-        path: `/derived/phase2/boundaries/${site.id}/2025-10-15.geojson`,
-        observationDate: "2025-10-15",
-        sourceId: "phase-2-geoai-v1.0",
-        status: "approved",
-      },
-    ],
-    layers: [],
-    events: site.id === "south-lhonak" ? southLhonakDataset.events : [],
-    eventImagery: site.id === "south-lhonak" ? southLhonakDataset.eventImagery : undefined,
-    sources: site.sources,
-  };
-}
-
-export function listSites(): SiteConfig[] {
-  return sites;
-}
-
-export function getSite(id: SiteId): SiteConfig | undefined {
-  return sites.find((site) => site.id === id);
-}
-
-/** Resolves a legacy catalog feature to its canonical lake–glacier site. */
-export function getSiteForCatalogRecord(record: GlacierCatalogRecord): SiteConfig | undefined {
-  if (record.id.startsWith("south-lhonak")) return getSite("south-lhonak");
-  if (record.id.includes("tsho-rolpa")) return getSite("tsho-rolpa");
-  if (record.id.includes("imja")) return getSite("imja-tsho");
-  if (record.id.includes("thulagi")) return getSite("thulagi");
-  if (record.id.includes("chhota-shigri")) return getSite("chhota-shigri");
-  return undefined;
-}
-
-export function getDatasetForCatalogRecord(record: GlacierCatalogRecord): SiteDataset | undefined {
-  if (record.id.startsWith("south-lhonak")) return southLhonakDataset;
-  const site = getSiteForCatalogRecord(record);
-  if (site && site.readiness === "evidence-ready") return makePhase2Dataset(site);
-  return undefined;
+import type { SiteConfig, SiteId } from '@/domain/site';
+import type { GlacierCatalogRecord } from '@/data/glacier-catalog';
+import type { SiteDataset } from '@/domain/site-dataset';
+import { southLhonakDataset } from './south-lhonak-dataset';
+import { southLhonakObservations } from './south-lhonak-observations';
+import { evidenceSites, latestLakeBoundary } from './evidence';
+const sites: SiteConfig[] = evidenceSites.map(s => ({
+  id:s.id, name:s.name, country:s.country, region:s.region,
+  centre:{longitude:(s.lake ?? s.glacierCentre)[0],latitude:(s.lake ?? s.glacierCentre)[1]},
+  associatedGlacier:s.glacier,referenceGlacierId:s.rgi ?? undefined,elevationMetres:0,
+  description:'Dated imagery and historical references; current boundaries await review.',
+  timeline:[],readiness:'intake',sources:[
+    {id:'rgi-v7',title:'RGI lake-terminating inventory',url:'https://github.com/GLIMS-RGI/lake_terminating',accessedAt:'2026-09-21'},
+    {id:'sentinel2-water-baseline',title:'Sentinel-2 surface reflectance',url:'https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED',accessedAt:'2026-09-21'},
+  ],
+}));
+export function listSites():SiteConfig[]{return sites;}
+export function getSite(id:SiteId){return sites.find(s=>s.id===id);}
+export function getSiteForCatalogRecord(record:GlacierCatalogRecord){return getSite(record.siteId);}
+export function getDatasetForCatalogRecord(record:GlacierCatalogRecord):SiteDataset|undefined{
+  const site=getSite(record.siteId), evidence=evidenceSites.find(s=>s.id===record.siteId);
+  if(!site || !evidence)return undefined;
+  const lake=latestLakeBoundary(evidence);
+  const older=site.id==='south-lhonak' ? southLhonakObservations.filter(o=>!evidence.observations.some(n=>n.id===o.id)) : [];
+  return {site,observations:[...older,...evidence.observations].sort((a,b)=>a.id.localeCompare(b.id)),
+    boundaries:[...evidence.boundaries,...(lake?[lake]:[])],layers:[],sources:site.sources,
+    events:site.id==='south-lhonak'?southLhonakDataset.events:[],
+    eventImagery:site.id==='south-lhonak'?southLhonakDataset.eventImagery:undefined};
 }

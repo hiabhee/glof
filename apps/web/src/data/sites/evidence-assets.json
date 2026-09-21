@@ -1,0 +1,281 @@
+[
+  {
+    "id": "south-lhonak",
+    "name": "South Lhonak Lake",
+    "glacier": "South Lhonak Glacier",
+    "country": "India",
+    "region": "North Sikkim",
+    "lake": [
+      88.1967,
+      27.9128
+    ],
+    "bbox": [
+      88.12,
+      27.87,
+      88.235,
+      27.94
+    ],
+    "rgi": "RGI2000-v7.0-G-15-07986",
+    "observations": [
+      {
+        "id": "2025",
+        "label": "2025",
+        "date": "2025-11-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20251129T044151_20251129T044235_T45RXL",
+        "cloudPercent": 9.486189,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/south-lhonak-2025-11-29.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2025-11-29-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2025-11-29-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2025-11-29-lake-candidate.geojson",
+          "observationDate": "2025-11-29",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      }
+    ],
+    "boundaries": [
+      {
+        "id": "south-lhonak-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/south-lhonak-verified-rgi.geojson",
+        "observationDate": "2000-12-26",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      88.14864062678738,
+      27.896195499999997
+    ]
+  },
+  {
+    "id": "tsho-rolpa",
+    "name": "Tsho Rolpa Lake",
+    "glacier": "Trakarding Glacier",
+    "country": "Nepal",
+    "region": "Rolwaling Valley",
+    "lake": [
+      86.478,
+      27.862
+    ],
+    "bbox": [
+      86.44,
+      27.8,
+      86.57,
+      27.95
+    ],
+    "rgi": "RGI2000-v7.0-G-15-08533",
+    "observations": [
+      {
+        "id": "2025",
+        "label": "2025",
+        "date": "2025-11-22",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20251122T045131_20251122T045408_T45RVM",
+        "cloudPercent": 0.009482,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/tsho-rolpa-2025-11-22.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2025-11-22-bands.tif",
+        "lakeBoundary": null
+      }
+    ],
+    "boundaries": [
+      {
+        "id": "tsho-rolpa-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/tsho-rolpa-verified-rgi.geojson",
+        "observationDate": "2000-10-30",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      86.53791659476191,
+      27.873245
+    ]
+  },
+  {
+    "id": "imja-tsho",
+    "name": "Imja Tsho",
+    "glacier": "Imja\u2013Lhotse Shar Glacier",
+    "country": "Nepal",
+    "region": "Khumbu",
+    "lake": [
+      86.923,
+      27.899
+    ],
+    "bbox": [
+      86.895,
+      27.865,
+      86.99,
+      27.96
+    ],
+    "rgi": "RGI2000-v7.0-G-15-06763",
+    "observations": [
+      {
+        "id": "2025",
+        "label": "2025",
+        "date": "2025-11-22",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20251122T045131_20251122T045408_T45RVL",
+        "cloudPercent": 24.886766,
+        "validFraction": 0.9994145136890431,
+        "imagePath": "/imagery/sites/imja-tsho-2025-11-22.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2025-11-22-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2025-11-22-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2025-11-22-lake-candidate.geojson",
+          "observationDate": "2025-11-22",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      }
+    ],
+    "boundaries": [
+      {
+        "id": "imja-tsho-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/imja-tsho-verified-rgi.geojson",
+        "observationDate": "2000-10-30",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      86.95026918159107,
+      27.913925
+    ]
+  },
+  {
+    "id": "thulagi",
+    "name": "Thulagi Lake",
+    "glacier": "Thulagi Glacier",
+    "country": "Nepal",
+    "region": "Manaslu",
+    "lake": [
+      84.487,
+      28.491
+    ],
+    "bbox": [
+      84.465,
+      28.47,
+      84.575,
+      28.565
+    ],
+    "rgi": "RGI2000-v7.0-G-15-06122",
+    "observations": [
+      {
+        "id": "2025",
+        "label": "2025",
+        "date": "2025-11-30",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20251130T050049_20251130T050743_T45RTM",
+        "cloudPercent": 12.263682,
+        "validFraction": 0.9997461234039375,
+        "imagePath": "/imagery/sites/thulagi-2025-11-30.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2025-11-30-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2025-11-30-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2025-11-30-lake-candidate.geojson",
+          "observationDate": "2025-11-30",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      }
+    ],
+    "boundaries": [
+      {
+        "id": "thulagi-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/thulagi-verified-rgi.geojson",
+        "observationDate": "2002-12-05",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      84.5498680545438,
+      28.5179585
+    ]
+  },
+  {
+    "id": "chhota-shigri",
+    "name": "Chhota Shigri Glacier",
+    "glacier": "Chhota Shigri Glacier",
+    "country": "India",
+    "region": "Himachal Pradesh",
+    "lake": null,
+    "bbox": [
+      77.49,
+      32.18,
+      77.565,
+      32.3
+    ],
+    "rgi": null,
+    "observations": [
+      {
+        "id": "2025",
+        "label": "2025",
+        "date": "2025-11-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20251129T053059_20251129T053502_T43SGR",
+        "cloudPercent": 0.00432,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2025-11-29.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2025-11-29-bands.tif",
+        "lakeBoundary": null
+      }
+    ],
+    "boundaries": [],
+    "glacierCentre": [
+      77.525,
+      32.24
+    ]
+  }
+]

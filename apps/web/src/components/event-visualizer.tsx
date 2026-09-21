@@ -8,17 +8,26 @@ const states = [
   { id: "post", label: "7 Oct 2023", description: "Post-event Sentinel-1 SAR" }
 ] as const;
 
-const defaultImagery: EventImagery = {
-  pre: { imagePath: "/imagery/south-lhonak-pre-event-2023-09-16.png", date: "16 Sep 2023" },
-  post: { imagePath: "/imagery/south-lhonak-post-event-2023-10-24.png", date: "24 Oct 2023" },
-  sar: { prePath: "/imagery/south-lhonak-sar-pre-2023-09-28.png", postPath: "/imagery/south-lhonak-sar-post-2023-10-07.png", preDate: "28 Sep 2023", postDate: "7 Oct 2023" },
-  note: "ISRO/NRSC event assessment: approximately 105 ha drained.",
-};
-
-export function EventVisualizer({ siteName = "South Lhonak", imagery = defaultImagery }: { siteName?: string; imagery?: EventImagery }) {
+export function EventVisualizer({ siteName = "South Lhonak", imagery }: { siteName?: string; imagery?: EventImagery }) {
   const [sensor, setSensor] = useState<"sar" | "optical">("sar");
   const [mode, setMode] = useState<"swipe" | "pre" | "post">("swipe");
   const [split, setSplit] = useState(52);
+
+  if (!imagery) {
+    return (
+      <section className="visualizer unavailable-explorer" aria-labelledby="visualizer-title">
+        <div className="visualizer-heading">
+          <div>
+            <p className="eyebrow">{siteName} · event explorer</p>
+            <h2 id="visualizer-title">No event comparison imagery for this site</h2>
+          </div>
+          <p className="visualizer-note">No authorised pre/post event imagery bundle is registered for {siteName}. The South Lhonak 2023 SAR comparison is site-specific and is not shown for other glacier–lake systems.</p>
+        </div>
+        <p className="muted-note">Event comparison imagery will appear here once a published, site-specific pre/post pair passes review. See Retreat analysis below for approved boundaries and measurements.</p>
+      </section>
+    );
+  }
+
   const isSar = sensor === "sar";
   const preImage = isSar && imagery.sar ? imagery.sar.prePath : imagery.pre.imagePath;
   const postImage = isSar && imagery.sar ? imagery.sar.postPath : imagery.post.imagePath;
@@ -50,15 +59,15 @@ export function EventVisualizer({ siteName = "South Lhonak", imagery = defaultIm
       </div>
 
       <div className="satellite-frame">
-        {mode === "swipe" && <img className="satellite-image" src={postImage} alt="South Lhonak in the nearest available post-event Sentinel-1 SAR observation" />}
-        {mode === "pre" && <img className="satellite-image" src={preImage} alt="South Lhonak before the October 2023 outburst" />}
-        {mode === "post" && <img className="satellite-image" src={postImage} alt="South Lhonak after the October 2023 outburst" />}
+        {mode === "swipe" && <img className="satellite-image" src={postImage} alt={`${siteName} in the nearest available post-event Sentinel-1 SAR observation`} />}
+        {mode === "pre" && <img className="satellite-image" src={preImage} alt={`${siteName} before the October 2023 outburst`} />}
+        {mode === "post" && <img className="satellite-image" src={postImage} alt={`${siteName} after the October 2023 outburst`} />}
         {mode === "swipe" && (
           <>
             <img
               className="satellite-image comparison-image"
               src={preImage}
-              alt="South Lhonak before the October 2023 outburst"
+              alt={`${siteName} before the October 2023 outburst`}
               style={{ clipPath: `inset(0 ${100 - split}% 0 0)` }}
             />
             <div className="comparison-divider" style={{ left: `${split}%` }} aria-hidden="true"><span /></div>

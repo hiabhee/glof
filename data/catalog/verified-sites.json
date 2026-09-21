@@ -1,0 +1,155 @@
+[
+  {
+    "id": "south-lhonak",
+    "name": "South Lhonak Lake",
+    "glacier": "South Lhonak Glacier",
+    "country": "India",
+    "region": "North Sikkim",
+    "lake": [
+      88.1967,
+      27.9128
+    ],
+    "bbox": [
+      88.12,
+      27.87,
+      88.235,
+      27.94
+    ],
+    "rgi": "RGI2000-v7.0-G-15-07986",
+    "observations": [],
+    "boundaries": [
+      {
+        "id": "south-lhonak-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/south-lhonak-verified-rgi.geojson",
+        "observationDate": "2000-12-26",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      88.14864062678738,
+      27.896195499999997
+    ]
+  },
+  {
+    "id": "tsho-rolpa",
+    "name": "Tsho Rolpa Lake",
+    "glacier": "Trakarding Glacier",
+    "country": "Nepal",
+    "region": "Rolwaling Valley",
+    "lake": [
+      86.478,
+      27.862
+    ],
+    "bbox": [
+      86.44,
+      27.8,
+      86.57,
+      27.95
+    ],
+    "rgi": "RGI2000-v7.0-G-15-08533",
+    "observations": [],
+    "boundaries": [
+      {
+        "id": "tsho-rolpa-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/tsho-rolpa-verified-rgi.geojson",
+        "observationDate": "2000-10-30",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      86.53791659476191,
+      27.873245
+    ]
+  },
+  {
+    "id": "imja-tsho",
+    "name": "Imja Tsho",
+    "glacier": "Imja\u2013Lhotse Shar Glacier",
+    "country": "Nepal",
+    "region": "Khumbu",
+    "lake": [
+      86.923,
+      27.899
+    ],
+    "bbox": [
+      86.895,
+      27.865,
+      86.99,
+      27.96
+    ],
+    "rgi": "RGI2000-v7.0-G-15-06763",
+    "observations": [],
+    "boundaries": [
+      {
+        "id": "imja-tsho-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/imja-tsho-verified-rgi.geojson",
+        "observationDate": "2000-10-30",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      86.95026918159107,
+      27.913925
+    ]
+  },
+  {
+    "id": "thulagi",
+    "name": "Thulagi Lake",
+    "glacier": "Thulagi Glacier",
+    "country": "Nepal",
+    "region": "Manaslu",
+    "lake": [
+      84.487,
+      28.491
+    ],
+    "bbox": [
+      84.465,
+      28.47,
+      84.575,
+      28.565
+    ],
+    "rgi": "RGI2000-v7.0-G-15-06122",
+    "observations": [],
+    "boundaries": [
+      {
+        "id": "thulagi-glacier-rgi",
+        "kind": "glacier",
+        "path": "/reference/thulagi-verified-rgi.geojson",
+        "observationDate": "2002-12-05",
+        "sourceId": "rgi-v7",
+        "status": "historical_baseline"
+      }
+    ],
+    "glacierCentre": [
+      84.5498680545438,
+      28.5179585
+    ]
+  },
+  {
+    "id": "chhota-shigri",
+    "name": "Chhota Shigri Glacier",
+    "glacier": "Chhota Shigri Glacier",
+    "country": "India",
+    "region": "Himachal Pradesh",
+    "lake": null,
+    "bbox": [
+      77.49,
+      32.18,
+      77.565,
+      32.3
+    ],
+    "rgi": null,
+    "observations": [],
+    "boundaries": [],
+    "glacierCentre": [
+      77.525,
+      32.24
+    ]
+  }
+]

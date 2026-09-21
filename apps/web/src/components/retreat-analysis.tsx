@@ -162,6 +162,8 @@ function PredictorBars({ contributions }: { contributions: { predictor_id: strin
         })();
         const width = Math.abs(c.contribution) / max;
         const isPos = c.contribution > 0;
+        // width is 0..1 mapped to 0..50% of track (center to edge); prevents overflow beyond track
+        const barWidthPercent = width * 50;
         return (
           <div key={c.predictor_id} className="predictor-row" role="listitem">
             <span className="predictor-label" title={def?.description ?? c.predictor_id}>
@@ -171,7 +173,7 @@ function PredictorBars({ contributions }: { contributions: { predictor_id: strin
             <span className="predictor-bar-track">
               <span
                 className={`predictor-bar ${isPos ? "pos" : "neg"}`}
-                style={{ width: `${width * 100}%`, marginLeft: isPos ? "50%" : `${50 - width * 50}%` }}
+                style={{ width: `${barWidthPercent}%` }}
               />
               <span className="predictor-zero" />
             </span>

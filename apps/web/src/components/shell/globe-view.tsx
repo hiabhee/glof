@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { glacierCatalog, hasImageryData, type GlacierCatalogRecord } from "@/data/glacier-catalog";
+import { glacierCatalog, type GlacierCatalogRecord } from "@/data/glacier-catalog";
+
+import { evidenceSites, latestLakeBoundary } from "@/data/sites/evidence";
 
 declare global {
   interface Window {
@@ -51,11 +53,12 @@ function loadCesium() {
   });
 }
 
-export function GlobeView({ selected, showBoundaries, showLakes, showEvents, satelliteOpacity, terrainEnabled, onSelect, onReady, referenceBoundaryPath = "/reference/phase2-five-glaciers.geojson" }: Props) {
+export function GlobeView({ selected, showBoundaries, showLakes, showEvents, satelliteOpacity, terrainEnabled, onSelect, onReady, referenceBoundaryPath = "/reference/verified-glaciers.geojson" }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const viewerRef = useRef<any>(null);
   const cesiumRef = useRef<any>(null);
   const glacierSourceRef = useRef<any>(null);
+  const lakeSourceRef = useRef<any>(null);
   const markerSourceRef = useRef<any>(null);
   const selectedRef = useRef<GlacierCatalogRecord | null>(selected);
   const settingsRef = useRef({ showBoundaries, showLakes, showEvents, satelliteOpacity, terrainEnabled });
@@ -63,6 +66,7 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
   const boundaryPathRef = useRef(referenceBoundaryPath);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState(false);
+  const [boundaryError, setBoundaryError] = useState(false);
 
   selectedRef.current = selected;
   settingsRef.current = { showBoundaries, showLakes, showEvents, satelliteOpacity, terrainEnabled };
@@ -90,34 +94,59 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
     source.entities.removeAll();
     const config = settingsRef.current;
     glacierCatalog
-      .filter(hasImageryData)
       .filter((record) => (config.showLakes || record.type !== "lake") && (config.showEvents || !record.glofDate || record.type !== "lake"))
       .forEach((record) => {
         const isSelected = selectedRef.current?.id === record.id;
+        const isLake = record.type === "lake";
+        const isGlof = !!record.glofDate;
         source.entities.add({
           id: record.id,
           position: Cesium.Cartesian3.fromDegrees(record.centre.longitude, record.centre.latitude),
           point: {
-            pixelSize: isSelected ? 17 : 11,
-            color: Cesium.Color.fromCssColorString(isSelected ? "#dbfff5" : record.type === "lake" ? "#6fcbff" : "#b1ebff").withAlpha(0.98),
-            outlineColor: Cesium.Color.fromCssColorString("#063348"),
-            outlineWidth: 2,
+            pixelSize: isSelected ? (isLake ? 19 : 17) : (isLake ? 13 : 11),
+            color: Cesium.Color.fromCssColorString(
+              // Much more distinct: lake = deep saturated blue (water), glacier = pale icy cyan, GLOF lake = amber/red rim hint via outline
+              isSelected ? "#ffffff" : isLake ? (isGlof ? "#0050ff" : "#0a5cff") : "#a8f5ff"
+            ).withAlpha(isLake ? 1 : 0.98),
+            outlineColor: Cesium.Color.fromCssColorString(
+              isSelected ? "#0a3a6b" : isLake ? (isGlof ? "#ff8c1a" : "#ffffff") : "#0b2f3a"
+            ),
+            outlineWidth: isLake ? (isSelected ? 3 : isGlof ? 3 : 2.5) : 1.8,
             heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
             disableDepthTestDistance: Number.POSITIVE_INFINITY,
           },
           label: isSelected ? {
             text: record.name,
-            font: "600 13px Inter, system-ui, sans-serif",
+            font: "700 13px Inter, system-ui, sans-serif",
             fillColor: Cesium.Color.WHITE,
             outlineColor: Cesium.Color.fromCssColorString("#062735"),
             outlineWidth: 3,
             style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-            pixelOffset: new Cesium.Cartesian2(0, -24),
+            pixelOffset: new Cesium.Cartesian2(0, -28),
+            heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
             disableDepthTestDistance: Number.POSITIVE_INFINITY,
           } : undefined,
           properties: { recordId: record.id },
         });
       });
+  }, []);
+
+  // Only source vectors are rendered. Missing geometry remains a point marker.
+  const renderLakeOverlays = useCallback(() => {
+    const source = lakeSourceRef.current;
+    const Cesium = cesiumRef.current;
+    if (!source || !Cesium) return;
+    for (const entity of source.entities.values) {
+      const recordId = entity.properties?.recordId?.getValue?.();
+      const record = glacierCatalog.find(r => r.id === recordId);
+      const active = record?.siteId === selectedRef.current?.siteId;
+      entity.show = settingsRef.current.showLakes && (settingsRef.current.showEvents || !record?.glofDate);
+      if (entity.polygon) {
+        entity.polygon.material = Cesium.Color.fromCssColorString("#1877e8").withAlpha(active ? 0.35 : 0.18);
+        entity.polygon.outline = true;
+        entity.polygon.outlineColor = Cesium.Color.fromCssColorString("#73b7ff");
+      }
+    }
   }, []);
 
   const updateBoundaryStyle = useCallback(() => {
@@ -130,24 +159,31 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
       const assoc = glacierCatalog.find((g) => g.name === selectedRef.current!.associatedName || g.associatedName === selectedRef.current!.associatedName);
       selectedId = assoc?.rgiId;
     }
-    // No selection => show all faintly if boundaries enabled (initial Himalaya overview)
+    // No selection => show all with moderate emphasis so ice area reads on the Himalaya overview
     const hasSelection = !!selectedRef.current;
     for (const entity of source.entities.values) {
       const id = entity.properties?.rgi_id?.getValue?.() ?? entity.properties?.rgi_id ?? entity.properties?.rgiId?.getValue?.();
       const siteId = entity.properties?.site_id?.getValue?.() ?? entity.properties?.site_id;
       const active = hasSelection ? id === selectedId : false;
       // Also consider site_id match for synthetic lakes where rgiId may be missing
-      const siteMatch = hasSelection && selectedRef.current ? siteId === (selectedRef.current.id.split("-")[0] + "-" + (selectedRef.current.id.split("-")[1] ?? "")) || selectedRef.current.id.includes(siteId ?? "") : false;
+      const siteMatch = !!selectedRef.current && !!siteId && siteId === selectedRef.current.siteId;
       const isActive = active || siteMatch;
       entity.show = settingsRef.current.showBoundaries;
       if (entity.polygon) {
-        // Active glacier: bright cyan fill + white outline; inactive: dim blue-grey
-        entity.polygon.material = (isActive ? Cesium.Color.fromCssColorString("#9eeaff") : Cesium.Color.fromCssColorString("#55b8ee")).withAlpha(isActive ? 0.34 : hasSelection ? 0.10 : 0.18);
-        entity.polygon.outlineColor = (isActive ? Cesium.Color.fromCssColorString("#eaffff") : Cesium.Color.fromCssColorString("#88d7ff")).withAlpha(isActive ? 0.95 : 0.45);
-        entity.polygon.outlineWidth = isActive ? 2 : 1;
+        // Glacier = pale icy wash with crisp white-cyan outline – deliberately NOT lake-blue.
+        // Lake is deep saturated blue (#0047d4); glacier must read as ice/snow.
+        const fill = isActive ? "#eaffff" : "#bfefff";
+        const alpha = isActive ? 0.38 : hasSelection ? 0.18 : 0.26;
+        entity.polygon.material = Cesium.Color.fromCssColorString(fill).withAlpha(alpha);
+        entity.polygon.outline = true;
+        entity.polygon.outlineColor = Cesium.Color.fromCssColorString(isActive ? "#ffffff" : "#d6f4ff").withAlpha(isActive ? 1 : 0.95);
+        // outlineWidth > 2 is clamped on many GPUs but still produces a crisper edge than 1px
+        (entity.polygon as any).outlineWidth = isActive ? 3.5 : 2.2;
+
       }
     }
-  }, []);
+    renderLakeOverlays();
+  }, [renderLakeOverlays]);
 
   useEffect(() => {
     let alive = true;
@@ -248,7 +284,10 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
 
         markerSourceRef.current = new Cesium.CustomDataSource("glacier-markers");
         viewer.dataSources.add(markerSourceRef.current);
+        lakeSourceRef.current = new Cesium.CustomDataSource("lake-overlays");
+        viewer.dataSources.add(lakeSourceRef.current);
         renderMarkers();
+        renderLakeOverlays();
         viewer.screenSpaceEventHandler.setInputAction((movement: any) => {
           const picked = viewer.scene.pick(movement.position);
           const id = picked?.id?.properties?.recordId?.getValue?.();
@@ -258,6 +297,19 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
 
         resetView();
         setReady(true);
+
+        const lakePaths = evidenceSites.map(latestLakeBoundary).filter(Boolean);
+        for (const boundary of lakePaths) {
+          try {
+            const source = await Cesium.GeoJsonDataSource.load(boundary!.path, { clampToGround: true });
+            if (!alive) return;
+            for (const entity of [...source.entities.values]) lakeSourceRef.current.entities.add(entity);
+          } catch (cause) {
+            console.error("Lake boundary unavailable", cause);
+            setBoundaryError(true);
+          }
+        }
+        renderLakeOverlays();
 
         // The interactive Earth must not wait for the optional vector request.
         // This is the published RGI v7 reference inventory, not a synthetic boundary.
@@ -269,6 +321,7 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
           updateBoundaryStyle();
         } catch (boundaryCause) {
           console.warn("RGI boundary overlay could not be loaded", boundaryCause);
+          setBoundaryError(true);
         }
       } catch (cause) {
         console.error("Cesium globe failed to initialise", cause);
@@ -282,8 +335,11 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
       if (viewer && !viewer.isDestroyed()) viewer.destroy();
       viewerRef.current = null;
       cesiumRef.current = null;
+      glacierSourceRef.current = null;
+      lakeSourceRef.current = null;
+      markerSourceRef.current = null;
     };
-  }, [renderMarkers, resetView, updateBoundaryStyle]);
+  }, [renderLakeOverlays, renderMarkers, resetView, updateBoundaryStyle]);
 
   useEffect(() => {
     const viewer = viewerRef.current;
@@ -292,9 +348,10 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
     if (layer) layer.alpha = Math.max(0.15, satelliteOpacity);
     viewer.scene.globe.enableLighting = terrainEnabled;
     renderMarkers();
+    renderLakeOverlays();
     updateBoundaryStyle();
     if (selected) flyTo(selected.centre, selected.id.includes("south-lhonak") ? 14_000 : 24_000);
-  }, [flyTo, renderMarkers, satelliteOpacity, selected, showBoundaries, showEvents, showLakes, terrainEnabled, updateBoundaryStyle]);
+  }, [flyTo, renderLakeOverlays, renderMarkers, satelliteOpacity, selected, showBoundaries, showEvents, showLakes, terrainEnabled, updateBoundaryStyle]);
 
   return (
     <div className="globe-root" style={{ touchAction: "none" } as React.CSSProperties}>

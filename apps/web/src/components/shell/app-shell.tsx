@@ -3,11 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { GlobeView } from "./globe-view";
 import { glacierCatalog, hasImageryData, searchCatalog, type GlacierCatalogRecord } from "@/data/glacier-catalog";
-import { EventVisualizer } from "@/components/event-visualizer";
-import { TemporalExplorer } from "@/components/temporal-explorer";
-import { EvidencePanel } from "@/components/evidence-panel";
-import { GlacierAnalysisPanel } from "@/components/glacier-analysis-panel";
 import { RetreatAnalysis } from "@/components/retreat-analysis";
+import { ExplorerTabs } from "@/components/explorer-tabs";
 import { getDatasetForCatalogRecord, getSiteForCatalogRecord } from "@/data/sites/registry";
 
 type LayerState = {
@@ -340,20 +337,46 @@ export function AppShell() {
         {activeShortcut === "layers" && (
           <div className="shortcut-pane layers-pane">
             <h3>Layers</h3>
-            <label className="layer-row"><input type="checkbox" checked={layers.glacierBoundaries} onChange={(e) => setLayers((l) => ({ ...l, glacierBoundaries: e.target.checked }))} /> <span>Glacier boundaries</span> <small>ice-blue outlines</small></label>
-            <label className="layer-row"><input type="checkbox" checked={layers.glacialLakes} onChange={(e) => setLayers((l) => ({ ...l, glacialLakes: e.target.checked }))} /> <span>Glacial lakes</span> <small>lake-terminating flags</small></label>
-            <label className="layer-row"><input type="checkbox" checked={layers.glofEvents} onChange={(e) => setLayers((l) => ({ ...l, glofEvents: e.target.checked }))} /> <span>GLOF events</span> <small>Oct 2023 marker</small></label>
-            <label className="layer-row"><input type="checkbox" checked={layers.terrain} onChange={(e) => setLayers((l) => ({ ...l, terrain: e.target.checked }))} /> <span>Terrain</span> <small>hillshade & elevation</small></label>
-            <label className="layer-row">
-              <input type="checkbox" checked={layers.satellite} onChange={(e) => setLayers((l) => ({ ...l, satellite: e.target.checked }))} /> <span>Satellite imagery</span> <small>Esri World Imagery</small>
-            </label>
-            {layers.satellite && (
-              <label className="layer-opacity">
-                <span>Satellite opacity</span>
-                <input type="range" min={0.15} max={1} step={0.05} value={satOpacity} onChange={(e) => setSatOpacity(Number(e.target.value))} />
-              </label>
-            )}
-            <p className="muted small">Boundaries only render at useful zoom. Viewport culling keeps the globe responsive.</p>
+            <p className="muted" style={{marginBottom:10}}>Fix for “single blue spot” — lakes and glaciers are now different blues with a live legend. Toggle each layer and zoom in to see the split.</p>
+
+            <div className="layers-group">
+              <span className="layers-group-label">Base map</span>
+              <label className="layer-row"><input type="checkbox" checked={layers.satellite} onChange={(e) => setLayers((l) => ({ ...l, satellite: e.target.checked }))} /> <span className="legend-swatch sat" aria-hidden="true" /> <span>Satellite imagery</span> <small>Esri World Imagery</small></label>
+              {layers.satellite && (
+                <label className="layer-opacity">
+                  <span>Opacity</span>
+                  <input type="range" min={0.15} max={1} step={0.05} value={satOpacity} onChange={(e) => setSatOpacity(Number(e.target.value))} />
+                  <small style={{marginLeft:6}}>{Math.round(satOpacity*100)}%</small>
+                </label>
+              )}
+              <label className="layer-row"><input type="checkbox" checked={layers.terrain} onChange={(e) => setLayers((l) => ({ ...l, terrain: e.target.checked }))} /> <span className="legend-swatch terrain" aria-hidden="true" /> <span>Terrain</span> <small>hillshade & depth</small></label>
+            </div>
+
+            <div className="layers-group">
+              <span className="layers-group-label">Science overlays</span>
+              <label className="layer-row"><input type="checkbox" checked={layers.glacierBoundaries} onChange={(e) => setLayers((l) => ({ ...l, glacierBoundaries: e.target.checked }))} /> <span className="legend-swatch glacier" aria-hidden="true" /> <span>Glacier boundaries</span> <small>pale icy polygon · RGI v7</small></label>
+              <label className="layer-row"><input type="checkbox" checked={layers.glacialLakes} onChange={(e) => setLayers((l) => ({ ...l, glacialLakes: e.target.checked }))} /> <span className="legend-swatch lake" aria-hidden="true" /> <span>Glacial lakes</span> <small>deep-blue oval · water</small></label>
+              <label className="layer-row"><input type="checkbox" checked={layers.glofEvents} onChange={(e) => setLayers((l) => ({ ...l, glofEvents: e.target.checked }))} /> <span className="legend-swatch glof" aria-hidden="true" /> <span>GLOF events</span> <small>amber ring · 2023 South Lhonak</small></label>
+            </div>
+
+            <div className="layers-legend" aria-label="Map legend">
+              <span className="layers-group-label">Live legend — what you see</span>
+              <div className={`legend-row ${!layers.glacierBoundaries ? 'off':''}`}><span className="legend-swatch glacier polygon" /> <span><b>Glacier ice</b> — pale cyan fill, white-cyan outline. Faint wash, best at ~10–20 km zoom.</span></div>
+              <div className={`legend-row ${!layers.glacialLakes ? 'off':''}`}><span className="legend-swatch lake" /> <span><b>Lake water</b> — deep saturated blue, white outline, tiny glow. Sits at glacier terminus (valley floor).</span></div>
+              <div className={`legend-row ${!layers.glacialLakes || !layers.glofEvents ? 'off':''}`}><span className="legend-swatch glof" /> <span><b>GLOF-affected lake</b> — same blue + amber outer ring (South Lhonak white dot is selected state).</span></div>
+              <div className={`legend-row ${!layers.satellite ? 'off':''}`}><span className="legend-swatch sat" /> <span><b>Satellite</b> — dim it to make overlays pop on rock/snow.</span></div>
+            </div>
+
+            <div className="layers-tip">
+              <strong>How to tell them apart:</strong> From Himalaya view both are dots — lake = <em>deep blue dot + white ring</em>, glacier = <em>pale cyan dot</em>. Click a lake → fly to 14 km → lake becomes a solid blue oval, glacier appears as a larger pale wash around it (see RGI outline). Excess “giant blue circle” halo was reduced 60% and now only shows for the active lake.
+            </div>
+
+            <div className="layers-actions">
+              <button type="button" className="text-btn" onClick={()=>{ setLayers({ glacierBoundaries:true, glacialLakes:true, glofEvents:true, terrain:true, satellite:true}); setSatOpacity(1); }}>Reset to default</button>
+              <button type="button" className="text-btn" onClick={()=> setLayers(l=> ({...l, glacierBoundaries: !l.glacierBoundaries, glacialLakes: !l.glacialLakes}))} title="Quick A/B">Isolate lakes vs ice</button>
+            </div>
+
+            <p className="muted small">At 24,000 km you only see dots. Use + / scroll or “Show on map” to reach 14 km where polygons drape correctly. Halos don’t cover whole valleys any more.</p>
           </div>
         )}
 
@@ -470,13 +493,19 @@ export function AppShell() {
         <button type="button" aria-current={mobileView === "layers" ? "page" : undefined} className={mobileView === "layers" ? "active" : ""} onClick={() => openMobileView("layers")}><span aria-hidden="true">◫</span>Layers</button>
       </nav>
 
-      {/* Detail mode – bottom sheet / focused mode */}
-      <div className={`detail-sheet ${detailOpen ? "open" : ""}`} role="dialog" aria-modal={detailOpen ? "true" : undefined} aria-label="Imagery detail mode">
+      {/* Detail mode – tabbed explorer (redesigned for newbies) */}
+      <div className={`detail-sheet ${detailOpen ? "open" : ""}`} role="dialog" aria-modal={detailOpen ? "true" : undefined} aria-label="Site explorer">
         <div className="detail-sheet-head glass">
           <div>
-            <p className="eyebrow"><span className="desktop-copy">{selected?.name ?? "Selected site"} · detail mode</span><span className="mobile-copy">Step 3 of 3 · Explore over time</span></p>
-            <h2>Imagery & timeline explorer</h2>
-            <small>RGI v7 baseline overlay · 2016–2025 candidates · SAR vs optical · source-cited evidence</small>
+            <p className="eyebrow">
+              <span className="desktop-copy">{selected?.name ?? "Selected site"} · site explorer</span>
+              <span className="mobile-copy">Step 3 of 3 · Explore this site</span>
+            </p>
+            <h2>{selected ? `${selected.name}` : "Choose a glacier–lake system"}</h2>
+            <small>
+              {selected ? "Timeline · Event · Change & Forecast · Sources — pick a tab" : "Start on the map and open a site to explore"}
+               · RGI v7 historical baseline · 2016–2025 seasonal window
+            </small>
           </div>
           <div className="detail-actions">
             <button type="button" className="primary" onClick={() => setDetailOpen(false)}>Close ×</button>
@@ -484,19 +513,13 @@ export function AppShell() {
         </div>
         <div className="detail-sheet-body">
           {selectedDataset && selectedSite ? (
-            <>
-              <EventVisualizer siteName={selected!.name} imagery={selectedDataset.eventImagery} />
-              <TemporalExplorer siteName={selected!.name} observations={selectedDataset.observations} boundary={selectedDataset.boundaries[0]} expectedRgiId={selectedSite.referenceGlacierId} />
-              <EvidencePanel />
-              <GlacierAnalysisPanel />
-              <RetreatAnalysis siteId={selectedSite.id} glacierName={selectedSite.associatedGlacier} glacierId={selectedSite.referenceGlacierId} />
-            </>
+            <ExplorerTabs siteName={selected!.name} dataset={selectedDataset} site={selectedSite} isOpen={detailOpen} />
           ) : selected && selectedSite ? (
             <RetreatAnalysis siteId={selectedSite.id} glacierName={selectedSite.associatedGlacier} glacierId={selectedSite.referenceGlacierId} />
           ) : (
             <section className="visualizer unavailable-explorer">
               <p className="eyebrow">{selected?.name ?? "Selected site"} · explorer</p>
-              <h2>Imagery &amp; timeline explorer</h2>
+              <h2>Site explorer</h2>
               <p>There is no authorised, site-specific imagery bundle registered for this location yet. This view will remain empty rather than showing South Lhonak data.</p>
               <p className="muted-note">Register reviewed scenes and boundary geometry for {selected?.name ?? "this site"} to enable its timeline.</p>
             </section>
