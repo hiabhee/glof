@@ -1,0 +1,17 @@
+{
+  "schema_version": "2.0",
+  "data_status": "reviewed",
+  "records": [
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2025-11-29",
+      "feature_asset": "data/derived/evidence/south-lhonak-2025-11-29-bands.tif",
+      "reviewed_boundary_asset": "data/reviewed-boundaries/south-lhonak-2025-11-29.geojson",
+      "boundary_crs": "EPSG:4326",
+      "boundary_source": "Analyst delineation against the dated Sentinel-2 scene",
+      "review_status": "approved_reviewed",
+      "reviewer": "ANALYST_NAME",
+      "reviewed_at": "YYYY-MM-DD"
+    }
+  ]
+}
