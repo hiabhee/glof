@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.0",
+  "status": "pilot_verified",
+  "source_registry": "apps/web/src/data/sites/evidence-assets.json",
+  "study_protocol": "data/catalog/planb/study-protocol.md",
+  "protocol_version": "1.1",
+  "verification_date": "2026-09-21",
+  "sites": [
+    {
+      "site_id": "south-lhonak",
+      "target_name": "South Lhonak Glacier",
+      "inventory_id": "RGI2000-v7.0-G-15-07986",
+      "identity_status": "verified",
+      "analysis_eligible": true,
+      "analysis_crs": "EPSG:32645",
+      "evidence_crs": "EPSG:4326",
+      "target_geometry": {
+        "path": "apps/web/public/reference/south-lhonak-verified-rgi.geojson",
+        "sha256": "7b743f497eb159d58927397be112eb106d64fe44455ce7185e7e56b9c80adb31",
+        "rgi_id": "RGI2000-v7.0-G-15-07986",
+        "lake_cat": 3,
+        "source": "GLIMS-RGI lake_terminating outlines RGI v7 Region 15",
+        "source_date": "2000-12-26",
+        "bounds_wgs84": [
+          88.128787,
+          27.877107,
+          88.194685,
+          27.915328
+        ]
+      },
+      "study_area": {
+        "bbox_wgs84": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "purpose": "Contains full RGI historical extent, terminus at lake, surrounding moraine and stable bedrock for alignment",
+        "containment_ratio": 1.0,
+        "verification": "GIS overlay 2026-09-21: RGI polygon fully inside bbox"
+      },
+      "grid": {
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0001796630568239043,
+          0.0,
+          88.11987846959082,
+          0.0,
+          -0.0001796630568239043,
+          27.94012061891265
+        ],
+        "width": 641,
+        "height": 391,
+        "bounds_wgs84": [
+          88.11987846959082,
+          27.869872363694505,
+          88.23504248901494,
+          27.94012061891265
+        ]
+      },
+      "reason": "Verified lake-terminating identity and full coverage; approved for pilot feature production and training."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "target_name_candidate": "Trakarding Glacier",
+      "inventory_id_candidate": "RGI2000-v7.0-G-15-08533",
+      "identity_status": "provisional",
+      "analysis_eligible": false,
+      "analysis_crs": "EPSG:32645",
+      "evidence_crs": "EPSG:4326",
+      "target_geometry": {
+        "path": "apps/web/public/reference/tsho-rolpa-verified-rgi.geojson",
+        "sha256": "60495a8cccb619987a97b6f1abd6dcc824419499924ac75801248d2afe70c895",
+        "rgi_id": "RGI2000-v7.0-G-15-08533",
+        "lake_cat": 3,
+        "source": "GLIMS-RGI lake_terminating outlines RGI v7 Region 15",
+        "source_date": "2000-10-30",
+        "bounds_wgs84": [
+          86.487773,
+          27.804478,
+          86.561666,
+          27.942028
+        ]
+      },
+      "study_area": {
+        "bbox_wgs84": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "containment_ratio": 1.0,
+        "verification": "RGI polygon inside bbox; terminus/stable-terrain inclusion not yet signed off"
+      },
+      "grid": {
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0001796630568239043,
+          0.0,
+          86.43984922523049,
+          0.0,
+          -0.0001796630568239043,
+          27.95000208703797
+        ],
+        "width": 725,
+        "height": 835,
+        "bounds_wgs84": [
+          86.43984922523049,
+          27.799983434590008,
+          86.57010494142781,
+          27.95000208703797
+        ]
+      },
+      "reason": "Provisional lake-terminating match; glacier-name association (Trakarding vs Tsho Rolpa) requires second-source confirmation before analysis eligibility."
+    },
+    {
+      "site_id": "imja-tsho",
+      "target_name_candidate": "Imja\u2013Lhotse Shar Glacier",
+      "inventory_id_candidate": "RGI2000-v7.0-G-15-06763",
+      "identity_status": "provisional",
+      "analysis_eligible": false,
+      "analysis_crs": "EPSG:32645",
+      "evidence_crs": "EPSG:4326",
+      "target_geometry": {
+        "path": "apps/web/public/reference/imja-tsho-verified-rgi.geojson",
+        "sha256": "4407c434fe7bd9dbf167a6735d1cfbdfbbb67597d5d860873e018816126b6cda",
+        "rgi_id": "RGI2000-v7.0-G-15-06763",
+        "lake_cat": 3,
+        "source": "GLIMS-RGI lake_terminating outlines RGI v7 Region 15",
+        "source_date": "2000-10-30",
+        "bounds_wgs84": [
+          86.92655,
+          27.870998,
+          86.983357,
+          27.957116
+        ]
+      },
+      "study_area": {
+        "bbox_wgs84": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "containment_ratio": 1.0,
+        "verification": "RGI polygon inside bbox; label extent and debris-zone handling pending handbook"
+      },
+      "grid": {
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0001796630568239043,
+          0.0,
+          86.89493574816544,
+          0.0,
+          -0.0001796630568239043,
+          27.960063218220107
+        ],
+        "width": 530,
+        "height": 530,
+        "bounds_wgs84": [
+          86.89493574816544,
+          27.864841798103438,
+          86.99015716828211,
+          27.960063218220107
+        ]
+      },
+      "reason": "Provisional; awaiting authoritative name/geometry confirmation and debris-cover label policy."
+    },
+    {
+      "site_id": "thulagi",
+      "target_name_candidate": "Thulagi Glacier",
+      "inventory_id_candidate": "RGI2000-v7.0-G-15-06122",
+      "identity_status": "provisional",
+      "analysis_eligible": false,
+      "analysis_crs": "EPSG:32645",
+      "evidence_crs": "EPSG:4326",
+      "target_geometry": {
+        "path": "apps/web/public/reference/thulagi-verified-rgi.geojson",
+        "sha256": "985f27f7bde5d06b407af179c525f5ff4deb66942017250c710334d888442ff0",
+        "rgi_id": "RGI2000-v7.0-G-15-06122",
+        "lake_cat": 3,
+        "source": "GLIMS-RGI lake_terminating outlines RGI v7 Region 15",
+        "source_date": "2002-12-05",
+        "bounds_wgs84": [
+          84.493645,
+          28.477426,
+          84.570248,
+          28.558462
+        ]
+      },
+      "study_area": {
+        "bbox_wgs84": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "containment_ratio": 1.0,
+        "verification": "RGI polygon inside bbox; CRS at zone boundary (45N) documented"
+      },
+      "grid": {
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0001796630568239043,
+          0.0,
+          84.46499290462212,
+          0.0,
+          -0.0001796630568239043,
+          28.565168393603017
+        ],
+        "width": 613,
+        "height": 530,
+        "bounds_wgs84": [
+          84.46499290462212,
+          28.469946973486348,
+          84.57512635845518,
+          28.565168393603017
+        ]
+      },
+      "reason": "Provisional; pending manual review of terminus and stable-terrain sufficiency."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "target_name_candidate": "Chhota Shigri Glacier",
+      "inventory_id_candidate": null,
+      "identity_status": "unverified",
+      "analysis_eligible": false,
+      "analysis_crs": "EPSG:32643",
+      "evidence_crs": "EPSG:4326",
+      "target_geometry": null,
+      "study_area": {
+        "bbox_wgs84": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "verification": "No lake-terminating RGI match; full RGI lookup required. Lake existence not confirmed\u2014site label 'Chhota Shigri Lake' treated as non-evidence per protocol."
+      },
+      "grid": {
+        "crs": "EPSG:4326",
+        "transform": [
+          0.0001796630568239043,
+          0.0,
+          77.48993404954768,
+          0.0,
+          -0.0001796630568239043,
+          32.30000401885834
+        ],
+        "width": 418,
+        "height": 668,
+        "bounds_wgs84": [
+          77.48993404954768,
+          32.17998909689997,
+          77.56503320730008,
+          32.30000401885834
+        ]
+      },
+      "reason": "Unverified identity and lake association. Excluded from training and comparison until authoritative geometry is resolved. Retain as provisional intake only."
+    }
+  ]
+}

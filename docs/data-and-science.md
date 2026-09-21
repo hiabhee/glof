@@ -1,3 +1,5 @@
+> **Plan B takes precedence (21 September 2026).** Validated GeoAI delineation is a core research objective. Forecasting, scenarios and operational alerts are deferred. Legacy Phase 2 accuracy, approval and readiness claims are superseded and unverified. Historical inventory geometry is context, not dated independent truth. See [Plan B implementation status](planb-implementation.md).
+
 # Data, scientific guardrails, and validation
 
 ## Candidate data inputs

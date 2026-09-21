@@ -8,3 +8,10 @@ __pycache__/
 .env.local
 data/derived/
 data/raw/
+
+# Explicit synthetic fixtures; never scientific inputs.
+data/demo/
+.DS_Store
+apps/.DS_Store
+pipelines/.DS_Store
+data/.DS_Store

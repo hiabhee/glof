@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "status": "frozen_strategy",
+  "protocol_version": "1.1",
+  "generated_at": "2026-09-21T20:00:00Z",
+  "study_protocol": "data/catalog/planb/study-protocol.md",
+  "strategy": {
+    "temporal": {
+      "train": "observation_date <= 2021-12-31",
+      "test": "observation_date >= 2022-01-01",
+      "rationale": "Chronological transfer to future dates; respects annual seasonal window; no tuning on test",
+      "requires": "At least one reviewed scene before and after 2021/2022 split per site"
+    },
+    "leave_one_glacier_out": {
+      "enabled": true,
+      "rationale": "Spatial transfer across Himalayan sites; each glacier held-out once",
+      "requires": "At least 2 independent reviewed scenes per site covering 2016-2025"
+    },
+    "unit": "Entire acquisition per site+date is assigned to one fold; no pixel-level split. All patches from same scene stay together.",
+    "forbidden": "Any source scene, tile, or composite sharing acquisition date appearing in both train and test; pixel-level random split"
+  },
+  "current_snapshot": {
+    "note": "Only 5 single-date 2025 stacks exist (4 candidate, 1 rejected tsho-rolpa). No approved_reviewed labels yet, so no concrete train/test assignment. Strategy above is frozen; concrete records will populate once Phase 3 labels are approved.",
+    "exported_observations": 5,
+    "approved_reviewed_labels": 0,
+    "example_future": [
+      {"site_id": "south-lhonak", "observation_date": "2019-11-14", "split": "train"},
+      {"site_id": "south-lhonak", "observation_date": "2022-11-03", "split": "test"},
+      {"site_id": "imja-tsho", "observation_date": "2020-10-09", "split": "train"}
+    ]
+  },
+  "validation": "Automated leakage check: assert no scene_id or observation_date appears in both folds; fail if violated. Implemented in train_segmentation.py:load_records() via (site_id, observation_date) key."
+}

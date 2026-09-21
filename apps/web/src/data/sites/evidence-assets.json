@@ -18,6 +18,215 @@
     "rgi": "RGI2000-v7.0-G-15-07986",
     "observations": [
       {
+        "id": "2016",
+        "label": "2016",
+        "date": "2016-11-16",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20161116T044042_20161116T044143_T45RXL",
+        "cloudPercent": 0.547394,
+        "validFraction": 0.9999589888351527,
+        "imagePath": "/imagery/sites/south-lhonak-2016-11-16.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2016-11-16-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2016-11-16-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2016-11-16-lake-candidate.geojson",
+          "observationDate": "2016-11-16",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2017",
+        "label": "2017",
+        "date": "2017-11-19",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20171119T045049_20171119T045853_T45RXL",
+        "cloudPercent": 2.822689,
+        "validFraction": 0.9971292184606854,
+        "imagePath": "/imagery/sites/south-lhonak-2017-11-19.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2017-11-19-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2017-11-19-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2017-11-19-lake-candidate.geojson",
+          "observationDate": "2017-11-19",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2018",
+        "label": "2018",
+        "date": "2018-11-26",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20181126T044121_20181126T044116_T45RXL",
+        "cloudPercent": 0.001324,
+        "validFraction": 0.9995488771866792,
+        "imagePath": "/imagery/sites/south-lhonak-2018-11-26.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2018-11-26-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2018-11-26-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2018-11-26-lake-candidate.geojson",
+          "observationDate": "2018-11-26",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2019",
+        "label": "2019",
+        "date": "2019-10-15",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20191015T044751_20191015T045321_T45RXL",
+        "cloudPercent": 3.85954,
+        "validFraction": 0.9982365199115638,
+        "imagePath": "/imagery/sites/south-lhonak-2019-10-15.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2019-10-15-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2019-10-15-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2019-10-15-lake-candidate.geojson",
+          "observationDate": "2019-10-15",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2020",
+        "label": "2020",
+        "date": "2020-11-25",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20201125T044121_20201125T044124_T45RXL",
+        "cloudPercent": 4.385738,
+        "validFraction": 0.9995527370610177,
+        "imagePath": "/imagery/sites/south-lhonak-2020-11-25.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2020-11-25-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2020-11-25-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2020-11-25-lake-candidate.geojson",
+          "observationDate": "2020-11-25",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2021",
+        "label": "2021",
+        "date": "2021-10-11",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20211011T043721_20211011T044557_T45RXM",
+        "cloudPercent": 0.890027,
+        "validFraction": 0.988002053124599,
+        "imagePath": "/imagery/sites/south-lhonak-2021-10-11.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2021-10-11-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2022",
+        "label": "2022",
+        "date": "2022-11-30",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20221130T044139_20221130T044556_T45RXL",
+        "cloudPercent": 1.537954,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/south-lhonak-2022-11-30.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2022-11-30-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2022-11-30-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2022-11-30-lake-candidate.geojson",
+          "observationDate": "2022-11-30",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2024",
+        "label": "2024",
+        "date": "2024-11-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20241129T044049_20241129T044137_T45RXL",
+        "cloudPercent": 0.019648,
+        "validFraction": 0.9981544975818691,
+        "imagePath": "/imagery/sites/south-lhonak-2024-11-29.png",
+        "bounds": [
+          88.12,
+          27.87,
+          88.235,
+          27.94
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/south-lhonak-2024-11-29-bands.tif",
+        "lakeBoundary": {
+          "id": "south-lhonak-2024-11-29-lake",
+          "kind": "lake",
+          "path": "/boundaries/south-lhonak-2024-11-29-lake-candidate.geojson",
+          "observationDate": "2024-11-29",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
         "id": "2025",
         "label": "2025",
         "date": "2025-11-29",
@@ -79,6 +288,153 @@
     "rgi": "RGI2000-v7.0-G-15-08533",
     "observations": [
       {
+        "id": "2016",
+        "label": "2016",
+        "date": "2016-11-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20161129T045132_20161129T045803_T45RVM",
+        "cloudPercent": 0.347487,
+        "validFraction": 0.9998471486338275,
+        "imagePath": "/imagery/sites/tsho-rolpa-2016-11-29.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2016-11-29-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2017",
+        "label": "2017",
+        "date": "2017-11-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20171129T045129_20171129T045923_T45RVM",
+        "cloudPercent": 0.04434,
+        "validFraction": 0.9948276836280974,
+        "imagePath": "/imagery/sites/tsho-rolpa-2017-11-29.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2017-11-29-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2018",
+        "label": "2018",
+        "date": "2018-11-24",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20181124T045119_20181124T045834_T45RVM",
+        "cloudPercent": 0.171267,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/tsho-rolpa-2018-11-24.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2018-11-24-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2019",
+        "label": "2019",
+        "date": "2019-11-19",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20191119T045059_20191119T045059_T45RVM",
+        "cloudPercent": 0.001539,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/tsho-rolpa-2019-11-19.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2019-11-19-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2020",
+        "label": "2020",
+        "date": "2020-10-29",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20201029T044921_20201029T045910_T45RVM",
+        "cloudPercent": 0.003145,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/tsho-rolpa-2020-10-29.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2020-10-29-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2022",
+        "label": "2022",
+        "date": "2022-11-28",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20221128T045131_20221128T045133_T45RVL",
+        "cloudPercent": 15.041567,
+        "validFraction": 0.9999661394827574,
+        "imagePath": "/imagery/sites/tsho-rolpa-2022-11-28.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2022-11-28-bands.tif",
+        "lakeBoundary": {
+          "id": "tsho-rolpa-2022-11-28-lake",
+          "kind": "lake",
+          "path": "/boundaries/tsho-rolpa-2022-11-28-lake-candidate.geojson",
+          "observationDate": "2022-11-28",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2024",
+        "label": "2024",
+        "date": "2024-11-27",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20241127T045131_20241127T045131_T45RVM",
+        "cloudPercent": 0.494584,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/tsho-rolpa-2024-11-27.png",
+        "bounds": [
+          86.44,
+          27.8,
+          86.57,
+          27.95
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/tsho-rolpa-2024-11-27-bands.tif",
+        "lakeBoundary": null
+      },
+      {
         "id": "2025",
         "label": "2025",
         "date": "2025-11-22",
@@ -132,6 +488,195 @@
     ],
     "rgi": "RGI2000-v7.0-G-15-06763",
     "observations": [
+      {
+        "id": "2016",
+        "label": "2016",
+        "date": "2016-11-19",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20161119T045102_20161119T045214_T45RVL",
+        "cloudPercent": 2.239439,
+        "validFraction": 0.9728739026077963,
+        "imagePath": "/imagery/sites/imja-tsho-2016-11-19.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2016-11-19-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2016-11-19-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2016-11-19-lake-candidate.geojson",
+          "observationDate": "2016-11-19",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2017",
+        "label": "2017",
+        "date": "2017-11-19",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20171119T045049_20171119T045853_T45RVL",
+        "cloudPercent": 2.297116,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/imja-tsho-2017-11-19.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2017-11-19-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2017-11-19-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2017-11-19-lake-candidate.geojson",
+          "observationDate": "2017-11-19",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2018",
+        "label": "2018",
+        "date": "2018-11-09",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20181109T045011_20181109T045010_T45RVL",
+        "cloudPercent": 1.740582,
+        "validFraction": 0.965949235466809,
+        "imagePath": "/imagery/sites/imja-tsho-2018-11-09.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2018-11-09-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2018-11-09-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2018-11-09-lake-candidate.geojson",
+          "observationDate": "2018-11-09",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2019",
+        "label": "2019",
+        "date": "2019-10-15",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20191015T044751_20191015T045321_T45RVL",
+        "cloudPercent": 6.965906,
+        "validFraction": 0.9987099210942394,
+        "imagePath": "/imagery/sites/imja-tsho-2019-10-15.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2019-10-15-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2019-10-15-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2019-10-15-lake-candidate.geojson",
+          "observationDate": "2019-10-15",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2020",
+        "label": "2020",
+        "date": "2020-11-13",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20201113T045039_20201113T045530_T45RVL",
+        "cloudPercent": 0.06917,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/imja-tsho-2020-11-13.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2020-11-13-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2020-11-13-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2020-11-13-lake-candidate.geojson",
+          "observationDate": "2020-11-13",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2022",
+        "label": "2022",
+        "date": "2022-11-23",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20221123T045119_20221123T045117_T45RVL",
+        "cloudPercent": 4.577215,
+        "validFraction": 0.9956454055692313,
+        "imagePath": "/imagery/sites/imja-tsho-2022-11-23.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2022-11-23-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2022-11-23-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2022-11-23-lake-candidate.geojson",
+          "observationDate": "2022-11-23",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2024",
+        "label": "2024",
+        "date": "2024-11-17",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20241117T045101_20241117T045056_T45RVL",
+        "cloudPercent": 6.291436,
+        "validFraction": 0.9992681421113038,
+        "imagePath": "/imagery/sites/imja-tsho-2024-11-17.png",
+        "bounds": [
+          86.895,
+          27.865,
+          86.99,
+          27.96
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/imja-tsho-2024-11-17-bands.tif",
+        "lakeBoundary": {
+          "id": "imja-tsho-2024-11-17-lake",
+          "kind": "lake",
+          "path": "/boundaries/imja-tsho-2024-11-17-lake-candidate.geojson",
+          "observationDate": "2024-11-17",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
       {
         "id": "2025",
         "label": "2025",
@@ -194,6 +739,195 @@
     "rgi": "RGI2000-v7.0-G-15-06122",
     "observations": [
       {
+        "id": "2016",
+        "label": "2016",
+        "date": "2016-11-22",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20161122T050122_20161122T050230_T45RTM",
+        "cloudPercent": 7.347746,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/thulagi-2016-11-22.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2016-11-22-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2016-11-22-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2016-11-22-lake-candidate.geojson",
+          "observationDate": "2016-11-22",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2017",
+        "label": "2017",
+        "date": "2017-11-22",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20171122T050109_20171122T050107_T45RTM",
+        "cloudPercent": 4.15635,
+        "validFraction": 0.9770429599024318,
+        "imagePath": "/imagery/sites/thulagi-2017-11-22.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2017-11-22-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2017-11-22-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2017-11-22-lake-candidate.geojson",
+          "observationDate": "2017-11-22",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2018",
+        "label": "2018",
+        "date": "2018-11-27",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20181127T050129_20181127T050545_T45RTM",
+        "cloudPercent": 2.106616,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/thulagi-2018-11-27.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2018-11-27-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2018-11-27-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2018-11-27-lake-candidate.geojson",
+          "observationDate": "2018-11-27",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2019",
+        "label": "2019",
+        "date": "2019-11-17",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20191117T050101_20191117T050637_T45RTM",
+        "cloudPercent": 5.433383,
+        "validFraction": 0.9995201234537173,
+        "imagePath": "/imagery/sites/thulagi-2019-11-17.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2019-11-17-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2019-11-17-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2019-11-17-lake-candidate.geojson",
+          "observationDate": "2019-11-17",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2020",
+        "label": "2020",
+        "date": "2020-11-11",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20201111T050041_20201111T050036_T45RTM",
+        "cloudPercent": 0.357086,
+        "validFraction": 0.9999365308509844,
+        "imagePath": "/imagery/sites/thulagi-2020-11-11.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2020-11-11-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2020-11-11-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2020-11-11-lake-candidate.geojson",
+          "observationDate": "2020-11-11",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2022",
+        "label": "2022",
+        "date": "2022-11-26",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20221126T050129_20221126T051021_T45RTM",
+        "cloudPercent": 5.128566,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/thulagi-2022-11-26.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2022-11-26-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2022-11-26-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2022-11-26-lake-candidate.geojson",
+          "observationDate": "2022-11-26",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
+        "id": "2024",
+        "label": "2024",
+        "date": "2024-11-25",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20241125T050039_20241125T050352_T45RTM",
+        "cloudPercent": 11.307046,
+        "validFraction": 0.9986671478706722,
+        "imagePath": "/imagery/sites/thulagi-2024-11-25.png",
+        "bounds": [
+          84.465,
+          28.47,
+          84.575,
+          28.565
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/thulagi-2024-11-25-bands.tif",
+        "lakeBoundary": {
+          "id": "thulagi-2024-11-25-lake",
+          "kind": "lake",
+          "path": "/boundaries/thulagi-2024-11-25-lake-candidate.geojson",
+          "observationDate": "2024-11-25",
+          "sourceId": "sentinel2-water-baseline",
+          "status": "candidate"
+        }
+      },
+      {
         "id": "2025",
         "label": "2025",
         "date": "2025-11-30",
@@ -251,6 +985,126 @@
     ],
     "rgi": null,
     "observations": [
+      {
+        "id": "2016",
+        "label": "2016",
+        "date": "2016-11-11",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20161111T053042_20161111T053350_T43SGR",
+        "cloudPercent": 0.003915,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2016-11-11.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2016-11-11-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2018",
+        "label": "2018",
+        "date": "2018-11-26",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20181126T053139_20181126T053431_T43SGR",
+        "cloudPercent": 0.002654,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2018-11-26.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2018-11-26-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2019",
+        "label": "2019",
+        "date": "2019-10-27",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20191027T052921_20191027T053340_T43SGR",
+        "cloudPercent": 0.001835,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2019-10-27.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2019-10-27-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2020",
+        "label": "2020",
+        "date": "2020-10-21",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20201021T052851_20201021T053733_T43SGR",
+        "cloudPercent": 0.691849,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2020-10-21.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2020-10-21-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2022",
+        "label": "2022",
+        "date": "2022-10-06",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20221006T052659_20221006T053723_T43SGR",
+        "cloudPercent": 24.344763,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2022-10-06.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2022-10-06-bands.tif",
+        "lakeBoundary": null
+      },
+      {
+        "id": "2024",
+        "label": "2024",
+        "date": "2024-11-19",
+        "sensor": "Sentinel-2 optical",
+        "sceneId": "20241119T053111_20241119T053114_T43SGR",
+        "cloudPercent": 0.00572,
+        "validFraction": 1,
+        "imagePath": "/imagery/sites/chhota-shigri-2024-11-19.png",
+        "bounds": [
+          77.49,
+          32.18,
+          77.565,
+          32.3
+        ],
+        "status": "review_candidate",
+        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
+        "rasterPath": "data/derived/evidence/chhota-shigri-2024-11-19-bands.tif",
+        "lakeBoundary": null
+      },
       {
         "id": "2025",
         "label": "2025",

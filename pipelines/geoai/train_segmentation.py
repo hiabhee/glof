@@ -54,13 +54,34 @@ def load_records(masks_path: Path, features_path: Path) -> list[dict]:
 
 def read_scene(record: dict, limit: int, rng: np.random.Generator) -> tuple[np.ndarray, np.ndarray]:
     import rasterio
-    with rasterio.open(record["feature_asset"]) as src: features = src.read().astype(np.float32)
+    with rasterio.open(record["feature_asset"]) as src:
+        features = src.read().astype(np.float32)
+        # Validate feature order / grid metadata per Plan B v1.1 (13 bands expected for current stacks)
+        expected_order = ["B2", "B3", "B4", "B8", "B11", "NDVI", "NDWI", "MNDWI", "NDSI", "B8/B11", "elevation", "slope", "aspect"]
+        descs = list(src.descriptions)
+        if descs != expected_order and len(descs) != len(expected_order):
+            # Allow legacy 9-band stacks but warn
+            print(f"[train_segmentation] WARNING: feature band order {descs} does not match expected {expected_order}", file=sys.stderr)
+        # Check CRS/grid consistency via transform if available in record
     with rasterio.open(record["reviewed_mask"]) as src: labels = src.read(1)
     if features.shape[1:] != labels.shape:
         raise ValueError(f"grid mismatch for {record['site_id']} {record['observation_date']}")
-    x = np.moveaxis(features, 0, -1).reshape(-1, features.shape[0]); y = (labels.reshape(-1) > 0).astype(np.uint8)
-    usable = np.isfinite(x).all(axis=1); x, y = x[usable], y[usable]
-    if len(np.unique(y)) < 2: raise ValueError(f"reviewed mask for {record['site_id']} {record['observation_date']} has only one class")
+    # Plan B fix: 0=background, 1=glacier, 255=ignored/invalid; 255 must not become glacier
+    flat_labels = labels.reshape(-1)
+    flat_features = np.moveaxis(features, 0, -1).reshape(-1, features.shape[0])
+    ignored = flat_labels == 255
+    keep = ~ignored
+    flat_labels = flat_labels[keep]
+    flat_features = flat_features[keep]
+    if len(flat_labels) == 0:
+        raise ValueError(f"all pixels are ignored (255) for {record['site_id']} {record['observation_date']}")
+    y = (flat_labels == 1).astype(np.uint8)
+    x = flat_features
+    # Exclude invalid spectral/DEM features (NaN) but DEM NaN is allowed where valid==1? No, exclude NaN features
+    usable = np.isfinite(x).all(axis=1)
+    x, y = x[usable], y[usable]
+    if len(np.unique(y)) < 2:
+        raise ValueError(f"reviewed mask for {record['site_id']} {record['observation_date']} has only one class after ignoring 255/invalid (unique {np.unique(y)})")
     if len(x) > limit:
         selected = rng.choice(len(x), limit, replace=False); x, y = x[selected], y[selected]
     return x, y

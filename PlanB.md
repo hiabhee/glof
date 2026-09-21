@@ -2,7 +2,7 @@
 
 **Prepared:** 21 September 2026
 
-**Status:** Implementation plan; the work below is not yet completed.
+**Status:** Phase 0 implementation started. Safety guards, legacy archive, initial asset audit and regression tests are implemented; G0–G7 are not yet complete. See [implementation status](docs/planb-implementation.md).
 
 **Primary outcome:** A reproducible, validated workflow from multi-date satellite imagery to glacier boundaries, measured change, and spatial/temporal retreat analysis.
 

@@ -59,6 +59,7 @@ def write_mask(record: dict, masks_dir: Path) -> dict:
     import rasterio
     from rasterio.features import rasterize
     from rasterio.warp import transform_geom
+    import numpy as np
 
     feature_path = Path(record["feature_asset"])
     boundary_path = Path(record["reviewed_boundary_asset"])
@@ -73,14 +74,31 @@ def write_mask(record: dict, masks_dir: Path) -> dict:
             geometry = transform_geom(source_crs, src.crs, geometry, precision=8)
         mask = rasterize([(geometry, 1)], out_shape=(src.height, src.width), transform=src.transform, fill=0, dtype="uint8", all_touched=False)
         profile = src.profile.copy()
-    profile.update(count=1, dtype="uint8", nodata=0, compress="deflate")
+        # Plan B fix: separate codes — 0 background, 1 glacier, 255 ignored/invalid.
+        # Fill unknown/invalid from valid_mask.tif (SCL-derived) if available.
+        valid_path = Path(record.get("valid_mask", str(feature_path.parent / "valid_mask.tif")))
+        if valid_path.exists():
+            with rasterio.open(valid_path) as vm:
+                if vm.width != src.width or vm.height != src.height or vm.crs != src.crs:
+                    raise ValueError(f"valid_mask grid mismatch for {record['site_id']} {record['observation_date']}: {valid_path}")
+                valid = vm.read(1)
+                # Where valid==0, set to 255 (ignored) regardless of rasterized value
+                mask = np.where(valid == 0, 255, mask).astype(np.uint8)
+        else:
+            # If no valid_mask, at least keep 0/1 but warn — still use 255 as nodata for future
+            print(f"[build_training_masks] WARNING: no valid_mask found at {valid_path}; using 0/1 only (unknown will conflate)", file=sys.stderr)
+        # Also treat feature nodata (e.g., NaN bands) as ignored — handled via valid_mask above; if still missing, keep 255
+    profile.update(count=1, dtype="uint8", nodata=255, compress="deflate")
     output = masks_dir / record["site_id"] / f"{record['observation_date']}_reviewed.tif"
     output.parent.mkdir(parents=True, exist_ok=True)
     with rasterio.open(output, "w", **profile) as dst:
         dst.write(mask, 1)
-        dst.update_tags(data_status="reviewed", review_status="approved_reviewed", reviewer=record["reviewer"], reviewed_at=record["reviewed_at"], boundary_asset=str(boundary_path))
-    if not mask.any():
-        raise ValueError(f"reviewed boundary does not overlap its feature grid: {record['site_id']} {record['observation_date']}")
+        dst.update_tags(data_status="reviewed", review_status="approved_reviewed", reviewer=record["reviewer"], reviewed_at=record["reviewed_at"], boundary_asset=str(boundary_path), label_definition="0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous)")
+    # Check that some glacier pixels remain (excluding ignored)
+    if not np.any(mask == 1):
+        raise ValueError(f"reviewed boundary does not overlap valid area for {record['site_id']} {record['observation_date']} (no glacier pixels with valid=1)")
+    if not np.any(mask == 0):
+        print(f"[build_training_masks] WARNING: {record['site_id']} {record['observation_date']} has no background pixels (all glacier or ignored)", file=sys.stderr)
     return {"site_id": record["site_id"], "observation_date": record["observation_date"], "feature_asset": str(feature_path), "reviewed_mask": str(output), "status": "approved_reviewed", "reviewer": record["reviewer"], "reviewed_at": record["reviewed_at"], "boundary_asset": str(boundary_path), "boundary_source": record["boundary_source"]}
 
 
@@ -92,7 +110,7 @@ def main() -> int:
     except (ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"[build_training_masks] BLOCKED: {exc}", file=sys.stderr)
         return 2
-    manifest = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": "reviewed", "records": records, "label_definition": "1 = analyst-reviewed glacier extent; 0 = all other valid pixels", "leakage_guard": "Records retain site and acquisition date so training assigns complete scenes to folds."}
+    manifest = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": "reviewed", "records": records, "label_definition": "0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous); nodata=255", "leakage_guard": "Records retain site and acquisition date so training assigns complete scenes to folds."}
     output = args.masks_dir / "training_mask_manifest.json"
     output.write_text(json.dumps(manifest, indent=2))
     print(f"[build_training_masks] OK: wrote {len(records)} reviewed masks to {output}")

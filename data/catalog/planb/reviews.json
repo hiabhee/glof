@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "status": "pending_with_handbook",
+  "label_handbook": "data/catalog/planb/label-handbook.md",
+  "protocol_version": "1.1",
+  "records": [],
+  "reason": "Handbook frozen v1.0, mask NoData fix complete (255=ignored). No approved_reviewed labels yet — digitization pending for South Lhonak 2025-11-29 + 2 additional comparable dates once exported. Template: data/catalog/reviewed-glacier-masks.example.json."
+}
