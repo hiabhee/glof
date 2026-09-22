@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "status": "verified_for_south_lhonak_pilot",
+  "dataset": "Copernicus DEM GLO-30",
+  "coverage": "South Lhonak pilot tile N27 E088 only. Additional site tiles must be separately acquired and recorded before those sites pass G2.",
+  "verified_on": "2026-09-22",
+  "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N27_00_E088_00_DEM/Copernicus_DSM_COG_10_N27_00_E088_00_DEM.tif",
+  "remote_metadata": {
+    "last_modified": "2022-05-09T14:12:21Z",
+    "etag": "d548d860cb8c2a693fb8b6f6dcce4107"
+  },
+  "record": {
+    "tile_id": "Copernicus_DSM_COG_10_N27_00_E088_00_DEM",
+    "local_asset": "data/raw/copernicus-dem-glo30/Copernicus_DSM_COG_10_N27_00_E088_00_DEM.tif",
+    "size_bytes": 41974783,
+    "sha256": "c4ef75c1130c2c7e8e81f6afac5acfb2255a3fec134fafbf8decf5a48980d82e",
+    "native_resolution_m": 30,
+    "crs": "EPSG:4326",
+    "use_in_pipeline": "Bilinear resampling to the frozen 20 m South Lhonak feature grid; slope/aspect calculated with the documented Horn-gradient method."
+  }
+}

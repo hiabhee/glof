@@ -49,9 +49,9 @@
         "label": "2017",
         "date": "2017-11-19",
         "sensor": "Sentinel-2 optical",
-        "sceneId": "20171119T045049_20171119T045853_T45RXL",
-        "cloudPercent": 2.822689,
-        "validFraction": 0.9971292184606854,
+        "sceneId": "20171119T045049_20171119T045853_T45RXM",
+        "cloudPercent": 0.017313,
+        "validFraction": 0.91616759299528,
         "imagePath": "/imagery/sites/south-lhonak-2017-11-19.png",
         "bounds": [
           88.12,
@@ -62,38 +62,15 @@
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
         "rasterPath": "data/derived/evidence/south-lhonak-2017-11-19-bands.tif",
+        "sourceSceneIds": [
+          "20171119T045049_20171119T045853_T45RXL",
+          "20171119T045049_20171119T045853_T45RXM"
+        ],
         "lakeBoundary": {
           "id": "south-lhonak-2017-11-19-lake",
           "kind": "lake",
           "path": "/boundaries/south-lhonak-2017-11-19-lake-candidate.geojson",
           "observationDate": "2017-11-19",
-          "sourceId": "sentinel2-water-baseline",
-          "status": "candidate"
-        }
-      },
-      {
-        "id": "2018",
-        "label": "2018",
-        "date": "2018-11-26",
-        "sensor": "Sentinel-2 optical",
-        "sceneId": "20181126T044121_20181126T044116_T45RXL",
-        "cloudPercent": 0.001324,
-        "validFraction": 0.9995488771866792,
-        "imagePath": "/imagery/sites/south-lhonak-2018-11-26.png",
-        "bounds": [
-          88.12,
-          27.87,
-          88.235,
-          27.94
-        ],
-        "status": "review_candidate",
-        "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
-        "rasterPath": "data/derived/evidence/south-lhonak-2018-11-26-bands.tif",
-        "lakeBoundary": {
-          "id": "south-lhonak-2018-11-26-lake",
-          "kind": "lake",
-          "path": "/boundaries/south-lhonak-2018-11-26-lake-candidate.geojson",
-          "observationDate": "2018-11-26",
           "sourceId": "sentinel2-water-baseline",
           "status": "candidate"
         }
@@ -105,7 +82,7 @@
         "sensor": "Sentinel-2 optical",
         "sceneId": "20191015T044751_20191015T045321_T45RXL",
         "cloudPercent": 3.85954,
-        "validFraction": 0.9982365199115638,
+        "validFraction": 0.9687269332205514,
         "imagePath": "/imagery/sites/south-lhonak-2019-10-15.png",
         "bounds": [
           88.12,
@@ -116,6 +93,10 @@
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
         "rasterPath": "data/derived/evidence/south-lhonak-2019-10-15-bands.tif",
+        "sourceSceneIds": [
+          "20191015T044751_20191015T045321_T45RXL",
+          "20191015T044751_20191015T045321_T45RXM"
+        ],
         "lakeBoundary": {
           "id": "south-lhonak-2019-10-15-lake",
           "kind": "lake",
@@ -128,12 +109,12 @@
       {
         "id": "2020",
         "label": "2020",
-        "date": "2020-11-25",
+        "date": "2020-11-08",
         "sensor": "Sentinel-2 optical",
-        "sceneId": "20201125T044121_20201125T044124_T45RXL",
-        "cloudPercent": 4.385738,
-        "validFraction": 0.9995527370610177,
-        "imagePath": "/imagery/sites/south-lhonak-2020-11-25.png",
+        "sceneId": "20201108T045021_20201108T045018_T45RXM",
+        "cloudPercent": 0.01632,
+        "validFraction": 0.9385510970310935,
+        "imagePath": "/imagery/sites/south-lhonak-2020-11-08.png",
         "bounds": [
           88.12,
           27.87,
@@ -142,12 +123,16 @@
         ],
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
-        "rasterPath": "data/derived/evidence/south-lhonak-2020-11-25-bands.tif",
+        "rasterPath": "data/derived/evidence/south-lhonak-2020-11-08-bands.tif",
+        "sourceSceneIds": [
+          "20201108T045021_20201108T045018_T45RXL",
+          "20201108T045021_20201108T045018_T45RXM"
+        ],
         "lakeBoundary": {
-          "id": "south-lhonak-2020-11-25-lake",
+          "id": "south-lhonak-2020-11-08-lake",
           "kind": "lake",
-          "path": "/boundaries/south-lhonak-2020-11-25-lake-candidate.geojson",
-          "observationDate": "2020-11-25",
+          "path": "/boundaries/south-lhonak-2020-11-08-lake-candidate.geojson",
+          "observationDate": "2020-11-08",
           "sourceId": "sentinel2-water-baseline",
           "status": "candidate"
         }
@@ -175,12 +160,12 @@
       {
         "id": "2022",
         "label": "2022",
-        "date": "2022-11-30",
+        "date": "2022-11-20",
         "sensor": "Sentinel-2 optical",
-        "sceneId": "20221130T044139_20221130T044556_T45RXL",
-        "cloudPercent": 1.537954,
-        "validFraction": 1,
-        "imagePath": "/imagery/sites/south-lhonak-2022-11-30.png",
+        "sceneId": "20221120T044059_20221120T044409_T45RXM",
+        "cloudPercent": 0.009911,
+        "validFraction": 0.939987471621627,
+        "imagePath": "/imagery/sites/south-lhonak-2022-11-20.png",
         "bounds": [
           88.12,
           27.87,
@@ -189,12 +174,16 @@
         ],
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
-        "rasterPath": "data/derived/evidence/south-lhonak-2022-11-30-bands.tif",
+        "rasterPath": "data/derived/evidence/south-lhonak-2022-11-20-bands.tif",
+        "sourceSceneIds": [
+          "20221120T044059_20221120T044409_T45RXL",
+          "20221120T044059_20221120T044409_T45RXM"
+        ],
         "lakeBoundary": {
-          "id": "south-lhonak-2022-11-30-lake",
+          "id": "south-lhonak-2022-11-20-lake",
           "kind": "lake",
-          "path": "/boundaries/south-lhonak-2022-11-30-lake-candidate.geojson",
-          "observationDate": "2022-11-30",
+          "path": "/boundaries/south-lhonak-2022-11-20-lake-candidate.geojson",
+          "observationDate": "2022-11-20",
           "sourceId": "sentinel2-water-baseline",
           "status": "candidate"
         }
@@ -202,12 +191,12 @@
       {
         "id": "2024",
         "label": "2024",
-        "date": "2024-11-29",
+        "date": "2024-11-02",
         "sensor": "Sentinel-2 optical",
-        "sceneId": "20241129T044049_20241129T044137_T45RXL",
-        "cloudPercent": 0.019648,
-        "validFraction": 0.9981544975818691,
-        "imagePath": "/imagery/sites/south-lhonak-2024-11-29.png",
+        "sceneId": "20241102T044849_20241102T045605_T45RXM",
+        "cloudPercent": 0.014974,
+        "validFraction": 0.9344574294480731,
+        "imagePath": "/imagery/sites/south-lhonak-2024-11-02.png",
         "bounds": [
           88.12,
           27.87,
@@ -216,12 +205,16 @@
         ],
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
-        "rasterPath": "data/derived/evidence/south-lhonak-2024-11-29-bands.tif",
+        "rasterPath": "data/derived/evidence/south-lhonak-2024-11-02-bands.tif",
+        "sourceSceneIds": [
+          "20241102T044849_20241102T045605_T45RXL",
+          "20241102T044849_20241102T045605_T45RXM"
+        ],
         "lakeBoundary": {
-          "id": "south-lhonak-2024-11-29-lake",
+          "id": "south-lhonak-2024-11-02-lake",
           "kind": "lake",
-          "path": "/boundaries/south-lhonak-2024-11-29-lake-candidate.geojson",
-          "observationDate": "2024-11-29",
+          "path": "/boundaries/south-lhonak-2024-11-02-lake-candidate.geojson",
+          "observationDate": "2024-11-02",
           "sourceId": "sentinel2-water-baseline",
           "status": "candidate"
         }
@@ -229,12 +222,12 @@
       {
         "id": "2025",
         "label": "2025",
-        "date": "2025-11-29",
+        "date": "2025-10-25",
         "sensor": "Sentinel-2 optical",
-        "sceneId": "20251129T044151_20251129T044235_T45RXL",
-        "cloudPercent": 9.486189,
-        "validFraction": 1,
-        "imagePath": "/imagery/sites/south-lhonak-2025-11-29.png",
+        "sceneId": "20251025T043759_20251025T044301_T45RXM",
+        "cloudPercent": 0.306964,
+        "validFraction": 0.9636038638476485,
+        "imagePath": "/imagery/sites/south-lhonak-2025-10-25.png",
         "bounds": [
           88.12,
           27.87,
@@ -243,12 +236,18 @@
         ],
         "status": "review_candidate",
         "note": "Dated Sentinel-2 scene. Local clear-pixel coverage checked; shoreline and glacier changes still require review.",
-        "rasterPath": "data/derived/evidence/south-lhonak-2025-11-29-bands.tif",
+        "rasterPath": "data/derived/evidence/south-lhonak-2025-10-25-bands.tif",
+        "sourceSceneIds": [
+          "20251025T043759_20251025T044301_T45RXL",
+          "20251025T045241_20251025T045937_T45RXL",
+          "20251025T043759_20251025T044301_T45RXM",
+          "20251025T045241_20251025T045937_T45RXM"
+        ],
         "lakeBoundary": {
-          "id": "south-lhonak-2025-11-29-lake",
+          "id": "south-lhonak-2025-10-25-lake",
           "kind": "lake",
-          "path": "/boundaries/south-lhonak-2025-11-29-lake-candidate.geojson",
-          "observationDate": "2025-11-29",
+          "path": "/boundaries/south-lhonak-2025-10-25-lake-candidate.geojson",
+          "observationDate": "2025-10-25",
           "sourceId": "sentinel2-water-baseline",
           "status": "candidate"
         }

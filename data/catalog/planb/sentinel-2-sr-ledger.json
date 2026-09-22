@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "status": "verified_for_south_lhonak_pilot",
+  "collection": "COPERNICUS/S2_SR_HARMONIZED",
+  "coverage": "South Lhonak annual SR pilot candidates only; event-window assets and other sites remain outside this ledger.",
+  "verified_on": "2026-09-22",
+  "verification": "Each locally retained six-band GeoTIFF is linked to a collection-qualified source scene ID and SHA-256 from observations.json. Files were checked to exist before this ledger was recorded.",
+  "records": [
+    {
+      "observation_date": "2017-11-19",
+      "scene_id": "COPERNICUS/S2_SR_HARMONIZED/20171119T045049_20171119T045853_T45RXL",
+      "local_asset": "data/derived/evidence/south-lhonak-2017-11-19-bands.tif",
+      "size_bytes": 2122833,
+      "sha256": "caa3b0ab96fe5997e1be47bc35479ca595f48eb7427f2519df1d2a91c024479b"
+    },
+    {
+      "observation_date": "2019-10-15",
+      "scene_id": "COPERNICUS/S2_SR_HARMONIZED/20191015T044751_20191015T045321_T45RXL",
+      "local_asset": "data/derived/evidence/south-lhonak-2019-10-15-bands.tif",
+      "size_bytes": 2113470,
+      "sha256": "41755d41813295ff88b4af6a74d918c65167db115d5ac95ae21e617b16ba0a2d"
+    },
+    {
+      "observation_date": "2022-11-30",
+      "scene_id": "COPERNICUS/S2_SR_HARMONIZED/20221130T044139_20221130T044556_T45RXL",
+      "local_asset": "data/derived/evidence/south-lhonak-2022-11-30-bands.tif",
+      "size_bytes": 2136254,
+      "sha256": "2947f58041d1a8652b24471dbf65ed786703ee003680318333f9a4ed356966b0"
+    }
+  ]
+}

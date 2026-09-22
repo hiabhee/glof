@@ -50,7 +50,7 @@ Ambiguous debris termini require second-reviewer confirmation (see label handboo
 - Post-event: 2023-10-05 to 2023-11-15
 - Event comparison is isolated from the annual series; including it in a trend line requires an explicit sensitivity note.
 
-**Years:** 2016–2025 are the target annual series (10 observations). 2026 is excluded until a scene inside the window is acquired **and** passes quality review — the window had not occurred on 21 Sep 2026.
+**Years:** the surface-reflectance (SR) analytical series begins in **2017** and targets 2017–2025. The pre-2017 2016 export is retained only as non-analytical visual context because `COPERNICUS/S2_SR_HARMONIZED` is unavailable before 2017-03-28; it is excluded from SR feature generation, training, measurement and change analysis. 2026 is excluded until a scene inside the window is acquired **and** passes quality review — the window had not occurred on 21 Sep 2026.
 
 **Selection rule per window:**
 
@@ -99,10 +99,12 @@ No composite may mix collections without a recorded harmonization method.
 **Valid-pixel rule for feature stacks and training:**
 
 ```
-valid = SCL ∉ {0,1,3,8,9,10}  AND  finite(B2,B3,B4,B8,B11)
-unknown = SCL ∈ {0,1,3,8,9,10}  OR  invalid pixel
-# SCL=2,4,5,6,7,11 are retained as valid (snow=11 is not erased)
-clear = SCL ∉ {0,1,3,7,8,9,10}   (for clear-fraction reporting)
+valid = SCL ∉ {0,1,2,3,7,8,9,10}  AND  finite(B2,B3,B4,B8,B11)
+unknown = SCL ∈ {0,1,2,3,7,8,9,10}  OR  invalid pixel
+# SCL=4,5,6,11 are retained; snow/ice (11) is not erased.
+# SCL=2 dark terrain and SCL=7 low-probability cloud/unclassified are excluded
+# conservatively unless an observation-specific review records an exception.
+clear = valid
 snow_free = SCL != 11
 ```
 
@@ -187,7 +189,7 @@ States: `candidate` → `quality_accepted` → `label_reviewed` → `predicted` 
 
 - Only one real exported raster per site (2025) exists; 2016–2024 are candidate scenes not yet exported or review-passed.
 - DEM features are now included (elevation/slope/aspect via Copernicus GLO-30 S3, 30 m → 20 m bilinear, Horn gradient); 13-band stacks and 14 patches (2–4 per site) are produced. DEM voids are NaN.
-- Inter-date alignment has not been measured across multiple dates (no second date yet).
+- Inter-date alignment has not been measured across multiple dates. Until a stable-terrain residual of ≤0.5 pixel is independently recorded, no record may be promoted to `quality_accepted` or enter research analysis.
 - Future 2026 observations are excluded.
 - Label handbook and frozen splits are referenced but not supplied in this release — they are Phase 3 deliverables.
 
@@ -200,4 +202,3 @@ Any figure or metric claiming a 2016–2025 trend from current assets alone is f
 - South Lhonak manifest: `data/catalog/south-lhonak.manifest.json`.
 - Evidence assets: `apps/web/src/data/sites/evidence-assets.json`.
 - Plan B: `planB.md` Sections 4–5.
-

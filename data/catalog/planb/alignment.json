@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-22T06:28:50.277678+00:00",
+  "method": "reviewed stable terrain, windowed phase correlation on B4; measurement only",
+  "max_residual_pixels": 0.5,
+  "checks": [
+    {
+      "site_id": "south-lhonak",
+      "reference_date": "2017-11-19",
+      "moving_date": "2019-10-15",
+      "band": "B4",
+      "algorithm": "phase-correlation-parabolic-v1",
+      "stable_pixels": 93231,
+      "row_shift_pixels": 0.004016960127076335,
+      "col_shift_pixels": -0.008885231871220579,
+      "residual_pixels": 0.009751067329676023,
+      "status": "pass"
+    },
+    {
+      "site_id": "south-lhonak",
+      "reference_date": "2017-11-19",
+      "moving_date": "2022-11-30",
+      "band": "B4",
+      "algorithm": "phase-correlation-parabolic-v1",
+      "stable_pixels": 93231,
+      "row_shift_pixels": 3.416622475514797e-05,
+      "col_shift_pixels": -0.012871263284629252,
+      "residual_pixels": 0.012871308630949652,
+      "status": "pass"
+    }
+  ]
+}

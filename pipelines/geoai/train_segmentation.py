@@ -41,7 +41,7 @@ def load_records(masks_path: Path, features_path: Path) -> list[dict]:
     records = []
     for mask in masks:
         key = (mask.get("site_id"), mask.get("observation_date")); feature = by_key.get(key)
-        if mask.get("status") != "approved_reviewed" or not feature or feature.get("quality_status") != "approved_reviewed":
+        if mask.get("status") != "approved_reviewed" or not feature or feature.get("quality_status", feature.get("status")) != "approved_reviewed":
             continue
         feature_asset, reviewed_mask = Path(feature["feature_asset"]), Path(mask["reviewed_mask"])
         if not feature_asset.exists() or not reviewed_mask.exists():
@@ -59,9 +59,8 @@ def read_scene(record: dict, limit: int, rng: np.random.Generator) -> tuple[np.n
         # Validate feature order / grid metadata per Plan B v1.1 (13 bands expected for current stacks)
         expected_order = ["B2", "B3", "B4", "B8", "B11", "NDVI", "NDWI", "MNDWI", "NDSI", "B8/B11", "elevation", "slope", "aspect"]
         descs = list(src.descriptions)
-        if descs != expected_order and len(descs) != len(expected_order):
-            # Allow legacy 9-band stacks but warn
-            print(f"[train_segmentation] WARNING: feature band order {descs} does not match expected {expected_order}", file=sys.stderr)
+        if descs != expected_order:
+            raise ValueError(f"feature band order does not match the frozen schema for {record['site_id']} {record['observation_date']}: {descs}")
         # Check CRS/grid consistency via transform if available in record
     with rasterio.open(record["reviewed_mask"]) as src: labels = src.read(1)
     if features.shape[1:] != labels.shape:

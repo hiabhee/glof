@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "source_id": "nasa-hma-glacial-lake-inventory",
+  "dataset": "High Mountain Asia Near-Global Multi-Decadal Glacial Lake Inventory, Version 1",
+  "short_name": "HMA_GLI",
+  "version": "001",
+  "provider": "NASA NSIDC DAAC",
+  "doi": "10.5067/UO20NYM3YQB4",
+  "citation": "Shugar, D. et al. (2020). High Mountain Asia Near-Global Multi-Decadal Glacial Lake Inventory (HMA_GLI, Version 1). NASA NSIDC DAAC. https://doi.org/10.5067/UO20NYM3YQB4",
+  "acquired_at": "2026-09-22",
+  "acquisition_method": "earthaccess 0.14.0; collection resolved by DOI; authenticated NASA Earthdata download",
+  "cmr_concept_id": "C3249539102-NSIDC_CPRD",
+  "acquisition_ledger": "data/raw/nasa-hma-gli-v001/acquisition-ledger.json",
+  "download_status": "complete",
+  "derived_site_references": "data/catalog/planb/hma-lake-reference-manifest.json",
+  "time_periods": [
+    {"period": "1990-1999", "path": "data/raw/nasa-hma-gli-v001/HMA_GLI_glacial_lakes_LatLonWGS84_1990_99.shp", "sha256": "c3dd3bda8316064dc4f077a148dbf92618336118a03f49faddcd2a1ba2f9451e", "feature_count": 9414},
+    {"period": "2000-2004", "path": "data/raw/nasa-hma-gli-v001/HMA_GLI_glacial_lakes_LatLonWGS84_2000_04.shp", "sha256": "63cd1a6e1ea702d45734b7f910f41f11d95f9597dbb20336a78cbb466abf930b", "feature_count": 11971},
+    {"period": "2005-2009", "path": "data/raw/nasa-hma-gli-v001/HMA_GLI_glacial_lakes_LatLonWGS84_2005_09.shp", "sha256": "164c2a9300a4b503e5bf9e8cb1785f44eb04c8bd6d4de98415164c1b29a5070d", "feature_count": 12232},
+    {"period": "2010-2014", "path": "data/raw/nasa-hma-gli-v001/HMA_GLI_glacial_lakes_LatLonWGS84_2010_14.shp", "sha256": "887a2056acc15a719ec4478938ed926c7612befa9b9f5ab5b1d3e2d3482b2bde", "feature_count": 13301},
+    {"period": "2015-2018", "path": "data/raw/nasa-hma-gli-v001/HMA_GLI_glacial_lakes_LatLonWGS84_2015_18.shp", "sha256": "a3243b984f3e7bb53627f748cd2ae51a5b61a4c7d8d56670f94a2c73768f7a6d", "feature_count": 14394}
+  ],
+  "validation": {
+    "crs": "EPSG:4326 / WGS 84 in every supplied .prj",
+    "geometry_type": "Polygon",
+    "required_sidecars": [".shp", ".shx", ".dbf", ".prj", ".cpg", ".sbn", ".sbx"],
+    "all_periods_complete": true,
+    "known_temporal_coverage": "Five multi-year inventory periods from 1990 through 2018"
+  },
+  "scientific_use_constraint": "Reference/context inventory only. Its multi-year lake polygons must not be represented as annual Sentinel-2 observations, manually reviewed shorelines, or glacier-boundary labels."
+}

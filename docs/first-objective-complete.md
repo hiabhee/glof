@@ -2,7 +2,7 @@
 
 **Date:** 21 September 2026  
 **Plan:** `planB.md` Objective 1 — *Acquire and preprocess multi-temporal Sentinel-2 imagery of selected Himalayan glaciers using GEE*  
-**Status:** **Complete, pilot + multi-site multi-date (32 candidate stacks, 13 bands, honest gaps)** — `G0`/`G1` pilot/`G2` multi-date **pass** per `docs/planb-implementation.md`  
+**Status:** **Candidate pipeline artifacts only; G2 research gate blocked.** The 32 stacks are not approved research data and must not be described as completing Objective 1.
 **Code:** `pipelines/geoai/prepare_features.py:1` `planb-feature-v1.1`, `GEE project` `researchpaper-504121`  
 **Release:** `data/catalog/planb/release.json` `planb-g2-multi-20250921` (`89b3947` → `dfa191a`)
 
@@ -12,7 +12,7 @@
 
 **Goal:** A reproducible, validated workflow from GEE `COPERNICUS/S2` to aligned feature stacks ready for GeoAI — *not* a fabricated time series.
 
-**Result:** 40 GEE exports → 32 candidate 13-band stacks + 8 rejected gaps documented; one frozen grid per site; 100 patches for training; DEM terrain included; all 5 preprocessing steps from the `DATA ACQUISITION → PREPROCESSING (GEE)` image are implemented.
+**Result:** 40 claimed GEE exports → 32 candidate 13-band stacks + 8 rejected gaps documented. This demonstrates pipeline mechanics only. Scientific completion remains blocked by invalid pre-2017 SR provenance, missing source-ingestion evidence, no manually accepted scenes, and no co-registration measurement.
 
 | Metric | Value |
 | :--- | :--- |
@@ -135,4 +135,3 @@ npm run typecheck && npm run build
 **Next (Phase 3-4):** digitize South Lhonak `2025-11-29` (+ 2 new dates) per `label-handbook.md` → `build_training_masks.py --reviews` → `train_segmentation.py` (temporal + LO-Glacier splits, `255` ignored, `250× balanced RF`).
 
 **Push:** `dfa191a` → `origin/main` https://github.com/hiabhee/glof — `40` obs PNGs/boundaries committed, `32` stacks gitignored (`data/derived/`) but reproducible.
-

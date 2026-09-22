@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-21T19:04:33.867556+00:00",
+  "source_provenance": "data/catalog/planb/nasa-hma-gli-v001.provenance.json",
+  "source_doi": "10.5067/UO20NYM3YQB4",
+  "selection_method": "Polygon bounding-box intersects study-area bbox; no nearest-lake or identity assertion is implied.",
+  "scientific_use_constraint": "Reference/context inventory only; not a dated shoreline, a Sentinel-2 substitute, or a glacier-boundary label.",
+  "sites": [
+    {
+      "site_id": "south-lhonak",
+      "bbox_wgs84": [
+        88.12,
+        27.87,
+        88.235,
+        27.94
+      ],
+      "reference_asset": "data/derived/reference/nasa-hma-gli-v001/south-lhonak-hma-gli-reference.geojson",
+      "sha256": "79d4714e8247ec8afa1a6db9e2d8177817b0e8349ca01bd0081355be159f5129",
+      "feature_count": 19,
+      "period_counts": {
+        "1990-1999": 3,
+        "2000-2004": 4,
+        "2005-2009": 4,
+        "2010-2014": 4,
+        "2015-2018": 4
+      },
+      "analysis_eligible": true
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "bbox_wgs84": [
+        86.44,
+        27.8,
+        86.57,
+        27.95
+      ],
+      "reference_asset": "data/derived/reference/nasa-hma-gli-v001/tsho-rolpa-hma-gli-reference.geojson",
+      "sha256": "0b7c0390674a02c1bba834c018b3bf9beedb52aaecf59e692a661f8605f4c466",
+      "feature_count": 27,
+      "period_counts": {
+        "1990-1999": 4,
+        "2000-2004": 4,
+        "2005-2009": 6,
+        "2010-2014": 6,
+        "2015-2018": 7
+      },
+      "analysis_eligible": false
+    },
+    {
+      "site_id": "imja-tsho",
+      "bbox_wgs84": [
+        86.895,
+        27.865,
+        86.99,
+        27.96
+      ],
+      "reference_asset": "data/derived/reference/nasa-hma-gli-v001/imja-tsho-hma-gli-reference.geojson",
+      "sha256": "c8eb8e408e878e2a84060f37921f77c4487e0547b49cbb1f067430af91e95e2b",
+      "feature_count": 11,
+      "period_counts": {
+        "1990-1999": 2,
+        "2000-2004": 2,
+        "2005-2009": 3,
+        "2010-2014": 1,
+        "2015-2018": 3
+      },
+      "analysis_eligible": false
+    },
+    {
+      "site_id": "thulagi",
+      "bbox_wgs84": [
+        84.465,
+        28.47,
+        84.575,
+        28.565
+      ],
+      "reference_asset": "data/derived/reference/nasa-hma-gli-v001/thulagi-hma-gli-reference.geojson",
+      "sha256": "0fb255e77daac51a3b5ed41fe02ec9a0dd0fe21d6bfc65a8da4b56f249422486",
+      "feature_count": 5,
+      "period_counts": {
+        "1990-1999": 1,
+        "2000-2004": 1,
+        "2005-2009": 1,
+        "2010-2014": 1,
+        "2015-2018": 1
+      },
+      "analysis_eligible": false
+    },
+    {
+      "site_id": "chhota-shigri",
+      "bbox_wgs84": [
+        77.49,
+        32.18,
+        77.565,
+        32.3
+      ],
+      "reference_asset": "data/derived/reference/nasa-hma-gli-v001/chhota-shigri-hma-gli-reference.geojson",
+      "sha256": "a7c06f4a63bba028951d48295ffcd09d9b5391d7d4c95e7a69e5f715e164c7f8",
+      "feature_count": 0,
+      "period_counts": {
+        "1990-1999": 0,
+        "2000-2004": 0,
+        "2005-2009": 0,
+        "2010-2014": 0,
+        "2015-2018": 0
+      },
+      "analysis_eligible": false
+    }
+  ]
+}

@@ -35,7 +35,11 @@ VERSION = "planb-feature-v1.1"
 # Full Plan B preprocessing: bands + indices (incl. explicit MNDWI) + DEM terrain
 FEATURE_ORDER = ["B2", "B3", "B4", "B8", "B11", "NDVI", "NDWI", "MNDWI", "NDSI", "B8/B11", "elevation", "slope", "aspect"]
 FEATURE_DTYPE = "float32"
-VALID_SCL_EXCLUDE = {0, 1, 3, 8, 9, 10}  # per protocol, snow (11) preserved
+# Conservative research rule: retain snow/ice (11), but exclude dark terrain and
+# low-probability/unclassified cloud.  Those classes are not defensible training
+# pixels in steep alpine terrain without an observation-specific manual exception.
+VALID_SCL_EXCLUDE = {0, 1, 2, 3, 7, 8, 9, 10}
+S2_SR_FIRST_DATE = "2017-03-28"
 
 ROOT = Path(__file__).resolve().parents[2]
 DEM_TILE_URL = "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM/Copernicus_DSM_COG_10_N{lat:02d}_00_E{lon:03d}_00_DEM.tif"
@@ -81,10 +85,13 @@ def fetch_dem_elevation(feature_bounds: list[float], width: int, height: int, tr
     clat = (south + north) / 2
     tile_lat = int(np.floor(clat))
     tile_lon = int(np.floor(clon))
-    url = DEM_TILE_URL.format(lat=tile_lat, lon=tile_lon)
-    vsicurl = "/vsicurl/" + url
+    tile_name = f"Copernicus_DSM_COG_10_N{tile_lat:02d}_00_E{tile_lon:03d}_00_DEM.tif"
+    local_tile = ROOT / "data/raw/copernicus-dem-glo30" / tile_name
+    # A locally versioned tile is mandatory for a released run.  Retain remote
+    # access only as a development fallback before provenance is frozen.
+    source_path = str(local_tile) if local_tile.is_file() else "/vsicurl/" + DEM_TILE_URL.format(lat=tile_lat, lon=tile_lon)
     try:
-        with rasterio.open(vsicurl) as src:
+        with rasterio.open(source_path) as src:
             # Read window covering feature bounds with small buffer
             from rasterio.windows import from_bounds
             window = from_bounds(west, south, east, north, src.transform)
@@ -277,6 +284,11 @@ def compute_features(src_path: Path, with_dem: bool = True) -> tuple[np.ndarray,
         # Stack order: B2,B3,B4,B8,B11,NDVI,NDWI,MNDWI,NDSI,B8/B11,elevation,slope,aspect
         stack = np.stack([b2f, b3f, b4f, b8f, b11f, ndvi, ndwi, mndwi, ndsi, ratio, elevation, slope, aspect], axis=0).astype(np.float32)
         valid = valid_mask_from_scl(scl)
+        # A separate mask is necessary but insufficient: downstream consumers can
+        # forget it.  Make invalid pixels intrinsically unusable in every feature
+        # band as well, while retaining valid snow/ice pixels for glacier work.
+        invalid = valid == 0
+        stack[:, invalid] = np.nan
         # Additional DEM validity: where elevation is NaN, mark slope/aspect NaN but keep valid from SCL
         # (DEM voids do not invalidate spectral validity; they are flagged via NaN in DEM bands)
         valid_fraction = float(valid.mean()) if valid.size else 0.0
@@ -319,8 +331,10 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=Path("data/derived/planb/features"))
     parser.add_argument("--dry-run", action="store_true", help="Check readiness without writing files")
     parser.add_argument("--site-id", help="Process only this site_id")
+    parser.add_argument("--observation-date", action="append", help="Process only this observation date; repeat for multiple dates")
+    parser.add_argument("--manifest-output", type=Path, help="Write the generated feature manifest here instead of replacing <output-dir>/feature_manifest.json")
     parser.add_argument("--overwrite", action="store_true", help="Recreate existing feature stacks even if source hash matches")
-    parser.add_argument("--allow-candidate", action="store_true", help="Allow candidate (non-quality_accepted) records for preview; default allows candidate but marks output accordingly. Synthetic still blocked.")
+    parser.add_argument("--allow-candidate", action="store_true", help="Allow non-reviewed records only for explicitly non-research previews. Scientific feature production accepts quality_accepted records only.")
     parser.add_argument("--patch-size", type=int, default=256, help="Patch size in pixels for GeoAI training tiling")
     parser.add_argument("--patch-stride", type=int, default=256, help="Stride for patch tiling")
     parser.add_argument("--patch-min-valid", type=float, default=0.2, help="Minimum valid fraction per patch to retain")
@@ -336,6 +350,12 @@ def main() -> int:
             records = [r for r in records if r.get("site_id") == args.site_id]
             if not records:
                 raise ValueError(f"no records for site_id={args.site_id} in {args.manifest}")
+        if args.observation_date:
+            requested_dates = set(args.observation_date)
+            records = [r for r in records if r.get("observation_date") in requested_dates]
+            missing_dates = requested_dates - {r.get("observation_date") for r in records}
+            if missing_dates:
+                raise ValueError(f"no records for observation_date(s)={sorted(missing_dates)} in {args.manifest}")
     except (OSError, ValueError) as exc:
         print(f"[prepare_features] BLOCKED: {exc}", file=sys.stderr)
         return 2
@@ -346,6 +366,12 @@ def main() -> int:
     to_process: list[dict] = []
 
     for rec in records:
+        # The frozen SR analytical series starts in 2017.  Retain older imagery
+        # as contextual evidence without allowing it into features or research.
+        if rec.get("analysis_track") == "context_only_excluded_pre_sr":
+            print(f"[prepare_features] SKIP: {rec.get('site_id')} {rec.get('observation_date')} is context-only pre-SR imagery", file=sys.stderr)
+            continue
+
         # Synthetic check per record
         if rec.get("quality_status") == "synthetic_demo" or rec.get("eligible_for_research") is False and rec.get("data_status") == "synthetic_demo":
             # synthetic_demo always blocked regardless of allow-candidate
@@ -358,7 +384,8 @@ def main() -> int:
             # Already a feature manifest; skip
             continue
 
-        # Allow candidate vs quality_accepted; rejected is skipped (honest gap, not error)
+        # Rejected records remain documented gaps. Candidate records are never
+        # silently promoted into a scientific run.
         qs = rec.get("quality_status", "candidate")
         if qs == "rejected":
             print(f"[prepare_features] SKIP: {rec.get('site_id')} {rec.get('observation_date')} rejected ({rec.get('rejection_reason','')}) — not processed", file=sys.stderr)
@@ -370,8 +397,16 @@ def main() -> int:
             else:
                 print(f"[prepare_features] BLOCKED: record {rec.get('site_id')} {rec.get('observation_date')} has unexpected quality_status={qs}", file=sys.stderr)
                 return 2
-        # If not allow-candidate and it's candidate, still allow but we will mark output as candidate
-        # No block.
+        if qs != "quality_accepted" and not args.allow_candidate:
+            print(f"[prepare_features] BLOCKED: {rec.get('site_id')} {rec.get('observation_date')} is {qs}; manual quality acceptance is required (use --allow-candidate only for non-research preview output)", file=sys.stderr)
+            return 2
+
+        # The Earth Engine SR collection begins on 2017-03-28.  Never accept a
+        # pre-availability record merely because its filename or scene ID looks
+        # plausible; it must be re-acquired as a separately documented L1C track.
+        if rec.get("collection") == "COPERNICUS/S2_SR_HARMONIZED" and rec.get("observation_date", "") < S2_SR_FIRST_DATE:
+            print(f"[prepare_features] BLOCKED: {rec.get('site_id')} {rec.get('observation_date')} claims COPERNICUS/S2_SR_HARMONIZED before {S2_SR_FIRST_DATE}; re-export or reject this record", file=sys.stderr)
+            return 2
 
         # Required fields
         for field in ("site_id", "observation_date", "raster_path", "raster_sha256"):
@@ -491,7 +526,8 @@ def main() -> int:
                         "valid_mask": str(mask_path),
                         "provenance_asset": str(provenance_path),
                         "status": rec.get("quality_status", "candidate"),
-                        "eligible_for_research": False,
+                        "quality_status": rec.get("quality_status", "candidate"),
+                        "eligible_for_research": rec.get("quality_status") == "quality_accepted",
                         "source_raster": rec["raster_path"],
                         "source_sha256": source_hash,
                         "output_sha256": digest(feature_path_resolved),
@@ -548,7 +584,7 @@ def main() -> int:
                     feature_order=",".join(FEATURE_ORDER),
                     scale_factor="1.0 (B2,B3,B4,B8,B11 reflectivity /10000; indices in [-1,1])",
                     units="reflectance and indices as float32; valid_mask holds 0/1",
-                    valid_pixel_rule="SCL not in [0,1,3,8,9,10]",
+                    valid_pixel_rule="SCL not in [0,1,2,3,7,8,9,10]; invalid feature pixels are NaN",
                     generated_at=datetime.now(timezone.utc).isoformat(),
                     provenance="Plan B Phase 2: real spectral rasters and indices, SCL-derived valid mask, no synthetic data",
                 )
@@ -591,7 +627,7 @@ def main() -> int:
             "feature_order": FEATURE_ORDER,
             "feature_dtype": FEATURE_DTYPE,
             "scale_factor": "Bands /10000, indices [-1,1], elevation m, slope deg, aspect deg",
-            "valid_pixel_rule": "SCL not in [0,1,3,8,9,10]",
+            "valid_pixel_rule": "SCL not in [0,1,2,3,7,8,9,10]; invalid feature pixels are NaN",
             "valid_fraction": meta["valid_fraction"],
             "scl_distribution": meta["scl_unique"],
             "dem_source": "COPERNICUS/DEM/GLO30 via https://copernicus-dem-30m.s3.amazonaws.com (S3, EPSG:4326, 30m, bilinear to feature grid)" if not args.no_dem else "skipped (--no-dem)",
@@ -605,7 +641,7 @@ def main() -> int:
             "output_mask_sha256": digest(out_obs_dir_resolved / "valid_mask.tif"),
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "quality_status": rec.get("quality_status", "candidate"),
-            "eligible_for_research": False,
+            "eligible_for_research": rec.get("quality_status") == "quality_accepted",
             "study_protocol": "data/catalog/planb/study-protocol.md",
         }
         (out_obs_dir_resolved / "provenance.json").write_text(json.dumps(prov, indent=2) + "\n")
@@ -650,7 +686,8 @@ def main() -> int:
             "patches_dir": str(out_obs_dir / "patches") if not args.no_patches else None,
             "patch_count": len(patches_info) if not args.no_patches else 0,
             "status": rec.get("quality_status", "candidate"),
-            "eligible_for_research": False,
+            "quality_status": rec.get("quality_status", "candidate"),
+            "eligible_for_research": rec.get("quality_status") == "quality_accepted",
             "source_raster": rec["raster_path"],
             "source_sha256": source_hash,
             "output_feature_sha256": prov["output_feature_sha256"],
@@ -670,7 +707,7 @@ def main() -> int:
         "version": VERSION,
         "feature_order": FEATURE_ORDER,
         "scale_factor": "Bands /10000, indices [-1,1], ratio unitless",
-        "valid_pixel_rule": "SCL not in [0,1,3,8,9,10]; snow preserved",
+        "valid_pixel_rule": "SCL not in [0,1,2,3,7,8,9,10]; snow preserved; invalid feature pixels are NaN",
         "data_status": "candidate" if any(r["status"] == "candidate" for r in manifest_records) else "reviewed",
         "records": manifest_records,
         "leakage_guard": "Each scene is entirely assigned; no pixel-level split. Grid per site fixed.",
@@ -678,7 +715,10 @@ def main() -> int:
     }
     # Ensure output dir exists
     output_dir_resolved.mkdir(parents=True, exist_ok=True)
-    manifest_path = output_dir_resolved / "feature_manifest.json"
+    manifest_path = args.manifest_output or output_dir_resolved / "feature_manifest.json"
+    if not manifest_path.is_absolute():
+        manifest_path = (ROOT / manifest_path).resolve()
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(manifest_payload, indent=2) + "\n")
     print(f"[prepare_features] Manifest: {manifest_path} with {len(manifest_records)} record(s); {total_written} written")
     return 0

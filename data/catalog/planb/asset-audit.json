@@ -1016,10 +1016,23 @@
       "consumers_literal": [
         "pipelines/README.md",
         "pipelines/geoai/prepare_features.py",
-        "docs/planb-implementation.md"
+        "docs/planb-implementation.md",
+        "docs/first-objective-complete.md"
       ],
       "declared_status": "candidate",
       "declared_provenance": "Promoted from evidence-assets.json and derived rasters; no synthetic data introduced. Quality review pending for all records."
+    },
+    {
+      "path": "data/catalog/planb/release.json",
+      "exists": true,
+      "sha256": "0be4a193749d7d7b2314c45a31ae9712f037a9368c0fbcd758d60fc847d0d20f",
+      "size_bytes": 9911,
+      "status": "unverified",
+      "consumers_literal": [
+        "docs/first-objective-complete.md"
+      ],
+      "declared_status": null,
+      "declared_provenance": null
     },
     {
       "path": "data/catalog/planb/reviews.json",
@@ -1039,7 +1052,8 @@
       "status": "unverified",
       "consumers_literal": [
         "pipelines/README.md",
-        "docs/planb-implementation.md"
+        "docs/planb-implementation.md",
+        "docs/first-objective-complete.md"
       ],
       "declared_status": "pilot_verified",
       "declared_provenance": null
@@ -1063,7 +1077,8 @@
       "consumers_literal": [
         "pipelines/README.md",
         "pipelines/geoai/prepare_features.py",
-        "docs/planb-implementation.md"
+        "docs/planb-implementation.md",
+        "docs/first-objective-complete.md"
       ]
     },
     {
@@ -1094,7 +1109,8 @@
       "size_bytes": 2656,
       "status": "unverified",
       "consumers_literal": [
-        "pipelines/README.md"
+        "pipelines/README.md",
+        "docs/first-objective-complete.md"
       ]
     },
     {
@@ -1126,7 +1142,8 @@
         "pipelines/scripts/render_sentinel1_event_preview.py",
         "pipelines/scripts/inventory_sentinel2.py",
         "pipelines/scripts/validate_catalog.py",
-        "pipelines/scripts/extract_rgi_reference.py"
+        "pipelines/scripts/extract_rgi_reference.py",
+        "docs/first-objective-complete.md"
       ],
       "declared_status": "planning",
       "declared_provenance": null
@@ -2366,7 +2383,8 @@
       "size_bytes": 39415,
       "status": "unverified",
       "consumers_literal": [
-        "pipelines/README.md"
+        "pipelines/README.md",
+        "docs/first-objective-complete.md"
       ],
       "declared_status": "candidate",
       "declared_provenance": "Generated from Plan B observations manifest; real feature stacks, no synthetic replacement."
@@ -3517,7 +3535,9 @@
       "sha256": "47024d47177e70a915a37221012517c2c0313f214a13a86b7bb6fc5a66d1edb4",
       "size_bytes": 9386367,
       "status": "unverified",
-      "consumers_literal": []
+      "consumers_literal": [
+        "docs/first-objective-complete.md"
+      ]
     },
     {
       "path": "data/derived/planb/features/south-lhonak/2022-11-30/patches/patch_r0000_c0000.tif",
@@ -9558,6 +9578,54 @@
       "reference": "data/derived/evidence/tsho-rolpa-2025-11-22-bands.tif",
       "exists": true,
       "sha256": "84c2dd26a1a29b8c10e39f3abba7d169b3efc009cdb4279cbe3eba1153fee436"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "apps/web/public/reference/imja-tsho-verified-rgi.geojson",
+      "exists": true,
+      "sha256": "4407c434fe7bd9dbf167a6735d1cfbdfbbb67597d5d860873e018816126b6cda"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "apps/web/public/reference/south-lhonak-verified-rgi.geojson",
+      "exists": true,
+      "sha256": "7b743f497eb159d58927397be112eb106d64fe44455ce7185e7e56b9c80adb31"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "apps/web/public/reference/thulagi-verified-rgi.geojson",
+      "exists": true,
+      "sha256": "985f27f7bde5d06b407af179c525f5ff4deb66942017250c710334d888442ff0"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "apps/web/public/reference/tsho-rolpa-verified-rgi.geojson",
+      "exists": true,
+      "sha256": "60495a8cccb619987a97b6f1abd6dcc824419499924ac75801248d2afe70c895"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "apps/web/src/data/sites/evidence-assets.json",
+      "exists": true,
+      "sha256": "67094dc9a3e75c4f98b6b9e3557987f0eb92fb044662133fe18c137b4bb42cb9"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "data/catalog/planb/label-handbook.md v1.0",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "data/catalog/planb/study-protocol.md",
+      "exists": true,
+      "sha256": "298466e44746f979c32e6f02e1497fde4616d74d8055d92cb04f2ef2f62526e5"
+    },
+    {
+      "consumer": "data/catalog/planb/release.json",
+      "reference": "data/catalog/planb/study-protocol.md v1.1",
+      "exists": false,
+      "sha256": null
     },
     {
       "consumer": "data/catalog/planb/reviews.json",

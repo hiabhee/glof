@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "source_id": "icimod-glacier-glof-datasets",
+  "dataset": "Glacial Lakes of Nepal 2011",
+  "provider": "ICIMOD",
+  "citation": "ICIMOD (2011). Glacial Lakes of Nepal 2011. https://doi.org/10.26066/rds.20831",
+  "licence": "CC BY 4.0 (per ICIMOD metadata record)",
+  "downloaded_at": "2026-09-22",
+  "original_archive": "data/raw/icimod-glacial-lakes-nepal-2011/Glacial_Lakes_of_Nepal_2011.zip",
+  "original_archive_sha256": "886b433f3ad7cffd324c1c14624279a3730a8a4475980c537f44e46430e46c50",
+  "source_shapefile": "data/raw/icimod-glacial-lakes-nepal-2011/nepal_glacial_lakes_2011/data/NepalGlacialLake2011.shp",
+  "source_shapefile_sha256": "1bbf6ed1117fa6e9ad5b803c31fbed221525a9d775d0c5d4a04e5f72175b2732",
+  "crs": "EPSG:4326 (WGS 84; verified from supplied .prj)",
+  "geometry_type": "Polygon",
+  "feature_count": 1466,
+  "bounds_wgs84": [80.87665933585981, 27.425782219673863, 88.14761462221719, 30.419847620771236],
+  "validation": {
+    "method": "pyshp 2.3 reader against the supplied shapefile",
+    "required_components_present": [".shp", ".shx", ".dbf", ".prj", "metadata XML", "download agreement"],
+    "attribute_fields": ["gid", "Basin", "Sub_Basin", "Gl_Code", "Gl_Name", "Elevation", "Gl_Area", "Class", "DataSource", "Ds_Date", "AsGr_Code", "AsGr_Dist"]
+  },
+  "scientific_use_constraint": "This is a 2005/2006-era lake inventory. It is contextual/reference data only, never a dated shoreline truth or substitute for a reviewed Sentinel-2 observation."
+}

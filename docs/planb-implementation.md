@@ -32,7 +32,7 @@ Implemented:
 **Gates:**
 - **G0 — passed.** Missing inputs fail exit 2, no synthetic replacement, no UI import reaches quarantined fixtures.
 - **G1 — pilot passed.** South Lhonak has verified geometry, sufficient coverage, declared CRS/grid, and documented policy. Provisional sites are correctly excluded until resolved. Label handbook and frozen splits are Phase 3.
-- **G2 — pilot passed (single-date, all preprocessing steps).** South Lhonak, Imja, Thulagi, Chhota Shigri 13-band stacks (`B2,B3,B4,B8,B11,NDVI,NDWI,MNDWI,NDSI,B8/B11,elevation,slope,aspect`) open in GIS, overlay RGI, share grid, have correct units/band order, DEM mean/slope valid, patches 256×256 retained (≥0.2 valid), and preserve unknown pixels per `PREPROCESSING (GEE)` image. Tsho Rolpa is documented as failed and requires re-export. Multi-date alignment (>1 date per site) is deferred until a second comparable date is exported — three dates are required to demonstrate plumbing, not yet available. *This is Objective 1 plumbing, not a robust decadal trend claim.*
+- **G2 — blocked.** Candidate feature stacks demonstrate pipeline mechanics only. They are not research-ready: five 2016 records claim an unavailable SR collection, required external source assets are not versioned locally, no scenes have manual quality acceptance, and no stable-terrain co-registration result exists. `validate_research_readiness.py` is the authoritative fail-closed gate.
 - **G3–G7 — not started.** Independent reviewed labels (NoData fix), GeoAI training/inference, change measurement, cross-site analysis, and release remain pending.
 
 Practical checks from the repository root:

@@ -1,8 +1,72 @@
 {
   "schema_version": "1.0",
-  "status": "pending_with_handbook",
+  "status": "scene_review_complete_labels_pending",
   "label_handbook": "data/catalog/planb/label-handbook.md",
   "protocol_version": "1.1",
-  "records": [],
-  "reason": "Handbook frozen v1.0, mask NoData fix complete (255=ignored). No approved_reviewed labels yet — digitization pending for South Lhonak 2025-11-29 + 2 additional comparable dates once exported. Template: data/catalog/reviewed-glacier-masks.example.json."
+  "records": [
+    {
+      "review_type": "scene_quality",
+      "site_id": "south-lhonak",
+      "observation_date": "2017-11-19",
+      "decision": "quality_accepted",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner accepted the selected annual scene for glacier terminus and lake-edge interpretability under the frozen protocol.",
+      "limitations": "Scene acceptance is not a reviewed glacier/lake boundary label."
+    },
+    {
+      "review_type": "scene_quality",
+      "site_id": "south-lhonak",
+      "observation_date": "2019-10-15",
+      "decision": "quality_accepted",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner accepted the selected annual scene for glacier terminus and lake-edge interpretability under the frozen protocol.",
+      "limitations": "Scene acceptance is not a reviewed glacier/lake boundary label."
+    },
+    {
+      "review_type": "scene_quality",
+      "site_id": "south-lhonak",
+      "observation_date": "2022-11-30",
+      "decision": "quality_accepted",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner accepted the selected annual scene for glacier terminus and lake-edge interpretability under the frozen protocol.",
+      "limitations": "Scene acceptance is not a reviewed glacier/lake boundary label."
+    },
+    {
+      "review_type": "glacier_boundary_owner_approval",
+      "site_id": "south-lhonak",
+      "observation_date": "2017-11-19",
+      "decision": "project_owner_approved_pending_independent_review",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner visually accepted the QGIS-displayed 2017 draft over the dated Sentinel-2 true-colour composite.",
+      "boundary_asset": "data/owner-approved-boundaries/south-lhonak-2017-11-19-glacier.geojson",
+      "limitations": "The accepted geometry was initialized from a historical RGI reference and a Sentinel-2 lake candidate. It is not an independent dated delineation and remains ineligible for training, evaluation, or measurement."
+    },
+    {
+      "review_type": "glacier_boundary_owner_approval",
+      "site_id": "south-lhonak",
+      "observation_date": "2019-10-15",
+      "decision": "project_owner_approved_pending_independent_review",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner visually accepted the QGIS-displayed 2019 draft over the dated Sentinel-2 true-colour composite.",
+      "boundary_asset": "data/owner-approved-boundaries/south-lhonak-2019-10-15-glacier.geojson",
+      "limitations": "The accepted geometry was initialized from a historical RGI reference and a Sentinel-2 lake candidate. It is not an independent dated delineation and remains ineligible for training, evaluation, or measurement."
+    },
+    {
+      "review_type": "glacier_boundary_owner_approval",
+      "site_id": "south-lhonak",
+      "observation_date": "2022-11-30",
+      "decision": "project_owner_approved_pending_independent_review",
+      "reviewer": "research owner",
+      "reviewed_on": "2026-09-22",
+      "evidence": "Research owner visually accepted the QGIS-displayed 2022 draft over the dated Sentinel-2 true-colour composite.",
+      "boundary_asset": "data/owner-approved-boundaries/south-lhonak-2022-11-30-glacier.geojson",
+      "limitations": "The accepted geometry was initialized from a historical RGI reference and a Sentinel-2 lake candidate. It is not an independent dated delineation and remains ineligible for training, evaluation, or measurement."
+    }
+  ],
+  "reason": "Three annual South Lhonak scenes are quality-accepted. The 2017 draft has project-owner approval but no independent dated delineation/review; no approved_reviewed glacier or lake labels exist yet."
 }

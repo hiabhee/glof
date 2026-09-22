@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "status": "verified_historical_reference_only",
+  "dataset": "GLIMS Glacier Database",
+  "downloaded_by": "research owner",
+  "imported_on": "2026-09-22",
+  "source_package": "data/raw/glims/lhonak-download-58590",
+  "polygon_shapefile": "data/raw/glims/lhonak-download-58590/glims_polygons.shp",
+  "polygon_shapefile_sha256": "ac98c0748ab35892634b30449279ced340771efc6aef89456faf86d0eb919230",
+  "selected_analysis": {
+    "analysis_id": 140399,
+    "glims_id": "G088065E27859N",
+    "glacier_name": "Lhonak",
+    "source_image": "Landsat 7 L7213904104120100120",
+    "source_date": "2010-01-20",
+    "analysis_date": "2014-04-15",
+    "analysts": "Bajracharya, Samjwal; Guo, Wanqin; Maharjan, SB; Shrestha, Finu",
+    "institution": "International Centre for Integrated Mountain Development (ICIMOD)",
+    "area_km2": 14.7458,
+    "method": "Object-based semi-automated glacier classification",
+    "output": "data/derived/reference/south-lhonak-glims-2010-reference.geojson"
+  },
+  "use_policy": "Historical visual reference only. It is not temporally suitable for the 2017, 2019 or 2022 labels, model training, model evaluation, or change measurement."
+}

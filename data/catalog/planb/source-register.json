@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Required source evidence for the G2 acquisition gate. A citation is not an ingested, versioned source asset.",
+  "sources": [
+    {
+      "id": "sentinel-2-sr",
+      "required_for_g2": true,
+      "status": "verified",
+      "local_asset": "data/catalog/planb/sentinel-2-sr-ledger.json",
+      "pilot_coverage": "South Lhonak 2017-11-19, 2019-10-15 and 2022-11-30 annual SR candidates; each local GeoTIFF is separately hashed in the ledger.",
+      "citation_url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED",
+      "requirement": "Per-scene source IDs, dates, processing collection, checksum, and valid-pixel mask."
+    },
+    {
+      "id": "copernicus-dem-glo30",
+      "required_for_g2": true,
+      "status": "verified",
+      "local_asset": "data/catalog/planb/copernicus-dem-glo30-ledger.json",
+      "pilot_coverage": "South Lhonak Copernicus DEM GLO-30 tile N27 E088; local 41,974,783-byte COG SHA-256 is recorded in the ledger.",
+      "citation_url": "https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_DEM_GLO30",
+      "requirement": "Versioned DEM tile list, checksums, vertical datum, resampling and terrain-derivative method."
+    },
+    {
+      "id": "nasa-hma-glacial-lake-inventory",
+      "required_for_g2": true,
+      "status": "verified",
+      "local_asset": "data/raw/nasa-hma-gli-v001/acquisition-ledger.json",
+      "derived_reference_manifest": "data/catalog/planb/hma-lake-reference-manifest.json",
+      "citation_url": "https://doi.org/10.5067/UO20NYM3YQB4",
+      "access_note": "Downloaded and verified 2026-09-22 using pipelines/scripts/acquire_nasa_hma_gli.py and earthaccess. CMR query, concept ID, file checksums and content validation are recorded in the provenance record; no credentials are stored.",
+      "requirement": "Versioned inventory subset with licence, access date, CRS and checksum."
+    },
+    {
+      "id": "icimod-glacier-glof-datasets",
+      "required_for_g2": true,
+      "status": "verified",
+      "local_asset": "data/raw/icimod-glacial-lakes-nepal-2011/nepal_glacial_lakes_2011/data/NepalGlacialLake2011.shp",
+      "citation_url": "https://doi.org/10.26066/rds.20831",
+      "access_note": "ICIMOD Glacial Lakes of Nepal 2011 imported 2026-09-22. The original ZIP and metadata are retained alongside the source shapefile; see the provenance record for checksums and validation.",
+      "requirement": "Versioned dataset subset and citation; a web citation alone is insufficient."
+    },
+    {
+      "id": "india-flood-atlas",
+      "required_for_g2": false,
+      "status": "deferred_not_applicable_to_pilot",
+      "local_asset": null,
+      "requirement": "Required only for an India flood-atlas analysis claim, not glacier-boundary preprocessing."
+    }
+  ]
+}
