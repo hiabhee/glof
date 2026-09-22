@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-22T16:18:31.848787+00:00",
+  "site_id": "south-lhonak",
+  "analysis_crs": "EPSG:32645",
+  "status": "provisional_owner_approved_not_independently_reviewed",
+  "purpose": "Provisional owner-reviewed workflow demonstration of area and spatial change.",
+  "prohibited_uses": [
+    "GeoAI training",
+    "model evaluation",
+    "publication-grade change measurement",
+    "GLOF risk prediction"
+  ],
+  "records": [
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2017-11-19",
+      "status": "provisional_owner_approved_not_independently_reviewed",
+      "glacier_boundary_asset": "data/owner-approved-boundaries/south-lhonak-2017-11-19-glacier.geojson",
+      "lake_candidate_asset": "apps/web/public/boundaries/south-lhonak-2017-11-19-lake-candidate.geojson",
+      "glacier_area_km2": 12.801892,
+      "lake_area_km2": 1.149537,
+      "terminus_retreat_m": null,
+      "terminus_retreat_status": "not_computed: independent dated terminus lines are required"
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2019-10-15",
+      "status": "provisional_owner_approved_not_independently_reviewed",
+      "glacier_boundary_asset": "data/owner-approved-boundaries/south-lhonak-2019-10-15-glacier.geojson",
+      "lake_candidate_asset": "apps/web/public/boundaries/south-lhonak-2019-10-15-lake-candidate.geojson",
+      "glacier_area_km2": 12.59398,
+      "lake_area_km2": 1.358957,
+      "terminus_retreat_m": null,
+      "terminus_retreat_status": "not_computed: independent dated terminus lines are required"
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2022-11-30",
+      "status": "provisional_owner_approved_not_independently_reviewed",
+      "glacier_boundary_asset": "data/owner-approved-boundaries/south-lhonak-2022-11-30-glacier.geojson",
+      "lake_candidate_asset": "apps/web/public/boundaries/south-lhonak-2022-11-30-lake-candidate.geojson",
+      "glacier_area_km2": 12.53121,
+      "lake_area_km2": 1.7132,
+      "terminus_retreat_m": null,
+      "terminus_retreat_status": "not_computed: independent dated terminus lines are required"
+    }
+  ],
+  "intervals": [
+    {
+      "site_id": "south-lhonak",
+      "from_date": "2017-11-19",
+      "to_date": "2019-10-15",
+      "elapsed_days": 695,
+      "elapsed_years": 1.9028,
+      "status": "provisional_owner_approved_not_independently_reviewed",
+      "glacier_area_change_km2": -0.207912,
+      "lake_area_change_km2": 0.20942,
+      "glacier_loss_km2": 0.232902,
+      "glacier_gain_km2": 0.02499,
+      "lake_growth_km2": 0.281576,
+      "lake_reduction_km2": 0.072155,
+      "terminus_retreat_m": null,
+      "terminus_retreat_status": "not_computed: area difference is not a terminus measurement"
+    },
+    {
+      "site_id": "south-lhonak",
+      "from_date": "2019-10-15",
+      "to_date": "2022-11-30",
+      "elapsed_days": 1142,
+      "elapsed_years": 3.1266,
+      "status": "provisional_owner_approved_not_independently_reviewed",
+      "glacier_area_change_km2": -0.06277,
+      "lake_area_change_km2": 0.354243,
+      "glacier_loss_km2": 0.106886,
+      "glacier_gain_km2": 0.044116,
+      "lake_growth_km2": 0.445808,
+      "lake_reduction_km2": 0.091565,
+      "terminus_retreat_m": null,
+      "terminus_retreat_status": "not_computed: area difference is not a terminus measurement"
+    }
+  ],
+  "method": "Areas and geometry differences computed in EPSG:32645 from project-owner-approved glacier drafts and Sentinel-2 spectral lake candidates.",
+  "limitations": "Glacier drafts were initialized from an RGI 2000 reference; lake candidates are not reviewed shorelines. Independent dated delineation/review is required for final claims."
+}

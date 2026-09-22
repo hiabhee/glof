@@ -141,7 +141,7 @@ export function AppShell() {
         satelliteOpacity={layers.satellite ? satOpacity : 0.15}
         terrainEnabled={layers.terrain}
         onSelect={handleSelect}
-        referenceBoundaryPath="/reference/phase2-five-glaciers.geojson"
+        referenceBoundaryPath="/reference/verified-glaciers.geojson"
         onReady={(api) => (globeApiRef.current = api)}
       />
 

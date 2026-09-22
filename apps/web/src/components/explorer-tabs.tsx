@@ -6,10 +6,11 @@ import { TemporalExplorer } from "@/components/temporal-explorer";
 import { EvidencePanel } from "@/components/evidence-panel";
 import { GlacierAnalysisPanel } from "@/components/glacier-analysis-panel";
 import { RetreatAnalysis } from "@/components/retreat-analysis";
+import { ProvisionalChangeAnalysis } from "@/components/provisional-change-analysis";
 import type { SiteConfig } from "@/domain/site";
 import type { SiteDataset } from "@/domain/site-dataset";
 
-type TabId = "timeline" | "event" | "retreat" | "evidence";
+type TabId = "timeline" | "provisional" | "event" | "retreat" | "evidence";
 
 type Props = {
   siteName: string;
@@ -25,6 +26,13 @@ const TAB_META: Record<TabId, { label: string; shortLabel: string; kicker: strin
     kicker: "2016 → 2025",
     description: "Year-by-year optical view. Pick a year, see the image, see the glacier + lake overlay for that date.",
     countLabel: "11 years",
+  },
+  provisional: {
+    label: "Pilot Change",
+    shortLabel: "Pilot",
+    kicker: "2017 → 2022",
+    description: "Three-date glacier and lake area comparison. Clearly marked provisional; it is not a trained-model result.",
+    countLabel: "3 dates",
   },
   event: {
     label: "2023 Event",
@@ -61,7 +69,7 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
   }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const order: TabId[] = ["timeline", "event", "retreat", "evidence"];
+    const order: TabId[] = ["timeline", "provisional", "event", "retreat", "evidence"];
     const idx = order.indexOf(active);
     if (e.key === "ArrowRight") {
       e.preventDefault();
@@ -92,7 +100,7 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
           <li className="step-arrow" aria-hidden="true">→</li>
           <li><span className="step-index">2</span><strong>Event</strong><small>See the outburst</small></li>
           <li className="step-arrow" aria-hidden="true">→</li>
-          <li><span className="step-index">3</span><strong>Change</strong><small>How much + forecast</small></li>
+          <li><span className="step-index">3</span><strong>Pilot change</strong><small>Areas + maps</small></li>
           <li className="step-arrow" aria-hidden="true">→</li>
           <li><span className="step-index">4</span><strong>Evidence</strong><small>Sources & limits</small></li>
         </ol>
@@ -156,6 +164,16 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
             <span className="legend-dot lake" /> Lake blue &nbsp;·&nbsp;
             Use the checkbox below the image to toggle overlays. For numbers, open <button type="button" className="inline-tab-jump" onClick={() => setActive("retreat")}>Change & Forecast →</button>
           </div>
+        </section>
+
+        <section
+          id="panel-provisional"
+          role="tabpanel"
+          aria-labelledby="tab-provisional"
+          hidden={active !== "provisional"}
+          className="explorer-panel"
+        >
+          <ProvisionalChangeAnalysis siteId={site.id} />
         </section>
 
         <section

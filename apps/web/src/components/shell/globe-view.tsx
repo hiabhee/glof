@@ -33,6 +33,11 @@ type Props = {
 
 const HIMALAYA = { latitude: 28.2, longitude: 86.5 };
 const EARTH_IMAGERY = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+// Cesium's GeoJSON entity loader currently emits an opaque browser error in
+// this local Next/Turbopack setup. The evidence explorer has its own dated
+// image overlays, so keep the optional 3D vectors off until that dependency is
+// upgraded and the loader can be re-enabled without console failures.
+const LOAD_GLOBE_VECTOR_OVERLAYS = false;
 
 function loadCesium() {
   if (window.Cesium) return Promise.resolve(window.Cesium);
@@ -216,10 +221,10 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
           sceneModePicker: false,
           selectionIndicator: false,
           timeline: false,
+          // Keep the local evidence explorer deterministic.  The optional Ion
+          // terrain request can reject with an opaque Cesium object, which
+          // Next/Turbopack presents as an empty console error overlay.
           terrainProvider: new Cesium.EllipsoidTerrainProvider(),
-          ...(ionToken && typeof Cesium.Terrain?.fromWorldTerrain === "function"
-            ? { terrain: Cesium.Terrain.fromWorldTerrain({ requestVertexNormals: true, requestWaterMask: true }) }
-            : {}),
           skyAtmosphere: new Cesium.SkyAtmosphere(),
           shouldAnimate: true,
         });
@@ -249,7 +254,7 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
         viewer.resolutionScale = Math.min(window.devicePixelRatio || 1, 1.25);
         viewer.scene.requestRenderMode = true;
         viewer.scene.maximumRenderTimeChange = Number.POSITIVE_INFINITY;
-        viewer.scene.globe.enableLighting = Boolean(ionToken);
+        viewer.scene.globe.enableLighting = false;
         viewer.scene.globe.showGroundAtmosphere = true;
         viewer.scene.globe.depthTestAgainstTerrain = true;
         // Keep a transient tile/terrain failure from taking down the entire React page.
@@ -298,30 +303,32 @@ export function GlobeView({ selected, showBoundaries, showLakes, showEvents, sat
         resetView();
         setReady(true);
 
-        const lakePaths = evidenceSites.map(latestLakeBoundary).filter(Boolean);
-        for (const boundary of lakePaths) {
+        if (LOAD_GLOBE_VECTOR_OVERLAYS) {
+          const lakePaths = evidenceSites.map(latestLakeBoundary).filter(Boolean);
+          for (const boundary of lakePaths) {
+            try {
+              const source = await Cesium.GeoJsonDataSource.load(boundary!.path, { clampToGround: false });
+              if (!alive) return;
+              for (const entity of [...source.entities.values]) lakeSourceRef.current.entities.add(entity);
+            } catch (cause) {
+              console.warn("Lake boundary unavailable", cause);
+              setBoundaryError(true);
+            }
+          }
+          renderLakeOverlays();
+
+          // The interactive Earth must not wait for the optional vector request.
+          // This is the published RGI v7 reference inventory, not a synthetic boundary.
           try {
-            const source = await Cesium.GeoJsonDataSource.load(boundary!.path, { clampToGround: true });
+            const source = await Cesium.GeoJsonDataSource.load(boundaryPathRef.current, { clampToGround: false });
             if (!alive) return;
-            for (const entity of [...source.entities.values]) lakeSourceRef.current.entities.add(entity);
-          } catch (cause) {
-            console.error("Lake boundary unavailable", cause);
+            glacierSourceRef.current = source;
+            viewer.dataSources.add(source);
+            updateBoundaryStyle();
+          } catch (boundaryCause) {
+            console.warn("RGI boundary overlay could not be loaded", boundaryCause);
             setBoundaryError(true);
           }
-        }
-        renderLakeOverlays();
-
-        // The interactive Earth must not wait for the optional vector request.
-        // This is the published RGI v7 reference inventory, not a synthetic boundary.
-        try {
-          const source = await Cesium.GeoJsonDataSource.load(boundaryPathRef.current, { clampToGround: true });
-          if (!alive) return;
-          glacierSourceRef.current = source;
-          viewer.dataSources.add(source);
-          updateBoundaryStyle();
-        } catch (boundaryCause) {
-          console.warn("RGI boundary overlay could not be loaded", boundaryCause);
-          setBoundaryError(true);
         }
       } catch (cause) {
         console.error("Cesium globe failed to initialise", cause);

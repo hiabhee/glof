@@ -185,7 +185,7 @@ def main() -> int:
         (args.output_directory / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
         with (args.output_directory / "measurements.csv").open("w", newline="") as handle:
             fields = ["record_type", "site_id", "from_date", "to_date", "observation_date", "elapsed_days", "elapsed_years", "glacier_boundary_asset", "lake_candidate_asset", "glacier_area_km2", "lake_area_km2", "glacier_area_change_km2", "lake_area_change_km2", "glacier_loss_km2", "glacier_gain_km2", "lake_growth_km2", "lake_reduction_km2", "terminus_retreat_m", "terminus_retreat_status", "status"]
-            writer = csv.DictWriter(handle, fieldnames=fields)
+            writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
             writer.writeheader()
             for row in records:
                 writer.writerow({"record_type": "observation", **row})
