@@ -163,7 +163,7 @@ export function TemporalExplorer({ siteName = "South Lhonak", observations, boun
 
   return (
     <section className="temporal-explorer" aria-labelledby="timeline-title">
-      <div className="temporal-heading"><p className="eyebrow">{siteName} · 2016–2026 visual timeline</p><h2 id="timeline-title">Select a year to inspect the glacier–lake landscape.</h2></div>
+      <div className="temporal-heading"><div><p className="eyebrow">Satellite imagery</p><h2 id="timeline-title">{siteName}</h2></div></div>
       {isPlaceholderImagery && (
         <p className="shared-imagery-note" role="note">
           <strong>Note:</strong> Timeline images shown are the South Lhonak candidate mosaics reused as a visual placeholder until per-site 2016–2025 mosaics are bundled. The <em>cyan glacier outline</em> and <em>blue lake ellipse</em> are site-specific (RGI v7 baseline for this glacier, lake Centre from catalog + measured area). For quantitative change, see Retreat analysis below.
@@ -171,39 +171,39 @@ export function TemporalExplorer({ siteName = "South Lhonak", observations, boun
       )}
 
       <div className="temporal-layout">
-        <div className="timeline-selector" role="tablist" aria-label="Candidate observation timeline">
-          {observations.map((observation) => (
-            <button key={observation.id} type="button" role="tab" aria-selected={selectedId === observation.id} disabled={observation.status === "unavailable" && !observation.imagePath} className={selectedId === observation.id ? "active" : ""} onClick={() => setSelectedId(observation.id)}>
-              {observation.imagePath ? <img src={observation.imagePath} alt="" /> : <span className="pending-thumb">{observation.label.slice(0, 4)}</span>}
-              <strong>{observation.label}</strong>
-            </button>
-          ))}
-        </div>
+        <label className="observation-picker">
+          <span>Choose a date</span>
+          <select value={selected.id} onChange={(event) => setSelectedId(event.target.value)} aria-label="Choose satellite image date">
+            {observations.map((observation) => <option key={observation.id} value={observation.id} disabled={observation.status === "unavailable" && !observation.imagePath}>{observation.date}{observation.status === "unavailable" && !observation.imagePath ? " · unavailable" : ""}</option>)}
+          </select>
+        </label>
 
         <div className="temporal-view" role="tabpanel" aria-label={`${selected.label} observation`}>
           {selected.imagePath ? (
             <div className="temporal-image-wrap">
             <img src={selected.imagePath} alt={`${siteName} ${selected.date} Sentinel-2 candidate observation`} />
               {showBaseline && boundary && <RgiOutline boundary={boundary} siteName={siteName} expectedRgiId={expectedRgiId} />}
-              <div className="image-label label-left">Review candidate<br /><strong>{selected.date}</strong></div>
-              {showBaseline && <div className="image-label label-right">Glacier cyan + Lake blue<br /><strong>RGI v7 · 26 Dec 2000</strong></div>}
+              <div className="image-label label-left">Image date<br /><strong>{selected.date}</strong></div>
+              {showBaseline && <div className="image-label label-right">Historical glacier reference</div>}
             </div>
           ) : (
             <div className="no-observation"><p>{selected.label} · {selected.date}</p><strong>{selected.note}</strong></div>
           )}
-          <div className="observation-details" aria-label="Selected image metadata">
-            <div><span>Acquisition</span><strong>{selected.date}</strong></div>
-            <div><span>Sensor</span><strong>{selected.sensor}</strong></div>
-            <div><span>Scene cloud metadata</span><strong>{selected.cloudPercent === undefined ? "—" : `${selected.cloudPercent}%`}</strong></div>
-            <div><span>Overlays</span><strong>{showBaseline ? "Glacier + lake visible" : "Hidden"}</strong></div>
-          </div>
+          <details className="image-details">
+            <summary>Image details</summary>
+            <div className="observation-details" aria-label="Selected image metadata">
+              <div><span>Date</span><strong>{selected.date}</strong></div>
+              <div><span>Sensor</span><strong>{selected.sensor}</strong></div>
+              <div><span>Cloud metadata</span><strong>{selected.cloudPercent === undefined ? "—" : `${selected.cloudPercent}%`}</strong></div>
+              <div><span>Image status</span><strong>Review candidate</strong></div>
+            </div>
+          </details>
         </div>
       </div>
 
-      <div className="layer-register">
-        <div><p className="eyebrow">Layers</p><h3>Trusted boundaries only</h3></div>
-        <label className="layer-toggle"><input type="checkbox" checked={showBaseline} onChange={(event) => setShowBaseline(event.target.checked)} disabled={!boundary} /> {boundary ? "Show glacier (cyan) + lake (blue) overlays" : "No approved boundary registered"}</label>
-        <p>{boundary ? "Glacier: cyan fill + white outline. Lake: vivid blue with halo (synthesized from catalog centre + measured area; not a vector lake boundary). Provenance and date are carried by the selected site dataset." : "Boundary overlays will appear when an authorised vector dataset is registered."}</p>
+      <div className="simple-image-controls">
+        <label className="layer-toggle"><input type="checkbox" checked={showBaseline} onChange={(event) => setShowBaseline(event.target.checked)} disabled={!boundary} /> Show boundary overlay</label>
+        <span>{boundary ? "Glacier outline is a historical reference. Lake shape is approximate." : "No boundary is available for this site."}</span>
       </div>
     </section>
   );

@@ -1,7 +1,9 @@
-"""Rasterise analyst-reviewed glacier vectors into segmentation training masks.
+"""Rasterise glacier vectors into segmentation training masks.
 
-The review manifest is the source of truth.  Historical inventory polygons,
-candidate outlines, and model-derived outlines are rejected as labels.
+Two explicit evidence tracks are supported: independently reviewed labels and
+project-owner-approved experimental labels.  The latter can accelerate a pilot,
+but every output remains marked experimental and must not be presented as an
+independently validated result.
 """
 from __future__ import annotations
 
@@ -14,17 +16,19 @@ from pathlib import Path
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--reviews", type=Path, required=True, help="Reviewed-vector manifest; see data/catalog/reviewed-glacier-masks.example.json")
+    parser.add_argument("--reviews", type=Path, required=True, help="Label manifest; see data/catalog/reviewed-glacier-masks.example.json")
     parser.add_argument("--masks-dir", type=Path, default=Path("data/derived/phase2/masks"))
     return parser.parse_args()
 
 
-def load_reviews(path: Path) -> list[dict]:
+def load_reviews(path: Path) -> tuple[str, list[dict]]:
     if not path.exists():
         raise ValueError(f"review manifest does not exist: {path}")
     payload = json.loads(path.read_text())
-    if payload.get("data_status") != "reviewed":
-        raise ValueError("review manifest must declare data_status='reviewed'")
+    data_status = payload.get("data_status")
+    permitted_statuses = {"reviewed", "owner_approved_experimental"}
+    if data_status not in permitted_statuses:
+        raise ValueError(f"label manifest must declare one of {sorted(permitted_statuses)}")
     records = payload.get("records")
     if not isinstance(records, list) or not records:
         raise ValueError("review manifest has no records")
@@ -33,12 +37,13 @@ def load_reviews(path: Path) -> list[dict]:
         missing = required - record.keys()
         if missing:
             raise ValueError(f"review record is missing {sorted(missing)}")
-        if record["review_status"] != "approved_reviewed":
-            raise ValueError(f"{record['site_id']} {record['observation_date']} is not approved_reviewed")
+        expected_review_status = "approved_reviewed" if data_status == "reviewed" else "owner_approved_experimental"
+        if record["review_status"] != expected_review_status:
+            raise ValueError(f"{record['site_id']} {record['observation_date']} must be {expected_review_status}")
         source = str(record.get("boundary_source", "")).lower()
-        if any(blocked in source for blocked in ("candidate", "synthetic", "scaled", "model-derived", "historical baseline")):
+        if data_status == "reviewed" and any(blocked in source for blocked in ("candidate", "synthetic", "scaled", "model-derived", "historical baseline")):
             raise ValueError(f"{record['site_id']} {record['observation_date']} has a non-reviewable label source: {source}")
-    return records
+    return data_status, records
 
 
 def geometry_from_geojson(path: Path) -> dict:
@@ -93,24 +98,26 @@ def write_mask(record: dict, masks_dir: Path) -> dict:
     output.parent.mkdir(parents=True, exist_ok=True)
     with rasterio.open(output, "w", **profile) as dst:
         dst.write(mask, 1)
-        dst.update_tags(data_status="reviewed", review_status="approved_reviewed", reviewer=record["reviewer"], reviewed_at=record["reviewed_at"], boundary_asset=str(boundary_path), label_definition="0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous)")
+        dst.update_tags(data_status=record["data_status"], review_status=record["review_status"], reviewer=record["reviewer"], reviewed_at=record["reviewed_at"], boundary_asset=str(boundary_path), label_definition="0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous)")
     # Check that some glacier pixels remain (excluding ignored)
     if not np.any(mask == 1):
         raise ValueError(f"reviewed boundary does not overlap valid area for {record['site_id']} {record['observation_date']} (no glacier pixels with valid=1)")
     if not np.any(mask == 0):
         print(f"[build_training_masks] WARNING: {record['site_id']} {record['observation_date']} has no background pixels (all glacier or ignored)", file=sys.stderr)
-    return {"site_id": record["site_id"], "observation_date": record["observation_date"], "feature_asset": str(feature_path), "reviewed_mask": str(output), "status": "approved_reviewed", "reviewer": record["reviewer"], "reviewed_at": record["reviewed_at"], "boundary_asset": str(boundary_path), "boundary_source": record["boundary_source"]}
+    return {"site_id": record["site_id"], "observation_date": record["observation_date"], "feature_asset": str(feature_path), "reviewed_mask": str(output), "status": record["review_status"], "data_status": record["data_status"], "reviewer": record["reviewer"], "reviewed_at": record["reviewed_at"], "boundary_asset": str(boundary_path), "boundary_source": record["boundary_source"]}
 
 
 def main() -> int:
     args = parse_args()
     try:
-        reviews = load_reviews(args.reviews)
+        data_status, reviews = load_reviews(args.reviews)
+        for review in reviews:
+            review["data_status"] = data_status
         records = [write_mask(record, args.masks_dir) for record in reviews]
     except (ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"[build_training_masks] BLOCKED: {exc}", file=sys.stderr)
         return 2
-    manifest = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": "reviewed", "records": records, "label_definition": "0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous); nodata=255", "leakage_guard": "Records retain site and acquisition date so training assigns complete scenes to folds."}
+    manifest = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": data_status, "records": records, "label_definition": "0=background, 1=glacier, 255=ignored/invalid (cloud, shadow, nodata, snow-ambiguous); nodata=255", "leakage_guard": "Records retain site and acquisition date so training assigns complete scenes to folds.", "limitations": "Owner-approved experimental labels originate from project-owner-approved derived boundaries and are not independently validated." if data_status == "owner_approved_experimental" else None}
     output = args.masks_dir / "training_mask_manifest.json"
     output.write_text(json.dumps(manifest, indent=2))
     print(f"[build_training_masks] OK: wrote {len(records)} reviewed masks to {output}")

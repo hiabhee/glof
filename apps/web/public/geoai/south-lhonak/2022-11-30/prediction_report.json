@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-09-23T06:24:41.151034+05:30",
+  "site_id": "south-lhonak",
+  "observation_date": "2022-11-30",
+  "model": "data/derived/phase2/models/segmentation/phase-2-seg-rf-v2.1/model.joblib",
+  "feature": "data/derived/planb/features/south-lhonak/2022-11-30/features.tif",
+  "data_status": "owner_approved_experimental",
+  "threshold": 0.5,
+  "predicted_pixel_count": 23233,
+  "probability_raster": "apps/web/public/geoai/south-lhonak/2022-11-30/glacier_probability.tif",
+  "prediction_raster": "apps/web/public/geoai/south-lhonak/2022-11-30/glacier_prediction.tif",
+  "prediction_geojson": "apps/web/public/geoai/south-lhonak/2022-11-30/glacier_prediction.geojson"
+}

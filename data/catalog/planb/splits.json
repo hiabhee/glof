@@ -20,13 +20,13 @@
     "forbidden": "Any source scene, tile, or composite sharing acquisition date appearing in both train and test; pixel-level random split"
   },
   "current_snapshot": {
-    "note": "Only 5 single-date 2025 stacks exist (4 candidate, 1 rejected tsho-rolpa). No approved_reviewed labels yet, so no concrete train/test assignment. Strategy above is frozen; concrete records will populate once Phase 3 labels are approved.",
-    "exported_observations": 5,
+    "note": "South Lhonak has three quality-accepted, co-registered pilot scenes (2017, 2019, 2022), but no independently approved dated labels. The project-owner-approved drafts remain excluded from training and evaluation.",
+    "exported_observations": 3,
     "approved_reviewed_labels": 0,
-    "example_future": [
-      {"site_id": "south-lhonak", "observation_date": "2019-11-14", "split": "train"},
-      {"site_id": "south-lhonak", "observation_date": "2022-11-03", "split": "test"},
-      {"site_id": "imja-tsho", "observation_date": "2020-10-09", "split": "train"}
+    "pilot_assignments_pending_labels": [
+      {"site_id": "south-lhonak", "observation_date": "2017-11-19", "split": "train", "label_status": "pending_independent_review"},
+      {"site_id": "south-lhonak", "observation_date": "2019-10-15", "split": "train", "label_status": "pending_independent_review"},
+      {"site_id": "south-lhonak", "observation_date": "2022-11-30", "split": "test", "label_status": "pending_independent_review"}
     ]
   },
   "validation": "Automated leakage check: assert no scene_id or observation_date appears in both folds; fail if violated. Implemented in train_segmentation.py:load_records() via (site_id, observation_date) key."

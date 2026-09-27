@@ -1,0 +1,93 @@
+{
+  "site_id": "imja-tsho",
+  "glacier_id": "RGI2000-v7.0-G-15-10232",
+  "model_tier": "linear_trend",
+  "model_version": "phase-2-linear-v1.0",
+  "input_period": {
+    "start": "2016-10-15",
+    "end": "2025-10-15"
+  },
+  "scenario": {
+    "id": "warmer_summer",
+    "label": "Warmer-summer scenario",
+    "horizon_years": 5,
+    "assumptions": "JJA summer temperature +1.2 \u00b0C above the 2016\u20132025 mean; other predictors held at observed trend.",
+    "delta_summer_temp_C": 1.2,
+    "delta_precipitation_percent": 0.0,
+    "delta_albedo": -0.02,
+    "note": "Warmer-summer scenario"
+  },
+  "confidence_level": 0.8,
+  "method": "Robust linear trend (Theil-Sen) on terminus retreat vs. time; 80% prediction band from residual quantiles; scenario scaling via historical temperature sensitivity.",
+  "limitations": "Linear benchmark assumes continuation of past linear retreat; does not capture nonlinear melt amplification; same scenario caveats as primary model.",
+  "points": [
+    {
+      "date": "2026-10-15",
+      "year": 2026,
+      "scenario_id": "warmer_summer",
+      "central_km2": 7.38,
+      "central_retreat_m": 469.0,
+      "lower_km2": 7.265,
+      "upper_km2": 7.495,
+      "lower_retreat_m": 449.0,
+      "upper_retreat_m": 489.0
+    },
+    {
+      "date": "2027-10-15",
+      "year": 2027,
+      "scenario_id": "warmer_summer",
+      "central_km2": 7.305,
+      "central_retreat_m": 521.5,
+      "lower_km2": 7.165,
+      "upper_km2": 7.445,
+      "lower_retreat_m": 496.5,
+      "upper_retreat_m": 546.5
+    },
+    {
+      "date": "2028-10-15",
+      "year": 2028,
+      "scenario_id": "warmer_summer",
+      "central_km2": 7.217,
+      "central_retreat_m": 575.7,
+      "lower_km2": 7.052,
+      "upper_km2": 7.382,
+      "lower_retreat_m": 545.7,
+      "upper_retreat_m": 605.7
+    },
+    {
+      "date": "2029-10-15",
+      "year": 2029,
+      "scenario_id": "warmer_summer",
+      "central_km2": 7.143,
+      "central_retreat_m": 628.0,
+      "lower_km2": 6.953,
+      "upper_km2": 7.333,
+      "lower_retreat_m": 593.0,
+      "upper_retreat_m": 663.0
+    },
+    {
+      "date": "2030-10-15",
+      "year": 2030,
+      "scenario_id": "warmer_summer",
+      "central_km2": 7.059,
+      "central_retreat_m": 681.8,
+      "lower_km2": 6.844,
+      "upper_km2": 7.274,
+      "lower_retreat_m": 641.8,
+      "upper_retreat_m": 721.8
+    }
+  ],
+  "predictor_contributions": [
+    {
+      "predictor_id": "prior_retreat_rate",
+      "contribution": 0.72,
+      "rank": 1
+    },
+    {
+      "predictor_id": "summer_temp",
+      "contribution": 0.28,
+      "rank": 2
+    }
+  ],
+  "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+}

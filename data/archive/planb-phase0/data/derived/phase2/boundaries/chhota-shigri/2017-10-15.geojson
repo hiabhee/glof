@@ -1,0 +1,99 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "chhota-shigri",
+        "glacier_id": "RGI2000-v7.0-G-14-15901",
+        "observation_date": "2017-10-15",
+        "area_km2": 16.343,
+        "area_2016_km2": 16.48,
+        "scale_factor": 0.9958,
+        "source": "Phase 2 GeoAI derived boundary (versioned, reviewed) \u2014 scaled from RGI 2000 baseline by measured area change; confidence + image-quality documented in measurements.ts",
+        "source_id": "phase-2-geoai-v1.0",
+        "processing_version": "phase-2-retreat-v1.0",
+        "crs": "EPSG:4326",
+        "status": "approved",
+        "boundary_asset": "data/derived/phase2/boundaries/chhota-shigri/2017-10-15.geojson"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.53142404922359,
+              32.29490296576445,
+              0.0
+            ],
+            [
+              77.54034430782693,
+              32.29807499364305,
+              0.0
+            ],
+            [
+              77.54627264017958,
+              32.28564085648282,
+              0.0
+            ],
+            [
+              77.54431114867297,
+              32.268225386350764,
+              0.0
+            ],
+            [
+              77.54715635459569,
+              32.25350688305598,
+              0.0
+            ],
+            [
+              77.54025543119616,
+              32.246405272166186,
+              0.0
+            ],
+            [
+              77.53145918020903,
+              32.244479509328855,
+              0.0
+            ],
+            [
+              77.52125680277827,
+              32.24155738506989,
+              0.0
+            ],
+            [
+              77.5131018257303,
+              32.25536137551272,
+              0.0
+            ],
+            [
+              77.51084034028088,
+              32.27198007052886,
+              0.0
+            ],
+            [
+              77.51444362558567,
+              32.28347368502035,
+              0.0
+            ],
+            [
+              77.52185548673263,
+              32.292455225293715,
+              0.0
+            ],
+            [
+              77.53142404922359,
+              32.29490296576445,
+              0.0
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "site_id": "chhota-shigri",
+    "observation_date": "2017-10-15",
+    "version": "phase-2-retreat-v1.0"
+  }
+}

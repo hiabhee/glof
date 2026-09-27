@@ -1,0 +1,119 @@
+{
+  "site_id": "south-lhonak",
+  "glacier_id": "RGI2000-v7.0-G-15-07986",
+  "model_tier": "gradient_boosting",
+  "model_version": "phase-2-gb-v1.0",
+  "input_period": {
+    "start": "2016-10-15",
+    "end": "2025-10-15"
+  },
+  "scenario": {
+    "id": "high_melt",
+    "label": "High-melt scenario",
+    "horizon_years": 5,
+    "assumptions": "Summer +1.8 \u00b0C, precipitation \u22128 %, albedo \u22120.04 \u2014 combined melt amplification.",
+    "delta_summer_temp_C": 1.8,
+    "delta_precipitation_percent": -8.0,
+    "delta_albedo": -0.04,
+    "note": "High-melt scenario"
+  },
+  "confidence_level": 0.8,
+  "method": "Gradient Boosting (HistGradientBoostingRegressor) on aligned terrain+climate+lake predictors; time-based validation (train 2016\u20132021, test 2022\u20132025); leave-one-glacier-out; 80% quantile intervals via conformal calibration.",
+  "limitations": "Trained on 5 Himalayan sites \u00d7 10 seasonal observations (50 rows). Scenario sensitivity, not a GLOF trigger model; uncertainty widens with horizon; debris-covered termini retain higher boundary error; LSTM deferred until \u22658 steps/site and \u226545 total.",
+  "points": [
+    {
+      "date": "2026-10-15",
+      "year": 2026,
+      "scenario_id": "high_melt",
+      "central_km2": 12.739,
+      "central_retreat_m": 654.4,
+      "lower_km2": 12.629,
+      "upper_km2": 12.849,
+      "lower_retreat_m": 632.4,
+      "upper_retreat_m": 676.4
+    },
+    {
+      "date": "2027-10-15",
+      "year": 2027,
+      "scenario_id": "high_melt",
+      "central_km2": 12.513,
+      "central_retreat_m": 756.8,
+      "lower_km2": 12.383,
+      "upper_km2": 12.643,
+      "lower_retreat_m": 730.8,
+      "upper_retreat_m": 782.8
+    },
+    {
+      "date": "2028-10-15",
+      "year": 2028,
+      "scenario_id": "high_melt",
+      "central_km2": 12.274,
+      "central_retreat_m": 863.2,
+      "lower_km2": 12.124,
+      "upper_km2": 12.424,
+      "lower_retreat_m": 833.2,
+      "upper_retreat_m": 893.2
+    },
+    {
+      "date": "2029-10-15",
+      "year": 2029,
+      "scenario_id": "high_melt",
+      "central_km2": 12.049,
+      "central_retreat_m": 964.6,
+      "lower_km2": 11.879,
+      "upper_km2": 12.219,
+      "lower_retreat_m": 930.6,
+      "upper_retreat_m": 998.6
+    },
+    {
+      "date": "2030-10-15",
+      "year": 2030,
+      "scenario_id": "high_melt",
+      "central_km2": 11.814,
+      "central_retreat_m": 1069.0,
+      "lower_km2": 11.624,
+      "upper_km2": 12.004,
+      "lower_retreat_m": 1031.0,
+      "upper_retreat_m": 1107.0
+    }
+  ],
+  "predictor_contributions": [
+    {
+      "predictor_id": "summer_temp",
+      "contribution": 0.716,
+      "rank": 1,
+      "note": ""
+    },
+    {
+      "predictor_id": "albedo",
+      "contribution": 0.363,
+      "rank": 2,
+      "note": ""
+    },
+    {
+      "predictor_id": "prior_retreat_rate",
+      "contribution": 0.297,
+      "rank": 3,
+      "note": ""
+    },
+    {
+      "predictor_id": "debris_cover_fraction",
+      "contribution": -0.198,
+      "rank": 4,
+      "note": ""
+    },
+    {
+      "predictor_id": "lake_area_change",
+      "contribution": 0.148,
+      "rank": 5,
+      "note": ""
+    },
+    {
+      "predictor_id": "snow_cover_duration",
+      "contribution": -0.116,
+      "rank": 6,
+      "note": ""
+    }
+  ],
+  "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+}

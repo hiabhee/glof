@@ -1,0 +1,17 @@
+{
+  "model": "unet",
+  "epochs": 80,
+  "inputs": [
+    "S2 bands+indices",
+    "S1 VV/VH where optical obscured",
+    "DEM/slope/aspect"
+  ],
+  "outputs": [
+    "class_mask",
+    "confidence_mask"
+  ],
+  "crs": "EPSG:32645",
+  "processing_version": "phase-2-geoai-v1.0",
+  "model_version": "phase-2-seg-unet-v1.0",
+  "leakage_guard": "scene-level split; no pixel from same scene in both train and test"
+}

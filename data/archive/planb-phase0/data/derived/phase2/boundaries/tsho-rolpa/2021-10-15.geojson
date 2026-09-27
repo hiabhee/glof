@@ -1,0 +1,99 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "tsho-rolpa",
+        "glacier_id": "RGI2000-v7.0-G-15-10433",
+        "observation_date": "2021-10-15",
+        "area_km2": 17.338,
+        "area_2016_km2": 17.82,
+        "scale_factor": 0.9864,
+        "source": "Phase 2 GeoAI derived boundary (versioned, reviewed) \u2014 scaled from RGI 2000 baseline by measured area change; confidence + image-quality documented in measurements.ts",
+        "source_id": "phase-2-geoai-v1.0",
+        "processing_version": "phase-2-retreat-v1.0",
+        "crs": "EPSG:4326",
+        "status": "approved",
+        "boundary_asset": "data/derived/phase2/boundaries/tsho-rolpa/2021-10-15.geojson"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              86.47273149136592,
+              27.89532171899673,
+              0.0
+            ],
+            [
+              86.48048240680866,
+              27.891817229912547,
+              0.0
+            ],
+            [
+              86.48606657192074,
+              27.880186228284295,
+              0.0
+            ],
+            [
+              86.48526323384061,
+              27.86314748158801,
+              0.0
+            ],
+            [
+              86.4850124017615,
+              27.850883794155425,
+              0.0
+            ],
+            [
+              86.48187469146073,
+              27.838939961576873,
+              0.0
+            ],
+            [
+              86.47246176377826,
+              27.83940633494224,
+              0.0
+            ],
+            [
+              86.46293016697759,
+              27.83743926499358,
+              0.0
+            ],
+            [
+              86.45637213168976,
+              27.851787515321785,
+              0.0
+            ],
+            [
+              86.45056235478347,
+              27.867205269444696,
+              0.0
+            ],
+            [
+              86.45397190242325,
+              27.880389073613824,
+              0.0
+            ],
+            [
+              86.46342942847163,
+              27.886922369538354,
+              0.0
+            ],
+            [
+              86.47273149136592,
+              27.89532171899673,
+              0.0
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "site_id": "tsho-rolpa",
+    "observation_date": "2021-10-15",
+    "version": "phase-2-retreat-v1.0"
+  }
+}

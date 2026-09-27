@@ -60,5 +60,4 @@ Never invent reviewer sign-off. Test labels must be independent — annotator mu
 
 ## 8. Current pilot gaps
 
-As of 21 Sep 2026, no `approved_reviewed` labels exist — `reviews.json` is `pending`. The `reviewed-glacier-masks.example.json` is a template only. Next work: digitize South Lhonak 2025-11-29 plus two additional comparable dates once exported.
-
+As of 22 Sep 2026, no `approved_reviewed` labels exist. South Lhonak has quality-accepted and co-registered scenes on 2017-11-19, 2019-10-15, and 2022-11-30. The project-owner-approved RGI-derived drafts are not labels. Next work: independently delineate and review those three dates; the 2022 scene is frozen as the held-out chronological test.

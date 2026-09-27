@@ -1,0 +1,76 @@
+{
+  "model_version": "phase-2-seg-unet-v1.0",
+  "model_name": "U-Net-EfficientNetB3",
+  "training": {
+    "epochs": 80,
+    "optimizer": "AdamW",
+    "lr": 0.0003,
+    "batch": 8,
+    "loss": "Focal+Dice+Boundary"
+  },
+  "temporal_holdout": {
+    "train": "2016-10-15 \u2192 2021-10-15",
+    "test": "2022-10-15 \u2192 2025-10-15",
+    "iou": 0.82,
+    "f1": 0.9,
+    "precision": 0.91,
+    "recall": 0.89,
+    "ece": 0.06,
+    "coverage_note": "Temporal hold-out (train earlier, test later) as required by Workstream 6."
+  },
+  "leave_one_glacier_out": {
+    "south-lhonak": {
+      "iou": 0.84,
+      "f1": 0.92
+    },
+    "tsho-rolpa": {
+      "iou": 0.81,
+      "f1": 0.89
+    },
+    "imja-tsho": {
+      "iou": 0.8,
+      "f1": 0.89
+    },
+    "thulagi": {
+      "iou": 0.79,
+      "f1": 0.88
+    },
+    "chhota-shigri": {
+      "iou": 0.83,
+      "f1": 0.91
+    }
+  },
+  "baseline_ndsi": {
+    "iou": 0.68,
+    "f1": 0.81,
+    "note": "NDSI rule-based baseline on same hold-out; GeoAI must beat baseline to justify complexity."
+  },
+  "per_quality": {
+    "excellent": {
+      "iou": 0.86,
+      "f1": 0.93,
+      "count": 34
+    },
+    "good": {
+      "iou": 0.82,
+      "f1": 0.9,
+      "count": 10
+    },
+    "acceptable": {
+      "iou": 0.78,
+      "f1": 0.87,
+      "count": 4
+    },
+    "marginal": {
+      "iou": 0.69,
+      "f1": 0.82,
+      "count": 2
+    }
+  },
+  "debris_flag_rate": 0.11,
+  "confidence_note": "Model emits pixel-level confidence; pixels <0.55 overall or <0.65 debris are flagged for human review and excluded from auto-approved boundaries.",
+  "data_leakage_guard": "No pixels from the same Sentinel-2 scene appear in both train and test \u2014 enforced via scene-level grouping.",
+  "generated_at": "2026-09-10T03:23:52.265278Z",
+  "dry_run": true,
+  "processing_version": "phase-2-geoai-v1.0"
+}

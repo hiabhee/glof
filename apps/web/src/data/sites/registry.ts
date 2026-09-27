@@ -8,8 +8,10 @@ const sites: SiteConfig[] = evidenceSites.map(s => ({
   id:s.id, name:s.name, country:s.country, region:s.region,
   centre:{longitude:(s.lake ?? s.glacierCentre)[0],latitude:(s.lake ?? s.glacierCentre)[1]},
   associatedGlacier:s.glacier,referenceGlacierId:s.rgi ?? undefined,elevationMetres:0,
-  description:'Dated imagery and historical references; current boundaries await review.',
-  timeline:[],readiness:'intake',sources:[
+  description:s.id==='south-lhonak'
+    ? 'Dated Sentinel-2 imagery, owner-approved pilot boundaries, provisional change analysis and an exploratory GeoAI segmentation pilot.'
+    : 'Dated imagery and historical references; current boundaries await review.',
+  timeline:[],readiness:s.id==='south-lhonak' ? 'evidence-ready' : 'intake',sources:[
     {id:'rgi-v7',title:'RGI lake-terminating inventory',url:'https://github.com/GLIMS-RGI/lake_terminating',accessedAt:'2026-09-21'},
     {id:'sentinel2-water-baseline',title:'Sentinel-2 surface reflectance',url:'https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED',accessedAt:'2026-09-21'},
   ],

@@ -1,0 +1,119 @@
+{
+  "site_id": "thulagi",
+  "glacier_id": "RGI2000-v7.0-G-15-09021",
+  "model_tier": "gradient_boosting",
+  "model_version": "phase-2-gb-v1.0",
+  "input_period": {
+    "start": "2016-10-15",
+    "end": "2025-10-15"
+  },
+  "scenario": {
+    "id": "warmer_summer",
+    "label": "Warmer-summer scenario",
+    "horizon_years": 5,
+    "assumptions": "JJA summer temperature +1.2 \u00b0C above the 2016\u20132025 mean; other predictors held at observed trend.",
+    "delta_summer_temp_C": 1.2,
+    "delta_precipitation_percent": 0.0,
+    "delta_albedo": -0.02,
+    "note": "Warmer-summer scenario"
+  },
+  "confidence_level": 0.8,
+  "method": "Gradient Boosting (HistGradientBoostingRegressor) on aligned terrain+climate+lake predictors; time-based validation (train 2016\u20132021, test 2022\u20132025); leave-one-glacier-out; 80% quantile intervals via conformal calibration.",
+  "limitations": "Trained on 5 Himalayan sites \u00d7 10 seasonal observations (50 rows). Scenario sensitivity, not a GLOF trigger model; uncertainty widens with horizon; debris-covered termini retain higher boundary error; LSTM deferred until \u22658 steps/site and \u226545 total.",
+  "points": [
+    {
+      "date": "2026-10-15",
+      "year": 2026,
+      "scenario_id": "warmer_summer",
+      "central_km2": 6.361,
+      "central_retreat_m": 343.5,
+      "lower_km2": 6.271,
+      "upper_km2": 6.451,
+      "lower_retreat_m": 327.5,
+      "upper_retreat_m": 359.5
+    },
+    {
+      "date": "2027-10-15",
+      "year": 2027,
+      "scenario_id": "warmer_summer",
+      "central_km2": 6.297,
+      "central_retreat_m": 389.0,
+      "lower_km2": 6.187,
+      "upper_km2": 6.407,
+      "lower_retreat_m": 369.0,
+      "upper_retreat_m": 409.0
+    },
+    {
+      "date": "2028-10-15",
+      "year": 2028,
+      "scenario_id": "warmer_summer",
+      "central_km2": 6.22,
+      "central_retreat_m": 438.5,
+      "lower_km2": 6.09,
+      "upper_km2": 6.35,
+      "lower_retreat_m": 414.5,
+      "upper_retreat_m": 462.5
+    },
+    {
+      "date": "2029-10-15",
+      "year": 2029,
+      "scenario_id": "warmer_summer",
+      "central_km2": 6.157,
+      "central_retreat_m": 483.0,
+      "lower_km2": 6.007,
+      "upper_km2": 6.307,
+      "lower_retreat_m": 455.0,
+      "upper_retreat_m": 511.0
+    },
+    {
+      "date": "2030-10-15",
+      "year": 2030,
+      "scenario_id": "warmer_summer",
+      "central_km2": 6.084,
+      "central_retreat_m": 530.5,
+      "lower_km2": 5.914,
+      "upper_km2": 6.254,
+      "lower_retreat_m": 498.5,
+      "upper_retreat_m": 562.5
+    }
+  ],
+  "predictor_contributions": [
+    {
+      "predictor_id": "summer_temp",
+      "contribution": 0.421,
+      "rank": 1,
+      "note": ""
+    },
+    {
+      "predictor_id": "albedo",
+      "contribution": 0.257,
+      "rank": 2,
+      "note": ""
+    },
+    {
+      "predictor_id": "prior_retreat_rate",
+      "contribution": 0.203,
+      "rank": 3,
+      "note": ""
+    },
+    {
+      "predictor_id": "snow_cover_duration",
+      "contribution": -0.149,
+      "rank": 4,
+      "note": ""
+    },
+    {
+      "predictor_id": "precipitation",
+      "contribution": -0.095,
+      "rank": 5,
+      "note": ""
+    },
+    {
+      "predictor_id": "lake_proximity",
+      "contribution": 0.081,
+      "rank": 6,
+      "note": ""
+    }
+  ],
+  "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+}

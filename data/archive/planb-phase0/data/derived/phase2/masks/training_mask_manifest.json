@@ -1,0 +1,815 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10T03:23:52.235425Z",
+  "processing_version": "phase-2-geoai-v1.0",
+  "crs": "EPSG:32645",
+  "baseline": {
+    "method": "Reproducible spectral baseline: NDSI = (Green - SWIR) / (Green + SWIR), threshold 0.4 + water mask (NDWI) + shadow mask (SCL 3,8,9) + DEM slope filter (>24\u00b0 excluded unless velocity confirms).",
+    "bands": [
+      "B03 (Green)",
+      "B11 (SWIR)",
+      "B02 (Blue)",
+      "B04 (Red)",
+      "B08 (NIR)",
+      "SCL"
+    ],
+    "thresholds": {
+      "ndsi": 0.4,
+      "ndwi_water": 0.2
+    },
+    "dem_filter": "Slope >24\u00b0 removed from baseline ice mask (re-added only where SAR velocity / manual review indicates steep icefall).",
+    "role": "Transparent benchmark against which GeoAI IoU/F1 must be reported.",
+    "crs": "EPSG:32645",
+    "resolution_m": 10
+  },
+  "geoai_model": {
+    "candidates": [
+      "U-Net (EfficientNet-B3 encoder)",
+      "SegFormer-B2"
+    ],
+    "inputs": [
+      "Sentinel-2 L2A bands B02,B03,B04,B08,B11,B12 + NDVI, NDSI, NDWI",
+      "Sentinel-1 GRD VV/VH backscatter (terrain-corrected) where optical confidence <0.6",
+      "Copernicus DEM elevation, slope, aspect (normalised)"
+    ],
+    "outputs": [
+      "class_mask (ice/debris/lake/background)",
+      "pixel_confidence (0\u20131, calibrated via temperature scaling)"
+    ],
+    "debris_rule": "Pixels with confidence <0.55 or predicted debris class with confidence <0.65 are flagged for human review and never auto-promoted to approved boundaries.",
+    "training": {
+      "loss": "Focal + Dice + boundary-weight (distance transform) + confidence-aware label smoothing",
+      "augmentations": [
+        "flip/rotate",
+        "brightness jitter",
+        "cloud/shadow CutMix from SCL",
+        "DEM jitter \u00b12 m"
+      ],
+      "spatial_split": "Leave-one-glacier-out + scene-level grouping; pixel-level random splits forbidden (data leakage guard).",
+      "validation": "IoU / F1 on held-out scenes; coverage-calibrated confidence (expected calibration error <0.08)."
+    },
+    "crs": "EPSG:32645",
+    "processing_version": "phase-2-geoai-v1.0"
+  },
+  "approval_rule": "An analyst reviews model outputs against the authoritative RGI/inventory boundary and source imagery. Only approved boundaries enter the measurement time series (Workstream 2 \u2014 Boundary approval).",
+  "records": [
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2016-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2016-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2016-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2016-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2017-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2017-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2017-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2017-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2018-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2018-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2018-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2018-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2019-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2019-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2019-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2019-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2020-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2020-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2020-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2020-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2021-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2021-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2021-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2021-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2022-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2022-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2022-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2022-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2023-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2023-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2023-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2023-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2024-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2024-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2024-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2024-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "south-lhonak",
+      "observation_date": "2025-10-15",
+      "baseline_mask": "data/derived/phase2/masks/south-lhonak/2025-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/south-lhonak/2025-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/south-lhonak/2025-10-15_confidence.tif",
+      "status": "reviewed_baseline_available",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2016-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2016-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2016-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2016-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2017-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2017-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2017-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2017-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2018-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2018-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2018-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2018-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2019-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2019-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2019-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2019-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2020-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2020-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2020-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2020-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2021-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2021-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2021-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2021-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2022-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2022-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2022-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2022-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2023-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2023-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2023-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2023-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2024-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2024-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2024-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2024-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "observation_date": "2025-10-15",
+      "baseline_mask": "data/derived/phase2/masks/tsho-rolpa/2025-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/tsho-rolpa/2025-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/tsho-rolpa/2025-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2016-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2016-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2016-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2016-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2017-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2017-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2017-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2017-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2018-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2018-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2018-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2018-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2019-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2019-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2019-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2019-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2020-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2020-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2020-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2020-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2021-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2021-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2021-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2021-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2022-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2022-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2022-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2022-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2023-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2023-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2023-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2023-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2024-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2024-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2024-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2024-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "imja-tsho",
+      "observation_date": "2025-10-15",
+      "baseline_mask": "data/derived/phase2/masks/imja-tsho/2025-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/imja-tsho/2025-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/imja-tsho/2025-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2016-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2016-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2016-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2016-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2017-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2017-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2017-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2017-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2018-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2018-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2018-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2018-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2019-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2019-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2019-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2019-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2020-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2020-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2020-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2020-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2021-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2021-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2021-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2021-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2022-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2022-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2022-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2022-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2023-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2023-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2023-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2023-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2024-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2024-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2024-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2024-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "thulagi",
+      "observation_date": "2025-10-15",
+      "baseline_mask": "data/derived/phase2/masks/thulagi/2025-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/thulagi/2025-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/thulagi/2025-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2016-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2016-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2016-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2016-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2017-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2017-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2017-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2017-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2018-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2018-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2018-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2018-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2019-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2019-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2019-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2019-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2020-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2020-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2020-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2020-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2021-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2021-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2021-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2021-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2022-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2022-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2022-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2022-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2023-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2023-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2023-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2023-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2024-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2024-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2024-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2024-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    },
+    {
+      "site_id": "chhota-shigri",
+      "observation_date": "2025-10-15",
+      "baseline_mask": "data/derived/phase2/masks/chhota-shigri/2025-10-15_baseline.tif",
+      "reviewed_mask": "data/derived/phase2/masks/chhota-shigri/2025-10-15_reviewed.tif",
+      "confidence_mask": "data/derived/phase2/masks/chhota-shigri/2025-10-15_confidence.tif",
+      "status": "approved_synthetic_for_demo",
+      "source_ids": [
+        "copernicus-s2-harmonized",
+        "copernicus-dem-glo30",
+        "rgi-v7-glacier-reference"
+      ],
+      "processing_version": "phase-2-geoai-v1.0",
+      "quality_notes": "Baseline transparent; GeoAI confidence calibrated; debris flagged where confidence <0.65. No model geometry auto-published without review."
+    }
+  ],
+  "metrics_to_report": [
+    "iou",
+    "f1",
+    "precision",
+    "recall",
+    "confidence_ece",
+    "debris_flag_rate"
+  ]
+}

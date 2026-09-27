@@ -1,0 +1,93 @@
+{
+  "site_id": "tsho-rolpa",
+  "glacier_id": "RGI2000-v7.0-G-15-10433",
+  "model_tier": "linear_trend",
+  "model_version": "phase-2-linear-v1.0",
+  "input_period": {
+    "start": "2016-10-15",
+    "end": "2025-10-15"
+  },
+  "scenario": {
+    "id": "baseline",
+    "label": "Baseline continuation",
+    "horizon_years": 5,
+    "assumptions": "Climate and surface conditions continue the 2016\u20132025 observed trend. No additional forcing.",
+    "delta_summer_temp_C": 0.0,
+    "delta_precipitation_percent": 0.0,
+    "delta_albedo": 0.0,
+    "note": "Baseline continuation"
+  },
+  "confidence_level": 0.8,
+  "method": "Robust linear trend (Theil-Sen) on terminus retreat vs. time; 80% prediction band from residual quantiles; scenario scaling via historical temperature sensitivity.",
+  "limitations": "Linear benchmark assumes continuation of past linear retreat; does not capture nonlinear melt amplification; same scenario caveats as primary model.",
+  "points": [
+    {
+      "date": "2026-10-15",
+      "year": 2026,
+      "scenario_id": "baseline",
+      "central_km2": 16.868,
+      "central_retreat_m": 359.9,
+      "lower_km2": 16.753,
+      "upper_km2": 16.983,
+      "lower_retreat_m": 339.9,
+      "upper_retreat_m": 379.9
+    },
+    {
+      "date": "2027-10-15",
+      "year": 2027,
+      "scenario_id": "baseline",
+      "central_km2": 16.781,
+      "central_retreat_m": 395.3,
+      "lower_km2": 16.641,
+      "upper_km2": 16.921,
+      "lower_retreat_m": 370.3,
+      "upper_retreat_m": 420.3
+    },
+    {
+      "date": "2028-10-15",
+      "year": 2028,
+      "scenario_id": "baseline",
+      "central_km2": 16.681,
+      "central_retreat_m": 432.4,
+      "lower_km2": 16.516,
+      "upper_km2": 16.846,
+      "lower_retreat_m": 402.4,
+      "upper_retreat_m": 462.4
+    },
+    {
+      "date": "2029-10-15",
+      "year": 2029,
+      "scenario_id": "baseline",
+      "central_km2": 16.595,
+      "central_retreat_m": 467.6,
+      "lower_km2": 16.405,
+      "upper_km2": 16.785,
+      "lower_retreat_m": 432.6,
+      "upper_retreat_m": 502.6
+    },
+    {
+      "date": "2030-10-15",
+      "year": 2030,
+      "scenario_id": "baseline",
+      "central_km2": 16.499,
+      "central_retreat_m": 504.3,
+      "lower_km2": 16.284,
+      "upper_km2": 16.714,
+      "lower_retreat_m": 464.3,
+      "upper_retreat_m": 544.3
+    }
+  ],
+  "predictor_contributions": [
+    {
+      "predictor_id": "prior_retreat_rate",
+      "contribution": 0.72,
+      "rank": 1
+    },
+    {
+      "predictor_id": "summer_temp",
+      "contribution": 0.28,
+      "rank": 2
+    }
+  ],
+  "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+}

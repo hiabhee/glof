@@ -72,7 +72,7 @@ export function ProvisionalChangeAnalysis({ siteId }: { siteId: string }) {
         <div>
           <p className="eyebrow">Next research gate</p>
           <h3>Independent dated labels</h3>
-          <p>Those labels are required before GeoAI model training, testing, or a defensible retreat claim.</p>
+          <p>The exploratory GeoAI pilot is now complete using project-owner-approved drafts. Independent labels are still needed for a defensible accuracy or retreat claim.</p>
         </div>
       </div>
 

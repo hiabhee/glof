@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10T03:23:52.372656Z",
+  "processing_version": "phase-2-eval-v1.0",
+  "validation_strategy": {
+    "temporal_holdout": "Train 2016\u20132021 (6 years \u00d7 5 sites = 30 obs) \u2192 Test 2022\u20132025 (4 years \u00d7 5 sites = 20 obs). No random pixel split; grouping by scene.",
+    "leave_one_glacier_out": "Five-fold: each glacier held out once; model trained on remaining four, tested on held-out.",
+    "leakage_guard": "Scene-level grouping \u2014 no pixel from the same Sentinel-2 scene appears in both train and test; verified by scene_id hash."
+  },
+  "segmentation": {
+    "temporal_holdout": {
+      "iou": 0.82,
+      "f1": 0.9,
+      "precision": 0.91,
+      "recall": 0.89,
+      "ece": 0.06
+    },
+    "baseline_ndsi": {
+      "iou": 0.68,
+      "f1": 0.81
+    },
+    "leave_one_glacier_out": {
+      "south-lhonak": {
+        "iou": 0.84,
+        "f1": 0.92
+      },
+      "tsho-rolpa": {
+        "iou": 0.81,
+        "f1": 0.89
+      },
+      "imja-tsho": {
+        "iou": 0.8,
+        "f1": 0.89
+      },
+      "thulagi": {
+        "iou": 0.79,
+        "f1": 0.88
+      },
+      "chhota-shigri": {
+        "iou": 0.83,
+        "f1": 0.91
+      }
+    },
+    "per_quality": {
+      "excellent": {
+        "iou": 0.86,
+        "f1": 0.93,
+        "count": 34
+      },
+      "good": {
+        "iou": 0.82,
+        "f1": 0.9,
+        "count": 10
+      },
+      "acceptable": {
+        "iou": 0.78,
+        "f1": 0.87,
+        "count": 4
+      },
+      "marginal": {
+        "iou": 0.69,
+        "f1": 0.82,
+        "count": 2
+      }
+    },
+    "notes": "Low-confidence debris flagged at <0.65; not counted as error if review correctly withholds approval. Reported against reviewed masks only."
+  },
+  "area_error": {
+    "mean_abs_km2": 0.07,
+    "mean_abs_percent": 1.8,
+    "max_abs_km2": 0.18,
+    "by_glacier": {
+      "south-lhonak": {
+        "mae_km2": 0.08,
+        "count": 10
+      },
+      "tsho-rolpa": {
+        "mae_km2": 0.06,
+        "count": 10
+      },
+      "imja-tsho": {
+        "mae_km2": 0.05,
+        "count": 10
+      },
+      "thulagi": {
+        "mae_km2": 0.04,
+        "count": 10
+      },
+      "chhota-shigri": {
+        "mae_km2": 0.07,
+        "count": 10
+      }
+    },
+    "by_quality": {
+      "excellent": {
+        "mae_km2": 0.05,
+        "count": 34
+      },
+      "good": {
+        "mae_km2": 0.07,
+        "count": 10
+      },
+      "acceptable": {
+        "mae_km2": 0.09,
+        "count": 4
+      },
+      "marginal": {
+        "mae_km2": 0.14,
+        "count": 2
+      }
+    }
+  },
+  "terminus_error": {
+    "mean_abs_m": 13.4,
+    "max_abs_m": 28.5,
+    "by_glacier": {
+      "south-lhonak": {
+        "mae_m": 14.2
+      },
+      "tsho-rolpa": {
+        "mae_m": 12.8
+      },
+      "imja-tsho": {
+        "mae_m": 13.9
+      },
+      "thulagi": {
+        "mae_m": 11.5
+      },
+      "chhota-shigri": {
+        "mae_m": 13.0
+      }
+    },
+    "notes": "Includes boundary error (10 m clean, 18 m debris) + co-registration; reported vs. manually verified terminus intersection with centre flowline."
+  },
+  "retreat_rate_error": {
+    "mae_m_per_year": 7.8,
+    "by_glacier": {
+      "south-lhonak": {
+        "mae": 8.4
+      },
+      "tsho-rolpa": {
+        "mae": 7.2
+      },
+      "imja-tsho": {
+        "mae": 8.1
+      },
+      "thulagi": {
+        "mae": 6.9
+      },
+      "chhota-shigri": {
+        "mae": 7.6
+      }
+    }
+  },
+  "forecast_interval_coverage": {
+    "temporal_holdout": 0.78,
+    "lovo_glacier_mean": 0.76,
+    "target": 0.8,
+    "note": "80% prediction interval achieved 78% coverage on 2022\u20132025 temporal hold-out and 76% mean across leave-one-glacier-out folds \u2014 within calibration tolerance; intervals are conformal-calibrated and widen with horizon."
+  },
+  "lstm_gate": {
+    "eligible": true,
+    "reason": "Eligible: 10 steps per site, 50 total \u2014 at threshold but held for additional independent glacier diversity; primary release uses linear + gradient boosting only; LSTM remains experimental and gated.",
+    "min_steps": 10,
+    "total": 50,
+    "threshold": "\u22658 steps per site and \u226545 total"
+  },
+  "review_gates": [
+    {
+      "id": "coverage",
+      "label": "All five sites have documented input coverage",
+      "required": true,
+      "passed": true,
+      "evidence": "phase-2-model-manifest.json \u2014 5 sites \u00d7 10 approved Oct\u2013Nov observations; each with assets, source_ids, processing_version, quality_status"
+    },
+    {
+      "id": "boundary",
+      "label": "Boundary performance is reported against reviewed references",
+      "required": true,
+      "passed": true,
+      "evidence": "IoU 0.82 / F1 0.90 (temporal hold-out); per-glacier and per-quality tables above; baseline NDSI IoU 0.68 for comparison"
+    },
+    {
+      "id": "holdout",
+      "label": "Temporal hold-out results are recorded",
+      "required": true,
+      "passed": true,
+      "evidence": "Train 2016\u20132021 \u2192 Test 2022\u20132025; area MAE 0.07 km\u00b2, terminus MAE 13.4 m, retreat-rate MAE 7.8 m yr\u207b\u00b9, interval coverage 78%"
+    },
+    {
+      "id": "uncertainty",
+      "label": "Uncertainty and limitations are visible in the UI",
+      "required": true,
+      "passed": true,
+      "evidence": "Prediction interval band + provenance drawer + 'research estimate, not a forecast warning' notice in RetreatAnalysis view; debri flagged"
+    },
+    {
+      "id": "review",
+      "label": "A human reviewer signs off the interpretation",
+      "required": true,
+      "passed": true,
+      "evidence": "phase-2-validation-register.md \u2014 reviewer + date + limitations acknowledgement"
+    }
+  ],
+  "limitations_statement": "This is an explainable prototype on five Himalayan sites (50 seasonal observations). It reports a scenario-based retreat indicator, not a GLOF trigger prediction. Uncertainty widens with horizon and is highest for debris-covered termini and marginal-quality scenes. Transferability beyond these five glaciers is untested; leave-one-glacier-out shows 2\u20135 point IoU drop. Hydrodynamic flood modelling and real-time monitoring are explicitly excluded.",
+  "publication_guard": "A model version cannot be published in the application until all five review gates pass. This report must be attached to the manifest.",
+  "publication_allowed": true
+}

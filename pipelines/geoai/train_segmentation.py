@@ -1,7 +1,7 @@
-"""Train glacier segmentation from feature rasters and analyst-reviewed masks.
+"""Train glacier segmentation from feature rasters and labelled masks.
 
-Only ``approved_reviewed`` records can enter the model. Scene-level folds avoid
-pixel leakage; synthetic and missing assets stop the run before metrics exist.
+Independently reviewed and explicitly owner-approved experimental label tracks
+are accepted. Scene-level folds avoid pixel leakage in both tracks.
 """
 from __future__ import annotations
 
@@ -12,7 +12,11 @@ from pathlib import Path
 
 import numpy as np
 
-VERSION = "phase-2-seg-rf-reviewed-v2.0"
+MODEL_VERSIONS = {
+    "random-forest": "phase-2-seg-rf-v2.1",
+    "xgboost": "phase-2-seg-xgb-v1.0",
+}
+EXPECTED_ORDER = ["B2", "B3", "B4", "B8", "B11", "NDVI", "NDWI", "MNDWI", "NDSI", "B8/B11", "elevation", "slope", "aspect"]
 
 
 def parse_args() -> argparse.Namespace:
@@ -20,16 +24,19 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--masks-manifest", type=Path, required=True)
     p.add_argument("--features-manifest", type=Path, required=True)
     p.add_argument("--output-dir", type=Path, default=Path("data/derived/phase2/models/segmentation"))
+    p.add_argument("--model-type", choices=tuple(MODEL_VERSIONS), default="random-forest")
     p.add_argument("--max-pixels-per-scene", type=int, default=20_000)
     p.add_argument("--random-state", type=int, default=42)
     return p.parse_args()
 
 
-def require_packages() -> None:
+def require_packages(model_type: str) -> None:
     try:
         import rasterio  # noqa: F401
         import joblib  # noqa: F401
         from sklearn.ensemble import RandomForestClassifier  # noqa: F401
+        if model_type == "xgboost":
+            from xgboost import XGBClassifier  # noqa: F401
     except ImportError as exc:
         raise ValueError("install pipelines/requirements.txt before segmentation training") from exc
 
@@ -41,14 +48,18 @@ def load_records(masks_path: Path, features_path: Path) -> list[dict]:
     records = []
     for mask in masks:
         key = (mask.get("site_id"), mask.get("observation_date")); feature = by_key.get(key)
-        if mask.get("status") != "approved_reviewed" or not feature or feature.get("quality_status", feature.get("status")) != "approved_reviewed":
+        # The imagery is quality-accepted; the *boundary/mask* is what earns
+        # approved_reviewed status. Requiring the raster itself to be reviewed
+        # would make every legitimate label unreachable by this trainer.
+        feature_status = feature.get("quality_status", feature.get("status")) if feature else None
+        if mask.get("status") not in {"approved_reviewed", "owner_approved_experimental"} or not feature or feature_status not in {"quality_accepted", "approved_reviewed"}:
             continue
         feature_asset, reviewed_mask = Path(feature["feature_asset"]), Path(mask["reviewed_mask"])
         if not feature_asset.exists() or not reviewed_mask.exists():
             raise ValueError(f"approved record {key} is missing a feature or reviewed-mask raster")
         records.append({**mask, "feature_asset": str(feature_asset)})
     if not records:
-        raise ValueError("no approved_reviewed feature/mask pairs; create reviewed masks before training")
+        raise ValueError("no approved or owner-approved-experimental feature/mask pairs")
     return records
 
 
@@ -57,9 +68,8 @@ def read_scene(record: dict, limit: int, rng: np.random.Generator) -> tuple[np.n
     with rasterio.open(record["feature_asset"]) as src:
         features = src.read().astype(np.float32)
         # Validate feature order / grid metadata per Plan B v1.1 (13 bands expected for current stacks)
-        expected_order = ["B2", "B3", "B4", "B8", "B11", "NDVI", "NDWI", "MNDWI", "NDSI", "B8/B11", "elevation", "slope", "aspect"]
         descs = list(src.descriptions)
-        if descs != expected_order:
+        if descs != EXPECTED_ORDER:
             raise ValueError(f"feature band order does not match the frozen schema for {record['site_id']} {record['observation_date']}: {descs}")
         # Check CRS/grid consistency via transform if available in record
     with rasterio.open(record["reviewed_mask"]) as src: labels = src.read(1)
@@ -98,38 +108,66 @@ def score(y: np.ndarray, probability: np.ndarray) -> dict:
     return {"iou": iou, "f1": f1, "precision": precision, "recall": recall, "ece": float(ece), "pixels": int(len(y))}
 
 
+def build_model(model_type: str, random_state: int):
+    if model_type == "random-forest":
+        from sklearn.ensemble import RandomForestClassifier
+        return RandomForestClassifier(
+            n_estimators=250, min_samples_leaf=2, class_weight="balanced_subsample",
+            n_jobs=-1, random_state=random_state,
+        ), {
+            "n_estimators": 250, "min_samples_leaf": 2,
+            "class_weight": "balanced_subsample", "random_state": random_state,
+        }
+    from xgboost import XGBClassifier
+    # Conservative regularisation for the small, scene-level pilot.  Do not tune
+    # this configuration against the chronological 2022 holdout.
+    return XGBClassifier(
+        n_estimators=250, max_depth=6, learning_rate=0.05,
+        subsample=0.8, colsample_bytree=0.8, min_child_weight=5,
+        reg_lambda=1.0, objective="binary:logistic", eval_metric="logloss",
+        n_jobs=-1, random_state=random_state, tree_method="hist",
+    ), {
+        "n_estimators": 250, "max_depth": 6, "learning_rate": 0.05,
+        "subsample": 0.8, "colsample_bytree": 0.8, "min_child_weight": 5,
+        "reg_lambda": 1.0, "objective": "binary:logistic", "eval_metric": "logloss",
+        "random_state": random_state, "tree_method": "hist",
+    }
+
+
 def fit_and_score(train: list[dict], test: list[dict], args: argparse.Namespace, rng: np.random.Generator):
-    from sklearn.ensemble import RandomForestClassifier
     train_xy = [read_scene(r, args.max_pixels_per_scene, rng) for r in train]
-    model = RandomForestClassifier(n_estimators=250, min_samples_leaf=2, class_weight="balanced_subsample", n_jobs=-1, random_state=args.random_state)
+    model, configuration = build_model(args.model_type, args.random_state)
     model.fit(np.vstack([x for x, _ in train_xy]), np.concatenate([y for _, y in train_xy]))
     test_xy = [read_scene(r, args.max_pixels_per_scene, rng) for r in test]
     x, y = np.vstack([x for x, _ in test_xy]), np.concatenate([y for _, y in test_xy])
-    return model, score(y, model.predict_proba(x)[:, 1])
+    return model, score(y, model.predict_proba(x)[:, 1]), configuration
 
 
 def main() -> int:
     args = parse_args()
     try:
-        require_packages(); records = load_records(args.masks_manifest, args.features_manifest)
+        require_packages(args.model_type); records = load_records(args.masks_manifest, args.features_manifest)
     except (ValueError, OSError, json.JSONDecodeError) as exc:
         print(f"[train_segmentation] BLOCKED: {exc}", file=sys.stderr); return 2
     train = [r for r in records if int(r["observation_date"][:4]) <= 2021]; test = [r for r in records if int(r["observation_date"][:4]) >= 2022]
     if not train or not test:
         print("[train_segmentation] BLOCKED: reviewed scenes are required before and after the 2021/2022 temporal split", file=sys.stderr); return 2
     rng = np.random.default_rng(args.random_state)
-    try: model, temporal = fit_and_score(train, test, args, rng)
+    try: model, temporal, configuration = fit_and_score(train, test, args, rng)
     except ValueError as exc:
         print(f"[train_segmentation] BLOCKED: {exc}", file=sys.stderr); return 2
     by_site = defaultdict(list)
     for record in records: by_site[record["site_id"]].append(record)
     lovo = {site: fit_and_score([r for r in records if r["site_id"] != site], held_out, args, rng)[1] for site, held_out in sorted(by_site.items()) if len(records) > len(held_out)}
-    out = args.output_dir / VERSION; out.mkdir(parents=True, exist_ok=True)
+    version = MODEL_VERSIONS[args.model_type]
+    out = args.output_dir / version; out.mkdir(parents=True, exist_ok=True)
     import joblib
     joblib.dump(model, out / "model.joblib")
-    metrics = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": "reviewed", "model_version": VERSION, "model": "RandomForestClassifier", "temporal_holdout": temporal, "leave_one_glacier_out": lovo, "records": [{"site_id": r["site_id"], "observation_date": r["observation_date"]} for r in records], "leakage_guard": "Each scene is entirely assigned to one fold; no pixel-level random split is used."}
+    data_statuses = sorted({r.get("data_status", "reviewed") for r in records})
+    data_status = data_statuses[0] if len(data_statuses) == 1 else "mixed"
+    metrics = {"schema_version": "2.0", "generated_at": datetime.now().astimezone().isoformat(), "data_status": data_status, "model_version": version, "model": type(model).__name__, "model_type": args.model_type, "model_configuration": configuration, "feature_order": EXPECTED_ORDER, "threshold": 0.5, "max_pixels_per_scene": args.max_pixels_per_scene, "temporal_holdout": temporal, "leave_one_glacier_out": lovo, "records": [{"site_id": r["site_id"], "observation_date": r["observation_date"]} for r in records], "leakage_guard": "Each scene is entirely assigned to one fold; no pixel-level random split is used.", "limitations": "Metrics use owner-approved derived boundaries and are exploratory only; they are not an independent scientific accuracy assessment." if data_status == "owner_approved_experimental" else None}
     (out / "metrics.json").write_text(json.dumps(metrics, indent=2))
-    print(f"[train_segmentation] OK: IoU={temporal['iou']:.3f}, F1={temporal['f1']:.3f}")
+    print(f"[train_segmentation] OK ({type(model).__name__}): IoU={temporal['iou']:.3f}, F1={temporal['f1']:.3f}")
     return 0
 
 

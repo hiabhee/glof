@@ -1,4 +1,213 @@
-# Full architecture implementation plan
+# GlacierLens — implementation plan and source of truth
+
+**Current status reconciled: 27 September 2026.**
+
+**We have a working experimental South Lhonak pilot, not a completed or independently validated research system.** Data preparation, experimental glacier training/inference and provisional boundary-based change calculations exist. Reliable glacier-and-lake validation, uncertainty-aware changes and regional pattern analysis remain unfinished.
+
+## Current plan authority
+
+The current sections above the historical-plan divider below are the authoritative planning/status record. They supersede outdated status statements in `docs/planb-implementation.md`, `docs/roadmap.md`, `docs/phase-2-geoai-retreat-forecasting.md` and `data/catalog/planb/geoai-training-pilot.md`. This document does not override executable checks or upgrade the evidence status of assets. Some implementation work remains uncommitted; local existence does not mean it has been pushed or released.
+
+## Agreed scope
+
+| Item | Current decision |
+| --- | --- |
+| First deliverable | Complete one South Lhonak experimental glacier–lake pilot, then expand. |
+| Dates | **2017-11-19, 2019-10-15, 2022-11-30**. The third year is 2022, not 2020 or 2012. |
+| Inputs | Sentinel-2 surface reflectance and Copernicus DEM terrain features. Analytical SR starts in 2017. |
+| Model split | Train on 2017 and 2019; test on 2022. No separate validation scene currently exists. |
+| Labels | The owner explicitly approved derived glacier boundaries for experimental training. Redrawing them is not a prerequisite for continuing that authorized route. |
+| Evidence limit | Owner approval is not independent validation. Agreement with derived labels is not established real-world accuracy. |
+| Later expansion | More years/sites and the October-2023 event pair; these are not prerequisites for the three-date demo. |
+| Not adopted | Landsat, alternative study sites and external training datasets have been discussed, but no replacement of the current pilot has been implemented or agreed. |
+| Deferred | Forecasting, operational alerts, GLOF probability, flood routing and exposure modelling. |
+
+Dataset-first labelling remains an option: verify each outline's location, source acquisition date, licence and mapping method. A dataset's release year is not its imagery year. Glacier outlines do not automatically provide lake shorelines.
+
+## Architecture: what exists now
+
+```text
+Sentinel-2 + DEM + historical inventories
+                  |
+                  v
+Quality review, common-grid features and alignment checks
+                  |
+         +--------+--------+
+         v                 v
+Glacier Random Forest   Lake spectral candidates
+         |                 |
+         +--------+--------+
+                  v
+Boundary review, measurements and uncertainty
+                  |
+                  v
+Multi-date change maps, charts and evidence downloads
+                  |
+                  v
+Later: additional sites and spatial/temporal pattern analysis
+```
+
+| Architecture stage | Current evidence | Remaining work |
+| --- | --- | --- |
+| Acquisition/preprocessing | Three-date pilot feature stacks and valid masks; G2 passes. | Reproducibility and grid/NoData regression checks; broader coverage later. |
+| GeoAI delineation | Experimental binary glacier Random Forest and XGBoost models trained; XGBoost 2022 probability, mask, polygon and full-scene diagnostic layers exported. | Diagnose errors and validate lake detection separately. U-Net/SegFormer is not implemented. |
+| Feature extraction | Provisional polygon areas and geometry differences. | Terminus distance, terrain/elevation summaries and uncertainty. |
+| Multi-temporal analysis | Two provisional interval outputs exist. | Validated change maps, common valid coverage, detection limits and GEE change exports. |
+| Visualization | Timeline, Pilot Change, GeoAI panel and downloads; local mobile/simplification work. | Correct georeferenced comparison/error layers, report-driven metrics and responsive verification. |
+| Regional analysis | Not complete. | Verified additional sites, geographic holdouts and bounded susceptibility analysis. |
+
+An end-to-end released-data path through the previously proposed PostGIS/FastAPI/object-store/tile architecture has not been demonstrated. Static versioned assets are sufficient for the first pilot. The full serving stack remains a later delivery milestone, not a prerequisite for inspecting model errors.
+
+## Evidence inventory and measured results
+
+Paths are relative to the repository root:
+
+- Inputs: `data/derived/planb/features/south-lhonak-approved-feature-manifest.json` and per-date assets under `data/derived/planb/features/south-lhonak/`.
+- Approved source polygons: `data/owner-approved-boundaries/south-lhonak-<date>-glacier.geojson`.
+- Experimental authorization: `data/catalog/owner-approved-glacier-masks.json`.
+- Model and saved metrics: `data/derived/phase2/models/segmentation/phase-2-seg-rf-v2.1/` and `data/derived/phase2/models/segmentation/phase-2-seg-xgb-v1.0/`.
+- Public inference: `apps/web/public/geoai/south-lhonak/2022-11-30/`.
+- Provisional change results: `apps/web/public/change-analysis/south-lhonak/`.
+- Implementation: `pipelines/geoai/build_training_masks.py`, `train_segmentation.py`, `predict_segmentation.py`, `evaluate_segmentation_full_scene.py`, and `pipelines/scripts/generate_provisional_change_analysis.py`.
+
+The 13 feature bands are B2, B3, B4, B8, B11, NDVI, NDWI, MNDWI, NDSI, B8/B11, elevation, slope and aspect. MNDWI and NDSI have the same green/SWIR formula here; they are not independent information sources.
+
+### Glacier models
+
+Saved model `phase-2-seg-rf-v2.1` is a `RandomForestClassifier`, with evidence status `owner_approved_experimental`. The saved evaluation uses **20,000 sampled 2022 pixels**:
+
+| Metric | Saved result |
+| --- | --- |
+| Glacier IoU | 0.5045 |
+| F1 / Dice | 0.6706 |
+| Precision | 0.7373 |
+| Recall | 0.6150 |
+
+These are agreement scores against derived owner-approved labels, not independent scientific accuracy. Geographic validation is absent. There is no trained/evaluated lake model. The 2022 prediction report records threshold 0.5 and 23,233 predicted glacier pixels.
+
+The comparable experimental `XGBClassifier` run `phase-2-seg-xgb-v1.0` uses the same frozen temporal split, feature order, 20,000-pixel-per-scene sampling ceiling, seed and 0.5 threshold. Its saved 2022 sampled-label agreement is IoU **0.530**, F1/Dice **0.693**, precision **0.767**, and recall **0.632**. This is a modest improvement over the saved RF agreement, not evidence of independent real-world accuracy or a reason to retire the RF before full-scene diagnostics and independent validation. Its 2022 export is at `data/derived/phase2/predictions/phase-2-seg-xgb-v1.0/south-lhonak/2022-11-30/` and contains 22,741 predicted glacier pixels.
+
+The XGBoost full-scene evaluator is saved at `data/derived/phase2/evaluations/phase-2-seg-xgb-v1.0/south-lhonak/2022-11-30/`. On 230,195 shared valid pixels, it records 17,268 true positives, 5,473 false positives, 10,314 false negatives and 20,436 ignored pixels; IoU is 0.522 and F1 is 0.686. It also exports individual TP/FP/FN/TN/ignored maps and a combined error-class map. These are diagnostics against the same owner-approved derived labels, not independent validation.
+
+The glacier labels use a historical RGI footprint adjusted using dated spectral lake candidates. They do not independently establish glacier-wide boundaries for every date; shared historical geometry can propagate systematic errors across training and test labels.
+
+A prior conversational full-scene audit was not saved as a reproducible report. Its numbers must not be mixed with the sampled report above. The next evaluation must save confusion counts, coverage, metrics, projected areas and asset hashes. Compare predicted/reference areas over **the same valid footprint**, not a masked prediction against an entire polygon.
+
+2022 has already been inspected. It can support transparent diagnostics, but repeated tuning against it would make it development data, not an untouched final test. Establish separate validation and a fresh final holdout before stronger claims.
+
+### Provisional change measurements
+
+| Date | Glacier polygon area (km²) | Lake candidate area (km²) |
+| --- | --- | --- |
+| 2017-11-19 | 12.801892 | 1.149537 |
+| 2019-10-15 | 12.593980 | 1.358957 |
+| 2022-11-30 | 12.531210 | 1.713200 |
+
+These are measurements of input geometry, **not GeoAI-predicted areas**. Interval loss/gain geometries exist. Lake polygons remain candidates, not independently reviewed shorelines. Terminus retreat is uncomputed: area loss is not retreat distance. Uncertainty and independent change validation are incomplete. Three irregular observations describe two intervals, not a detailed annual trend.
+
+## Checks rerun on 27 September 2026
+
+| Check | Actual result | Meaning |
+| --- | --- | --- |
+| `validate_research_readiness.py` | PASS, exit 0 | Current G2 provenance, sources, review, coverage and co-registration requirements are met. This does not independently recertify the imagery or algorithm. |
+| `validate_geoai_training_readiness.py` | BLOCKED, exit 2 | Independent dated labels are not registered in `reviewed-glacier-masks.json`. |
+| `python -m unittest discover -s pipelines/tests -v` | PASS, 16 tests | Includes full-scene evaluator tests: perfect agreement, shared-valid ignored handling and shifted-grid rejection. |
+
+There are two separate routes: the **authorized experimental pilot**, which already trained using owner-approved labels, and an **independently validated research release**, which still requires defensible independent references. Do not remove the latter's checks just to make a gate pass.
+
+## Known inconsistencies and technical risks
+
+1. Older status documents, training-preparation notes and the split snapshot incorrectly say no model exists or approved experimental labels are excluded. This file supersedes those planning statements; underlying metadata still needs reconciliation.
+2. The provisional change summary still prohibits training/evaluation. Preserve its provenance while recording the separate experimental authorization consistently in generators, manifests and UI; do not silently promote it to independent truth.
+3. `temporal-explorer.tsx` scales an RGI illustration using polygon bounds and synthesizes a lake ellipse. This is not a reliable georeferenced overlay and cannot validate alignment.
+4. Mask/feature validation needs affine-transform checks in addition to dimensions/CRS; inference should explicitly enforce valid-mask semantics.
+5. General inference export needs proper geographic GeoJSON conversion for projected inputs and metric-area calculation. The current geographic pilot does not validate arbitrary CRS handling.
+6. UI metrics should come from versioned reports rather than hardcoded values, with sampled/full-scene evaluation clearly distinguished.
+
+## Ordered next steps and acceptance tests
+
+### A. Make the existing 2022 prediction inspectable — next action
+
+Build a full-scene evaluator that checks grids, intersects valid coverage, and exports true-positive, false-positive, false-negative and ignored-pixel maps. Save confusion counts, IoU/F1/precision/recall, comparable projected areas, model settings and hashes. Replace illustrative overlays with actual georeferenced source/prediction geometry on matching imagery.
+
+**Tests:** Identical reference/prediction gives perfect agreement on valid pixels; a shifted grid is rejected; ignored pixels do not count as background; several recognizable locations align visually; area comparisons use one common valid domain.
+
+### B. Diagnose and improve glacier segmentation
+
+Inspect whether errors originate in labels, alignment, shadow, seasonal snow, debris or model behaviour; do not assume a cause before inspection. Evaluate external outlines by source date and overlap. Keep the authorized derived labels usable for experiments. Establish separate validation data or clearly limited spatially blocked validation within training data. Compare an index/terrain baseline with Random Forest. Add representative labels before implementing U-Net/SegFormer.
+
+**Tests:** Whole acquisitions remain in one temporal fold; neighbouring/overlapping patches do not leak across validation folds; feature order is enforced; runs preserve configuration and provenance. Freeze acceptance criteria before evaluating new final-test data rather than inventing a passing score afterward.
+
+### C. Complete the lake branch
+
+Obtain or review dated shorelines independently from glacier labels. Mark obscured edges unknown. Evaluate NDWI/MNDWI candidates, then train/evaluate a lake or multiclass model for the full AI architecture.
+
+**Tests:** Lake overlap and area have separate references and valid coverage; inspect shadow/snow confusion; glacier predictions are never labelled lake predictions; uncertain shorelines remain flagged.
+
+### D. Produce defensible change analysis
+
+Preserve provisional results and create a separately versioned analysis from reviewed outputs. Compute persistence/loss/gain, area differences and actual interval-adjusted rates. Include boundary-resolution, alignment and unknown-coverage uncertainty with a detection limit. Define dated terminus lines before reporting retreat distance. Generate reproducible GEE-side change exports.
+
+**Tests:** Identical polygons give zero change; gain minus loss reconciles with net area change; mismatched CRS fails; obscured termini are indeterminate; independently verify at least one interval. Never infer full glacier retreat from lake subtraction alone.
+
+### E. Finish the simple pilot interface and reproducible release
+
+Keep the main journey to date selection, imagery/boundaries, date comparison, model agreement and evidence downloads. Load metrics from reports. Publish methods, limitations and a release manifest with retrieval instructions for large assets.
+
+**Tests:** Explore Imagery is accessible on phone/tablet/desktop; all three dates load matching assets; overlays remain aligned on resize; Pilot Change explains its difference from GeoAI results; every figure traces to a report; a clean environment reproduces the documented pipeline.
+
+### F. Expand toward the complete research architecture
+
+Verify additional sites and dated labels; run geographic holdouts; analyze spatial/temporal patterns and a transparent sensitivity-tested susceptibility index. Implement the full versioned database/API/tile-serving path if retaining that deployment design.
+
+**Tests:** Unverified sites remain excluded; per-site metrics are reported; index weights/missing-data rules are published; no index is presented as GLOF probability; released figures resolve to exact sources and processing versions.
+
+## Practical commands
+
+Run from the repository root:
+
+```sh
+# Expected PASS for the current pilot input gate.
+.venv/bin/python pipelines/scripts/validate_research_readiness.py
+
+# Expected BLOCKED until independent labels are registered.
+# Separate from the authorized experimental route.
+.venv/bin/python pipelines/scripts/validate_geoai_training_readiness.py
+
+# Rerun these after implementation changes.
+.venv/bin/python -m unittest discover -s pipelines/tests -v
+npm run build
+```
+
+Only the first two commands were rerun for this documentation reconciliation. No fresh full-suite, production-build or browser pass is claimed here.
+
+## Current definition of done
+
+### Experimental pilot
+
+- [x] Three-date G2 input-readiness gate passes.
+- [x] Owner-approved experimental label manifest exists.
+- [x] Glacier Random Forest trained and 2022 prediction exported.
+- [x] Provisional input-boundary change measurements generated.
+- [x] Saved XGBoost full-scene evaluation and correctly georeferenced error maps, against experimental owner-approved derived labels.
+- [ ] Separately evaluated lake delineation.
+- [ ] Uncertainty-aware change outputs with coverage limitations.
+- [ ] Verified simple responsive UI and reproducible release package.
+
+### Full objectives and architecture
+
+- [ ] Independent glacier/lake validation and neural segmentation evaluated, or an explicitly agreed revision of the model architecture.
+- [ ] Validated area/terminus change, uncertainty and GEE change maps.
+- [ ] Multi-site spatial/temporal patterns and bounded susceptibility assessment.
+- [ ] Versioned serving architecture and evidence-backed research release.
+
+Update this file whenever a milestone changes: record date, evidence paths, checks run and limitations. Distinguish implemented, experimentally evaluated, independently validated and released. Do not infer scientific completion from code existence, owner approval or passing software tests alone.
+
+---
+
+# Historical architecture proposal — 22 September 2026
+
+**Archive/context only.** Everything below preserves the original design and its then-current assumptions. Its status statements, phase numbers, dates, estimated durations, immediate backlog and mandatory sequencing are historical, not current instructions. Use the reconciled scope, ordered milestones and checks above for execution. The broader technical design below remains reference material for later expansion.
 
 **Status (22 September 2026): not yet on track for a completed research release.** The project has a credible start: a Next.js evidence viewer, 32 candidate multi-date Sentinel-2 feature stacks across five sites, a documented preprocessing protocol, and fail-closed research gates. It does **not** yet have quality-accepted observations, stable-terrain alignment, reviewed dated labels, a trained/validated GeoAI model, real change measurements, cross-site analysis, a working API/database/tile-serving layer, or approved lake boundaries. Therefore the dashboard must continue to show only evidence and candidate status until the gates below pass.
 

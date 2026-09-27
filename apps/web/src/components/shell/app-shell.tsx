@@ -181,7 +181,16 @@ export function AppShell() {
         <button type="button" title="Reset view to Himalaya" aria-label="Reset view" onClick={handleReset}>⟲</button>
         <button type="button" title="Fullscreen" aria-label="Toggle fullscreen" onClick={toggleFullscreen}>⛶</button>
       </div>
-      <button type="button" className="mobile-map-cta" onClick={() => openMobileView("explore")}>Find a glacier or lake</button>
+      <button
+        type="button"
+        className="mobile-map-cta"
+        onClick={() => {
+          if (selectedSite?.readiness === "evidence-ready") setDetailOpen(true);
+          else openMobileView("explore");
+        }}
+      >
+        {selectedSite?.readiness === "evidence-ready" ? "Explore imagery & GeoAI →" : "Find a glacier or lake"}
+      </button>
 
       {/* Left glass panel */}
       <aside className={`glass-panel left-panel ${leftCollapsed ? "collapsed" : ""}`} aria-label="Glacier search and filters">
@@ -503,8 +512,7 @@ export function AppShell() {
             </p>
             <h2>{selected ? `${selected.name}` : "Choose a glacier–lake system"}</h2>
             <small>
-              {selected ? "Timeline · Event · Change & Forecast · Sources — pick a tab" : "Start on the map and open a site to explore"}
-               · RGI v7 historical baseline · 2016–2025 seasonal window
+              {selected ? "Satellite imagery, change analysis, and GeoAI" : "Select a study site to explore"}
             </small>
           </div>
           <div className="detail-actions">

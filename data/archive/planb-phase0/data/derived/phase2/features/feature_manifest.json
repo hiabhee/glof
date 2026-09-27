@@ -1,0 +1,1868 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-10T03:23:52.204849Z",
+  "processing_version": "phase-2-retreat-v1.0",
+  "crs": "EPSG:32645",
+  "seasonal_window": {
+    "start_month": 10,
+    "end_month": 11
+  },
+  "resolution": {
+    "sentinel2": 10,
+    "sentinel1": 10,
+    "dem": 30
+  },
+  "records": [
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2016-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2016-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2016-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2016-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2017-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2017-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2017-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2017-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2018-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2018-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2018-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2018-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2019-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2019-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2019-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2019-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2020-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2020-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2020-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2020-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2021-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2021-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2021-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2021-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2022-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2022-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2022-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2022-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2023-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2023-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2023-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2023-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2024-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2024-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2024-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2024-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "south-lhonak",
+      "glacier_id": "RGI2000-v7.0-G-15-07986",
+      "observation_date": "2025-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2025-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/south-lhonak/2025-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/south-lhonak/2025-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2016-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2016-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2016-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2016-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2017-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2017-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2017-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2017-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2018-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2018-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2018-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2018-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2019-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2019-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2019-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2019-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2020-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2020-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2020-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2020-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2021-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2021-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2021-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2021-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2022-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2022-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2022-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2022-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2023-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2023-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2023-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2023-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2024-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2024-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2024-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2024-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "tsho-rolpa",
+      "glacier_id": "RGI2000-v7.0-G-15-10433",
+      "observation_date": "2025-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2025-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/tsho-rolpa/2025-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/tsho-rolpa/2025-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2016-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2016-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2016-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2016-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2017-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2017-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2017-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2017-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2018-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2018-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2018-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2018-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2019-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2019-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2019-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2019-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2020-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2020-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2020-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2020-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2021-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2021-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2021-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2021-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2022-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2022-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2022-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2022-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2023-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2023-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2023-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2023-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2024-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2024-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2024-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2024-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "imja-tsho",
+      "glacier_id": "RGI2000-v7.0-G-15-10232",
+      "observation_date": "2025-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2025-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/imja-tsho/2025-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/imja-tsho/2025-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2016-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2016-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2016-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2016-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2017-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2017-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2017-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2017-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2018-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2018-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2018-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2018-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2019-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2019-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2019-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2019-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2020-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2020-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2020-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2020-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2021-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2021-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2021-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2021-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2022-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2022-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2022-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2022-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2023-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2023-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2023-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2023-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2024-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2024-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2024-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2024-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "thulagi",
+      "glacier_id": "RGI2000-v7.0-G-15-09021",
+      "observation_date": "2025-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2025-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/thulagi/2025-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/thulagi/2025-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2016-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2016-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2016-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2016-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2017-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2017-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2017-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2017-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2018-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2018-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2018-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2018-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2019-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2019-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2019-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2019-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2020-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2020-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2020-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2020-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2021-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2021-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2021-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2021-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2022-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2022-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2022-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2022-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2023-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2023-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2023-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2023-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2024-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2024-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2024-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2024-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    },
+    {
+      "site_id": "chhota-shigri",
+      "glacier_id": "RGI2000-v7.0-G-14-15901",
+      "observation_date": "2025-10-15",
+      "crs": "EPSG:32645",
+      "seasonal_window": "10\u201311",
+      "inputs": {
+        "sentinel2": "COPERNICUS/S2_HARMONIZED/2025-10-15",
+        "sentinel1_where_optical_obstructed": "COPERNICUS/S1_GRD",
+        "dem": "COPERNICUS/DEM/GLO30_2024_1",
+        "dem_derived": [
+          "elevation",
+          "slope",
+          "aspect"
+        ]
+      },
+      "masks": [
+        "cloud_score_plus",
+        "shadow",
+        "snow"
+      ],
+      "quality_gate": "approved_only \u2014 candidates excluded; no gap filling",
+      "co_registration": "All layers reprojected to EPSG:32645, resampled to 10 m optical grid; SAR terrain-corrected; sub-pixel alignment verified",
+      "provenance": {
+        "source_ids": [
+          "copernicus-s2-harmonized",
+          "copernicus-dem-glo30",
+          "rgi-v7-glacier-reference"
+        ],
+        "processing_version": "phase-2-retreat-v1.0",
+        "method": "Reproducible GEE + shapely pipeline; raw, derived, and presentation assets stored separately"
+      },
+      "feature_asset": "data/derived/phase2/features/chhota-shigri/2025-10-15.tif",
+      "provenance_asset": "data/derived/phase2/features/chhota-shigri/2025-10-15.json",
+      "dry_run": true,
+      "quality_status": "approved"
+    }
+  ],
+  "notes": "Raw inputs, derived features, and presentation metadata are stored separately per Workstream 1. Every record links source, date, method, resolution, and quality notes."
+}

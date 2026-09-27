@@ -1,0 +1,650 @@
+{
+  "status": "excluded",
+  "reason": "Unsupported legacy claims, scaled boundaries, synthetic measurements and placeholder model. No research eligibility.",
+  "assets": [
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2016-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2016-10-15.geojson",
+      "sha256": "63e82c3adb4ef3abc1282048bacfb2ed7107d031977c1d6568420d99681e0433",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2017-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2017-10-15.geojson",
+      "sha256": "867385780cc620cb93beb74a0c34aaa664efd2f4ed28a65be1d31f7724d159bd",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2018-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2018-10-15.geojson",
+      "sha256": "ddbf65936ddae0922f1891c85f7c90dae568ae1bc7ce68aa443321bbf3eb082e",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2019-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2019-10-15.geojson",
+      "sha256": "1013a0ca25c6ec2a5cdb8c7384489fa7c5176313eeac06cb13d0d2e4f49bdbb5",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2020-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2020-10-15.geojson",
+      "sha256": "65ede6c0abe21b0cabfb948f1dab92941ccd8fd24e48ae589eaa2221fa437f11",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2021-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2021-10-15.geojson",
+      "sha256": "eb05c6f040b37a356264505fec222fcd7e3d743b080f4fc1c24d246583d1809b",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2022-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2022-10-15.geojson",
+      "sha256": "db9e37fbf887a0c7915fedeaf9eacd82d7abf0fbd7c7b5b1a1b22b892927b5b4",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2023-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2023-10-15.geojson",
+      "sha256": "2a56532db365edcd2c4b99093796d7f7f4150dad54a6167e447fdd37fe2dd98c",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2024-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2024-10-15.geojson",
+      "sha256": "f49519a55e8b4f79340a5a2a62072320381778e0d1ec9a031b040457a34cbd23",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/chhota-shigri/2025-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/chhota-shigri/2025-10-15.geojson",
+      "sha256": "110e34fa2e0c22597321acd62a82d84e6d25dcd68271b1dada1ec32ca0c77219",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2016-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2016-10-15.geojson",
+      "sha256": "b9686d652d0231d67503befa82aec3cd42cb73f2b5a0b19887d773853fa1d102",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2017-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2017-10-15.geojson",
+      "sha256": "e6c13004beef245a399c837a9a905029d8fcdf7d3cb93e98444eb9d79b124e9a",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2018-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2018-10-15.geojson",
+      "sha256": "979b4a0067670d999116dc29588799d4b20a605780c095caf47bc9126667cebf",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2019-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2019-10-15.geojson",
+      "sha256": "9b5d96c392aa5bf1e05173437992d6cba2a69209900cb9632d31b28e055ced51",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2020-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2020-10-15.geojson",
+      "sha256": "58f1d3ef2f1689cc18843be5a0796f852b3dc3f977a5bbb82878914b4db3e31d",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2021-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2021-10-15.geojson",
+      "sha256": "694875e3350cb08a6e7ca1c82515b3d818a7cf3f58346c0b9cecacfb678a8601",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2022-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2022-10-15.geojson",
+      "sha256": "57459ec8a974aa620634f3433da89d002e87e4febf4c4fd1583181f42c1ae0cf",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2023-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2023-10-15.geojson",
+      "sha256": "565cd2a3b4e7ffd1e35f7db43a282e6356dec9fb8a13b9ef11fc1611861f79fb",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2024-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2024-10-15.geojson",
+      "sha256": "86a943020387148250b7d782a50a94acbef34f51aec1332e4de8cd653d680f83",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/imja-tsho/2025-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/imja-tsho/2025-10-15.geojson",
+      "sha256": "166c42485a497e2c80cb7165eb30e47eb68938326a120610a533b4a7103e5bd0",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2016-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2016-10-15.geojson",
+      "sha256": "6e0a8faa1b04d3abb7bb6a0f3d52495722645889f878e252e7960ba261945814",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2017-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2017-10-15.geojson",
+      "sha256": "55f67e85e372d72dac5f398edca9227ce39ef6b2dcd1b6f953efc79a50cb4b28",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2018-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2018-10-15.geojson",
+      "sha256": "731347ab67df820427af8ed8d436a0feca03d2431435c202d4c5e08d83f51125",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2019-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2019-10-15.geojson",
+      "sha256": "0df677d9fb211fb53d18cca8b47db245e8e9859f5a58f26c02928b96b23492e0",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2020-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2020-10-15.geojson",
+      "sha256": "b18cbb23b5ee67b94b9d65339caee9a7cc695b643c3167d1e6cd752bde9286ed",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2021-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2021-10-15.geojson",
+      "sha256": "49890946ebb194e1d7a7b60aecbd3a06e63ed63f9904b14fb890a75acf7c6eb3",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2022-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2022-10-15.geojson",
+      "sha256": "686fcd7db5199ef80ceb4e9a607344f814086bd573310d10339db86034170fee",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2023-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2023-10-15.geojson",
+      "sha256": "427134434566abc7422bf6548a88e3fa7cf6f198db33032d407d2b9d679cfa64",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2024-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2024-10-15.geojson",
+      "sha256": "3c2f6871de1f7cf63847c4ea0ecfe8c5149e50c0dfe55485ff3cddfd77dfd78f",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/south-lhonak/2025-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/south-lhonak/2025-10-15.geojson",
+      "sha256": "029b19ddadb7dd21e1fa7e90f81d39991c0bc28b06ce800aa9869c96330b418f",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2016-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2016-10-15.geojson",
+      "sha256": "c306b5d2d93714f0cb2014bf51b8fc97171395a67057f67d67b37d9dfd607f00",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2017-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2017-10-15.geojson",
+      "sha256": "28898cdd84bdcd82df427325da5fe8af0b9db2d8b579000cfad7e8e8a16b28c3",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2018-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2018-10-15.geojson",
+      "sha256": "8066fe0882b14feab14a699164959ddfa415a44068b8bffd3713bae46d7d0da1",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2019-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2019-10-15.geojson",
+      "sha256": "f8098a4c3cbdf8f703ff2de53a9028f1e3fbbcca53b8011a115cb94e9952d808",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2020-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2020-10-15.geojson",
+      "sha256": "1536fe55532340eeea8e3a51979dc96d19dd2ba82497430ac50cf43c45d21ae6",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2021-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2021-10-15.geojson",
+      "sha256": "915f14991bafee6d626426646ac87716ab7511aebe4a1d2150830140c015afa9",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2022-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2022-10-15.geojson",
+      "sha256": "66f69673d71ec7c99aa811165ff2de1073622373f0666bb434be091e2a7f14e7",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2023-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2023-10-15.geojson",
+      "sha256": "6f7947c71b0519bba7b8b6ecd3a09c7a84b810d90e87cb4c55d0a39b5583e829",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2024-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2024-10-15.geojson",
+      "sha256": "44974a4105f6662d0e2ea42f8ac7a59053c2b80c2265b839b34cf82c6cb63c50",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/thulagi/2025-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/thulagi/2025-10-15.geojson",
+      "sha256": "442d84d7396aa763591dafc6629ef125df5d9be65e9bee79f624873df890b5e2",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2016-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2016-10-15.geojson",
+      "sha256": "ce1c31b9755ee5da75398dd741bf57fc74f3b2f0e155d52cfb39de3b23396d60",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2017-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2017-10-15.geojson",
+      "sha256": "e2b258c9e32f29dea0747d60777785aeafc154fd1c8eeb9b44b3a7e7ab730ec6",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2018-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2018-10-15.geojson",
+      "sha256": "737cddaaa3e208f01f056329e43756d617e47fefb69b68a8b0da8becb8920730",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2019-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2019-10-15.geojson",
+      "sha256": "f7be5d8fb8929cf1661c9176ec85e4700b781a03917aa2814abd0925a8d24a26",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2020-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2020-10-15.geojson",
+      "sha256": "4bd979772db9e6c01318e56bec41e5d80594d11653ad80c6061e709ac3537892",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2021-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2021-10-15.geojson",
+      "sha256": "92b877f2e529fb7ee24f5289059a499e4061bc6b042b22b551e5c09a3aa96ae3",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2022-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2022-10-15.geojson",
+      "sha256": "de752112bb5f50815f1cdc8ff581146b11fb6cb6e7463cf0f36bd979f65ef7e5",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2023-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2023-10-15.geojson",
+      "sha256": "586ae16ad064f2e745a423d508a6388203a762a648c773ca1ae276e1d3b3dfa1",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2024-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2024-10-15.geojson",
+      "sha256": "72243502e3048ccbe91dec27182b7382bea30f9852fff6fdc94563a5ebe1033b",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/boundaries/tsho-rolpa/2025-10-15.geojson",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/boundaries/tsho-rolpa/2025-10-15.geojson",
+      "sha256": "48c24b5b23e367d2fa11d306711ebc775215685c0a3a6868ea450320c5755ff0",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/features/feature_manifest.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/features/feature_manifest.json",
+      "sha256": "7bc391aed43a96a0b508260453ed026f27c13659c4d032818a50873d1681b0bc",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/baseline.json",
+      "sha256": "234331a422bb90280a0f49cbaf360fc60102fef48336969c32780a088fb80f70",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/high_melt.json",
+      "sha256": "cfb33809ed1c470f3005648fb93d0241155cc72d889032a2c6ac46339c5c450e",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-gb-v1.0/warmer_summer.json",
+      "sha256": "d3cf98ba1ee3477109ec6fa1d3b7d8bc946b8ca37e07863c7fca8db813ad1d90",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/baseline.json",
+      "sha256": "d9e4aaedcdcff4e9c4f95b316cfec45ba2373fc24f9fee7c7ad39c2273682184",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/high_melt.json",
+      "sha256": "ebe7db9b37772fc49618cb1507de2b305bd82c373c56bb3c1bfb7598330da720",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/chhota-shigri/phase-2-linear-v1.0/warmer_summer.json",
+      "sha256": "b4a91646fc95b3678eb12f101e2f69d3bd0d34c09977e7cab98bc6a7dc4d3a5c",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/forecast_manifest.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/forecast_manifest.json",
+      "sha256": "87c6efa7dabbb71e5a83a946c24971438fe8e565b154a83199cc65e855245902",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/baseline.json",
+      "sha256": "50306cada5b1149fa19b54588c4af8c86ed6c0ff233113e75306d0a0592eef27",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/high_melt.json",
+      "sha256": "207437708bb74fa2b0f063e2b01fe3d3098974d61cf936111e2ae95ae361e96b",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-gb-v1.0/warmer_summer.json",
+      "sha256": "dfc2ef49a3f02f9aaa1a368e03ea994c5f2a714ebfea2c745a19ffd548828c4f",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/baseline.json",
+      "sha256": "7d54a4f131c569c7eececffaf418339d8ae8bbdbb136dd58d5a371d92d6f2ae4",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/high_melt.json",
+      "sha256": "3d318f7cb04792912937bef6ecf73bc82e9c33e255bd2922ad29296e1eb30b60",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/imja-tsho/phase-2-linear-v1.0/warmer_summer.json",
+      "sha256": "7be070886425b2f7bb3a12ca4de1481134df26e66ad6be3bd54c5fd0547075f7",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/baseline.json",
+      "sha256": "0fdfe3ee5e3075b1babb82d0a06f59832afac1821615788c6468bd4346088aca",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/high_melt.json",
+      "sha256": "be0d63d5fedad71c77ff4352202b51ad606095dc5adf8c5210b320fe885bad8b",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-gb-v1.0/warmer_summer.json",
+      "sha256": "3f0b2c55114ce06163ddeb931b49d36d037430e9d06bd8dffd0283a74e3a4af4",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/baseline.json",
+      "sha256": "b99cde04da6dd7eb7b629bf70085d10cbafd0ea025d192e5f7f53527c14774c6",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/high_melt.json",
+      "sha256": "3e201dc39611d9e0edbc4a1b59c6fd5a5f52bfaeb5fe2dbb76518cc574988ee6",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/south-lhonak/phase-2-linear-v1.0/warmer_summer.json",
+      "sha256": "9d5ab2bc95745c2196990a10fe664b8558aded8bfdc7cbbc32bc1d861d7daa4e",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/baseline.json",
+      "sha256": "90b090d3d168e735f8f40569bd13e04e00691ee4a2814231d8e1f78502b175c1",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/high_melt.json",
+      "sha256": "2fce13171ac2ffa8c8e4ad1ea795d2c886eff1457980de3ecc6a71c8ae0ad44a",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-gb-v1.0/warmer_summer.json",
+      "sha256": "ead4516d97fc8741b4024ddbc3937a00a3a4953be29ae689aeefee4b3cb64042",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/baseline.json",
+      "sha256": "45def45749ace50a1e04207406bfd5d145f595c8633e5a0cdde7415dcd45ad67",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/high_melt.json",
+      "sha256": "03691604047b50e8a097f41fb8f384cffb419c577a9148b939bba4039ca00f77",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/thulagi/phase-2-linear-v1.0/warmer_summer.json",
+      "sha256": "482f9cd8419dfedd23cd52e51f1ee0e8bb48b7d2242a3051de311ac182ad809e",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/baseline.json",
+      "sha256": "24b0404e92f00fb80e5ec5fd47a6b8af49f64f0f1918c0e5061029b382c599aa",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/high_melt.json",
+      "sha256": "b9064ebe4c01bc0ea8ef99290eee7e9a4e4dde4facc4cc1df2d4678973b8b710",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-gb-v1.0/warmer_summer.json",
+      "sha256": "773a07dac76687bbae9b6dba388e955772e7cb0e8b3d002d17c29ad52f26580e",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/baseline.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/baseline.json",
+      "sha256": "bddae94b625fe2244a6b28abc2836338ece143a1e765b6457304650df0686195",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/high_melt.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/high_melt.json",
+      "sha256": "021413bfa71ab3a21ae3b94a4ea00bce909e3b6df6ea8fd8887d0689ff2bfadb",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/warmer_summer.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/forecasts/tsho-rolpa/phase-2-linear-v1.0/warmer_summer.json",
+      "sha256": "8fded6418835f43d24d660de944c5537e698bf87c418128c371eaac3d1f25468",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/masks/training_mask_manifest.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/masks/training_mask_manifest.json",
+      "sha256": "d762f5e10816341abd01543c991c0c4a606d0a071f1cade3752e170d2f1704ac",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/measurements/retreat_measurements.csv",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/measurements/retreat_measurements.csv",
+      "sha256": "9a65b4eb4a1caff9b9a4624538966a3183ffa9a61619a6c9eeb070f2a43a5f2b",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/measurements/retreat_measurements.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/measurements/retreat_measurements.json",
+      "sha256": "38401fdd13588bc638a5a31a4ab556bdd88e5dc0114e901f71eb55008d4a3cf9",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/config.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/config.json",
+      "sha256": "efd40e65d61a8eba60ae9b9b604fc3da11bb3b941aecb0d0e8162c84dacf9a3d",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/metrics.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/metrics.json",
+      "sha256": "d90de92b029ae81ad4669a1ba8316cc38f3c858e768b7989a66ea0a08f0e7514",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/model.pt.placeholder",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/models/segmentation/phase-2-seg-unet-v1.0/model.pt.placeholder",
+      "sha256": "27def9c361d267422530b21933cdf189effc5debcda17957d5fd35d5f8d63f17",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/validation/validation_report.json",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/validation/validation_report.json",
+      "sha256": "fd01e64a13786a0239349b5378873e79a4673f722fa0356f6f8b571fe2e97437",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/derived/phase2/validation/validation_report.md",
+      "archive_path": "data/archive/planb-phase0/data/derived/phase2/validation/validation_report.md",
+      "sha256": "e0209facffc8ffe138807356246017202e807774747c1092962449a5e8ab12f1",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/catalog/phase-2-model-manifest.json",
+      "archive_path": "data/archive/planb-phase0/data/catalog/phase-2-model-manifest.json",
+      "sha256": "2e9e1c21fadc3a64254ef04c1b9e6ea4b3b2ed50cebae57ad4cd7eef4b4aa460",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    },
+    {
+      "original_path": "data/catalog/phase-2-validation-register.md",
+      "archive_path": "data/archive/planb-phase0/data/catalog/phase-2-validation-register.md",
+      "sha256": "9c37035ddfd6841b269fe32de98b4cc3cae4225d6fdc9f0d70928106a4321539",
+      "status": "superseded_unverified",
+      "eligible_for_research": false
+    }
+  ]
+}

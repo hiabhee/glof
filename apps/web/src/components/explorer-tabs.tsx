@@ -7,10 +7,11 @@ import { EvidencePanel } from "@/components/evidence-panel";
 import { GlacierAnalysisPanel } from "@/components/glacier-analysis-panel";
 import { RetreatAnalysis } from "@/components/retreat-analysis";
 import { ProvisionalChangeAnalysis } from "@/components/provisional-change-analysis";
+import { GeoAiPilot } from "@/components/geoai-pilot";
 import type { SiteConfig } from "@/domain/site";
 import type { SiteDataset } from "@/domain/site-dataset";
 
-type TabId = "timeline" | "provisional" | "event" | "retreat" | "evidence";
+type TabId = "timeline" | "provisional" | "geoai" | "event" | "retreat" | "evidence";
 
 type Props = {
   siteName: string;
@@ -33,6 +34,13 @@ const TAB_META: Record<TabId, { label: string; shortLabel: string; kicker: strin
     kicker: "2017 → 2022",
     description: "Three-date glacier and lake area comparison. Clearly marked provisional; it is not a trained-model result.",
     countLabel: "3 dates",
+  },
+  geoai: {
+    label: "GeoAI Pilot",
+    shortLabel: "GeoAI",
+    kicker: "2017 → 2022",
+    description: "An experimental glacier-segmentation model trained on the project-owner-approved pilot boundaries.",
+    countLabel: "1 holdout",
   },
   event: {
     label: "2023 Event",
@@ -69,7 +77,7 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
   }, [isOpen]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const order: TabId[] = ["timeline", "provisional", "event", "retreat", "evidence"];
+    const order: TabId[] = ["timeline", "provisional", "event", "geoai", "retreat", "evidence"];
     const idx = order.indexOf(active);
     if (e.key === "ArrowRight") {
       e.preventDefault();
@@ -84,28 +92,6 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
 
   return (
     <div className="explorer-tabs" role="region" aria-label={`${siteName} explorer`}>
-      {/* Primer — what is this place? Helps a newbie in 10 seconds */}
-      <div className="explorer-primer">
-        <div className="primer-head">
-          <p className="eyebrow">{site.region} · {site.country}</p>
-          <h3>{siteName}</h3>
-          <p className="primer-subtitle">
-            {site.id === "south-lhonak"
-              ? "Evidence-ready · retrospective case study — the lake that drained in Oct 2023. Start on Timeline, then swipe the Event, then see Change."
-              : `${site.associatedGlacier} — ${site.readiness === "evidence-ready" ? "evidence-ready · 10 approved Oct–Nov seasons (2016–2025)" : "intake pending"} · RGI ${site.referenceGlacierId ?? "—"}`}
-          </p>
-        </div>
-        <ol className="primer-steps" aria-label="How to use this explorer">
-          <li><span className="step-index">1</span><strong>Timeline</strong><small>Pick a year</small></li>
-          <li className="step-arrow" aria-hidden="true">→</li>
-          <li><span className="step-index">2</span><strong>Event</strong><small>See the outburst</small></li>
-          <li className="step-arrow" aria-hidden="true">→</li>
-          <li><span className="step-index">3</span><strong>Pilot change</strong><small>Areas + maps</small></li>
-          <li className="step-arrow" aria-hidden="true">→</li>
-          <li><span className="step-index">4</span><strong>Evidence</strong><small>Sources & limits</small></li>
-        </ol>
-      </div>
-
       {/* Tab bar */}
       <div className="explorer-tab-bar-wrap">
         <div
@@ -114,11 +100,9 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
           aria-label="Explorer sections"
           onKeyDown={handleKeyDown}
         >
-          {(Object.keys(TAB_META) as TabId[]).map((id) => {
+          {(["timeline", "provisional"] as TabId[]).map((id) => {
             const meta = TAB_META[id];
             const isActive = active === id;
-            // Evidence badge for south-lhonak, retreat badge for all evidence-ready
-            const showDot = (id === "event" && !isSouthLhonak) ? false : true;
             return (
               <button
                 key={id}
@@ -131,17 +115,23 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
                 className={`explorer-tab ${isActive ? "active" : ""}`}
                 onClick={() => setActive(id)}
               >
-                <span className="tab-kicker">{meta.kicker}</span>
                 <span className="tab-label">{meta.label}</span>
-                {meta.countLabel && <span className="tab-count">{meta.countLabel}</span>}
                 {isActive && <span className="tab-underline" aria-hidden="true" />}
               </button>
             );
           })}
+          <label className="explorer-more-label" aria-label="More explorer pages">
+            <span>{["event", "geoai", "retreat", "evidence"].includes(active) ? TAB_META[active].label : "More"}</span>
+            <select value={["event", "geoai", "retreat", "evidence"].includes(active) ? active : "more"} onChange={(event) => { if (event.target.value !== "more") setActive(event.target.value as TabId); }} aria-label="Open another section">
+              <option value="more" disabled>More</option>
+              <option value="event">2023 event</option>
+              <option value="geoai">GeoAI pilot</option>
+              <option value="retreat">Long-term change</option>
+              <option value="evidence">Sources</option>
+            </select>
+            <span aria-hidden="true">⌄</span>
+          </label>
         </div>
-        <p className="tab-hint" aria-live="polite">
-          <strong>{TAB_META[active].label}:</strong> {TAB_META[active].description}
-        </p>
       </div>
 
       {/* Panels */}
@@ -174,6 +164,10 @@ export function ExplorerTabs({ siteName, dataset, site, isOpen }: Props) {
           className="explorer-panel"
         >
           <ProvisionalChangeAnalysis siteId={site.id} />
+        </section>
+
+        <section id="panel-geoai" role="tabpanel" aria-labelledby="tab-geoai" hidden={active !== "geoai"} className="explorer-panel">
+          <GeoAiPilot siteId={site.id} />
         </section>
 
         <section

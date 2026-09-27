@@ -1,0 +1,119 @@
+{
+  "site_id": "tsho-rolpa",
+  "glacier_id": "RGI2000-v7.0-G-15-10433",
+  "model_tier": "gradient_boosting",
+  "model_version": "phase-2-gb-v1.0",
+  "input_period": {
+    "start": "2016-10-15",
+    "end": "2025-10-15"
+  },
+  "scenario": {
+    "id": "baseline",
+    "label": "Baseline continuation",
+    "horizon_years": 5,
+    "assumptions": "Climate and surface conditions continue the 2016\u20132025 observed trend. No additional forcing.",
+    "delta_summer_temp_C": 0.0,
+    "delta_precipitation_percent": 0.0,
+    "delta_albedo": 0.0,
+    "note": "Baseline continuation"
+  },
+  "confidence_level": 0.8,
+  "method": "Gradient Boosting (HistGradientBoostingRegressor) on aligned terrain+climate+lake predictors; time-based validation (train 2016\u20132021, test 2022\u20132025); leave-one-glacier-out; 80% quantile intervals via conformal calibration.",
+  "limitations": "Trained on 5 Himalayan sites \u00d7 10 seasonal observations (50 rows). Scenario sensitivity, not a GLOF trigger model; uncertainty widens with horizon; debris-covered termini retain higher boundary error; LSTM deferred until \u22658 steps/site and \u226545 total.",
+  "points": [
+    {
+      "date": "2026-10-15",
+      "year": 2026,
+      "scenario_id": "baseline",
+      "central_km2": 16.868,
+      "central_retreat_m": 362.5,
+      "lower_km2": 16.778,
+      "upper_km2": 16.958,
+      "lower_retreat_m": 346.5,
+      "upper_retreat_m": 378.5
+    },
+    {
+      "date": "2027-10-15",
+      "year": 2027,
+      "scenario_id": "baseline",
+      "central_km2": 16.781,
+      "central_retreat_m": 399.0,
+      "lower_km2": 16.671,
+      "upper_km2": 16.891,
+      "lower_retreat_m": 379.0,
+      "upper_retreat_m": 419.0
+    },
+    {
+      "date": "2028-10-15",
+      "year": 2028,
+      "scenario_id": "baseline",
+      "central_km2": 16.681,
+      "central_retreat_m": 439.5,
+      "lower_km2": 16.551,
+      "upper_km2": 16.811,
+      "lower_retreat_m": 415.5,
+      "upper_retreat_m": 463.5
+    },
+    {
+      "date": "2029-10-15",
+      "year": 2029,
+      "scenario_id": "baseline",
+      "central_km2": 16.595,
+      "central_retreat_m": 475.0,
+      "lower_km2": 16.445,
+      "upper_km2": 16.745,
+      "lower_retreat_m": 447.0,
+      "upper_retreat_m": 503.0
+    },
+    {
+      "date": "2030-10-15",
+      "year": 2030,
+      "scenario_id": "baseline",
+      "central_km2": 16.499,
+      "central_retreat_m": 513.5,
+      "lower_km2": 16.329,
+      "upper_km2": 16.669,
+      "lower_retreat_m": 481.5,
+      "upper_retreat_m": 545.5
+    }
+  ],
+  "predictor_contributions": [
+    {
+      "predictor_id": "summer_temp",
+      "contribution": 0.28,
+      "rank": 1,
+      "note": ""
+    },
+    {
+      "predictor_id": "prior_retreat_rate",
+      "contribution": 0.19,
+      "rank": 2,
+      "note": ""
+    },
+    {
+      "predictor_id": "albedo",
+      "contribution": 0.16,
+      "rank": 3,
+      "note": ""
+    },
+    {
+      "predictor_id": "lake_proximity",
+      "contribution": 0.11,
+      "rank": 4,
+      "note": ""
+    },
+    {
+      "predictor_id": "precipitation",
+      "contribution": -0.08,
+      "rank": 5,
+      "note": ""
+    },
+    {
+      "predictor_id": "debris_cover_fraction",
+      "contribution": -0.06,
+      "rank": 6,
+      "note": ""
+    }
+  ],
+  "warning": "Research estimate, not a forecast warning \u2014 scenario-based retreat indicator with a reported uncertainty range. It does not predict when or whether a GLOF will occur."
+}
